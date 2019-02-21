@@ -1,42 +1,17 @@
-﻿#include "pch.h"
+﻿/**
+* @file Laba1.cpp
+* @author Kononenko Dmytro
+* @version 1.0
+* @date 2019.02.20
+*/
+
+#include "pch.h"
 #include <iostream>
 #include <string>
+#include "Laba1.h"
 using std::cin;
 using std::cout;
 using std::endl;
-
-class infoWork {
-private:
-	int pages;
-	int mark;
-	int type;
-	char *name;
-public:
-	infoWork() {
-		cout << "konstructor " << endl;
-		this->pages = 0;
-		this->mark = 0;
-		this->type = 0;
-		name = (char *) operator new (sizeof(char) * 256);
-	}
-	infoWork &operator=(const infoWork &obj) {
-		cout << "copy operator" << endl;
-		this->pages = obj.pages;
-		strcpy_s(name, 256, obj.name);
-		this->mark = obj.mark;
-		this->type = obj.type;
-		return *this;
-	}
-	~infoWork() {
-		delete[] name;
-	}
-	void set(char *creator);
-	void set_n(int a, int b, int c, char *creator);
-	int getPages();
-	int getMark();
-	int getType();
-	char* getName();
-};
 
 void infoWork::set(char *creator) {
 	this->mark = rand() % 5 + 1;
@@ -62,21 +37,6 @@ int infoWork::getType() {
 char* infoWork::getName() {
 	return this->name;
 }
-
-class studentsWork{
-private:
-	int size;
-	infoWork *qual;
-public:
-	void getSize(int x);
-	void createArr();
-	void gibi(int index);
-	void printArr();
-	void findP();
-	void add(int n);
-	void del(int n);
-	void delArr();
-};
 
 void studentsWork::gibi(int index) {
 	if (index >= size) {
@@ -111,6 +71,11 @@ void studentsWork::createArr() {
 	}
 }
 void studentsWork::add(int n) {
+
+	if (n >= size) {
+		return;
+	}
+
 	int a, b, c;
 	char name[30];
 
@@ -133,7 +98,7 @@ void studentsWork::add(int n) {
 	qual = new infoWork[size];
 
 	for (int i = 0, j = 0; i < size; i++) {
-		if (i == n - 1) {
+		if (i == n) {
 			this->qual[i].set_n(a, b, c,name);
 			i++;
 		}
@@ -144,6 +109,9 @@ void studentsWork::add(int n) {
 	delete[] arr;
 }
 void studentsWork::del(int n) {
+	if (n >= size) {
+		return ;
+	}
 	
 	size--;
 	infoWork* arr = new infoWork[size + 1];
@@ -155,7 +123,7 @@ void studentsWork::del(int n) {
 	qual = new infoWork[size];
 	
 	for (int i = 0, j = 0; i < size; i++) {
-		if (i == n - 1) {
+		if (i == n) {
 			j++;
 		}
 		this->qual[i] = arr[j];
@@ -164,10 +132,79 @@ void studentsWork::del(int n) {
 	}
 	delete[] arr;
 }
+void studentsWork::testDel()
+{
+	int n = 2;
+	
+	infoWork tester;
+	tester = qual[n];
+	
+	size--;
+
+	infoWork* arr = new infoWork[size + 1];
+
+	for (int i = 0; i < size + 1; i++)
+		arr[i] = this->qual[i];
+
+	delete[] qual;
+	qual = new infoWork[size];
+
+	for (int i = 0, j = 0; i < size; i++) {
+		if (i == n) {
+			j++;
+		}
+		this->qual[i] = arr[j];
+		j++;
+
+	}
+	delete[] arr;
+	if (qual[n].getMark() == tester.getMark() && qual[n].getPages() == tester.getPages() && qual[n].getType() == tester.getType()) {
+		cout << "Your programm is not bad" << endl;
+	}else {
+		cout << "your luck of skills" << endl;
+	}
+}
+void studentsWork::testAdd()
+{
+	int n = 2;
+	char name[] = { "Kononenko" };
+	int a = 4;
+	int b = 377;
+	int c = 2;
+	infoWork tester;
+	tester.set_n(a, b, c, name);
+
+	infoWork* arr = new infoWork[size];
+
+	for (int i = 0; i < size; i++)
+		arr[i] = this->qual[i];
+
+	delete[] qual;
+	size++;
+	qual = new infoWork[size];
+
+	for (int i = 0, j = 0; i < size; i++) {
+		if (i == n) {
+			this->qual[i].set_n(a, b, c, name);
+			i++;
+		}
+		this->qual[i] = arr[j];
+		j++;
+	}
+
+	delete[] arr;
+
+	if (qual[n].getMark() == tester.getMark() && qual[n].getPages() == tester.getPages() && qual[n].getType() == tester.getType()) {
+		cout << "working" << endl;
+	}
+	else {
+		cout << "Your programm is not working well" << endl;
+	}
+}
 void studentsWork::delArr() {
 	delete[] this->qual;
 }
-void studentsWork::printArr() { // 
+void studentsWork::printArr() {
 	for (int i = 0; i < size; i++) {
 		int m = qual[i].getMark();
 		int p = qual[i].getPages();
@@ -203,7 +240,7 @@ int main() {
 	studentsWork qualWork;
 	int j, x;
 	int choose = 0;
-	
+
 	do {
 		cout << "\n";
 		cout << "0 - Exit" << endl;
@@ -248,6 +285,8 @@ int main() {
 			break;
 		}
 	} while (choose != 0);
+	qualWork.testAdd();
+	qualWork.testDel();
 
 	qualWork.delArr();
 
