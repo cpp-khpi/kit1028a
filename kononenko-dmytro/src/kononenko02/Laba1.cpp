@@ -14,10 +14,10 @@ using std::cout;
 using std::endl;
 
 void infoWork::set(char *creator) {
-	this->mark = rand() % 5 + 1;
-	this->pages = rand() % 336 + 100;
-	this->type = rand() % 2 + 1;
-	strcpy_s(this->name,30,creator);
+	mark = rand() % 5 + 1;
+	pages = rand() % 336 + 100;
+	type = rand() % 2 + 1;
+	strcpy_s(name,30,creator);
 }
 void infoWork::set_n(int a, int b, int c,char *creator) {
 	this->mark = a;
@@ -206,14 +206,10 @@ void studentsWork::delArr() {
 }
 void studentsWork::printArr() {
 	for (int i = 0; i < size; i++) {
-		int m = qual[i].getMark();
-		int p = qual[i].getPages();
-		int type = qual[i].getType();
-		char* name = qual[i].getName();
-		cout << "Name: " << name;
-		cout << " Mark= " << m;
-		cout << " Size= " << p;
-		if (type == 1) {
+		cout << "Name: " << qual[i].getName();;
+		cout << " Mark= " << qual[i].getMark();
+		cout << " Size= " << qual[i].getPages();
+		if (qual[i].getType() == 1) {
 			cout << " BACALAVR" << endl;
 		}
 		else {
@@ -236,7 +232,7 @@ void studentsWork::findP() { //найти процент магистров
 
 
 int main() {
-	system("color 70");
+	system("color 20");
 	studentsWork qualWork;
 	int j, x;
 	int choose = 0;
