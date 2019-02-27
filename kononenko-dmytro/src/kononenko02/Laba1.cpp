@@ -237,44 +237,51 @@ int main() {
 	int j, x;
 	int choose = 0;
 
+	cout << "0 - Exit" << endl;
+	cout << "1 - Create vector" << endl;
+	cout << "Choose: ";
+	cin >> choose;
+	if (choose == 1) {
+		cout << "Input size: ";
+		cin >> x;
+		qualWork.getSize(x);
+		qualWork.createArr();
+	}
+	else {
+		return 0;
+	}
+
 	do {
 		cout << "\n";
 		cout << "0 - Exit" << endl;
-		cout << "1 - Create vector" << endl;
-		cout << "2 - Print vector" << endl;
-		cout << "3 - Find element by index" << endl;
-		cout << "4 - Add element" << endl;
-		cout << "5 - Delete element" << endl;
-		cout << "6 - Find persent" << endl;
+		cout << "1 - Print vector" << endl;
+		cout << "2 - Find element by index" << endl;
+		cout << "3 - Add element" << endl;
+		cout << "4 - Delete element" << endl;
+		cout << "5 - Find persent" << endl;
 		cout << "Choose: ";
 		cin >> choose;
 		switch (choose)
 		{
 		case 1:
-			cout << "Input size: ";
-			cin >> x;
-			qualWork.getSize(x);
-			qualWork.createArr();
-			break;
-		case 2:
 			qualWork.printArr();
 			break;
-		case 3:
+		case 2:
 			cout << "input index: ";
 			cin >> j;
 			qualWork.gibi(j);
 			break;
-		case 4:
+		case 3:
 			cout << "input insert point: ";
 			cin >> j;
 			qualWork.add(j);
 			break;
-		case 5:
+		case 4:
 			cout << "input delete point: ";
 			cin >> j;
 			qualWork.del(j);
 			break;
-		case 6:
+		case 5:
 			qualWork.findP();
 			break;
 		default:
