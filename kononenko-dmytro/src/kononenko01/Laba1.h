@@ -13,11 +13,18 @@ private:
 	int type;
 	char *name;
 public:
+	infoWork(int a, int b, int c, char* creator) {
+		pages = 0;
+		mark = 0;
+		type = 0;
+		name = (char *) operator new (sizeof(char) * 256);
+		strcpy_s(name, 256, creator);
+	}
 	infoWork() {
 		cout << "konstructor " << endl;
-		this->pages = 0;
-		this->mark = 0;
-		this->type = 0;
+		pages = 0;
+		mark = 0;
+		type = 0;
 		name = (char *) operator new (sizeof(char) * 256);
 	}
 	infoWork &operator=(const infoWork &obj) {
