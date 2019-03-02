@@ -1,34 +1,5 @@
 #include "Header.h"
 
-void funcsForArray::createArr() {
-	string n;
-	float om, mg, twm;
-
-	cout << "Enter size of array: " << endl;
-	cin >> size;
-	mas = new workingProgram[size];
-
-	cout << "Instead of a space use '_'. It is a feature of the program." << endl;
-	cout << "Otherwise the program will not work. You have been warned." << endl;
-
-	for (int i = 0; i < size; i++) {
-		cout << "Enter name of program:" << endl;
-		cin >> n;
-		cout << "Enter amount of consumed RAM(Mb):" << endl;
-		cin >> om;
-		cout << "Enter ocupied amount of hard disk memory(Mg):" << endl;
-		cin >> mg;
-		cout << "Enter time of work (in minutes):" << endl;
-		cin >> twm;
-
-		mas[i].setName(n);
-		mas[i].setOpMemoryMb(om);
-		mas[i].setMemoryGb(mg);
-		mas[i].setTimeWorkMin(twm);
-
-	}
-}
-
 void funcsForArray::addObj(int ind, string n, float mg, float om, float twm) {
 	index = ind - 1;
 	workingProgram *timeMas = new workingProgram[size];
@@ -91,6 +62,11 @@ void funcsForArray::delObj(int ind) {
 }
 
 void funcsForArray::printArr() {
+	if (mas == NULL) {
+		cout << "Array is empty. Add at least one object to array." << endl;
+		return;
+	}
+
 	for (int i = 0; i < size; i++) {
 		mas[i].print();
 	}
@@ -106,10 +82,19 @@ int funcsForArray::getIndex(int ind) {
 }
 
 void funcsForArray::indexOutput() {
+	if (mas == NULL) {
+		cout << "Array is empty. Add at least one object to array." << endl;
+		return;
+	}
 	mas[index].print();
 }
 
 void funcsForArray::nameSearch(string n) {
+	if (mas == NULL) {
+		cout << "Array is empty. Add at least one object to array." << endl;
+		return;
+	}
+
 	string na;
 	for (int i = 0; i < size; i++) {
 		na = mas[i].getName(na);

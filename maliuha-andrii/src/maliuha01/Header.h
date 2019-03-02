@@ -37,7 +37,6 @@ private:
 	workingProgram *mas;
 public:
 	
-	void createArr();
 	void addObj(int ind, string n, float mg, float om, float twm);
 	void printArr();
 	void delObj(int ind);

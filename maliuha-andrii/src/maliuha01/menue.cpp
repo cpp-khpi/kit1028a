@@ -8,31 +8,16 @@ void menu(funcsForArray ops) {
 	float om, mg, twm;
 
 	while (true) {
-		if (sizeMas == 0) {
-			cout << "The array is empty. Do you want to create array?" << endl;
-			cout << "(1)Yes" << endl;
-			cout << "(0)No" << endl;
-			cin >> num;
-			if (num == 1) {
-				ops.createArr();
-				sizeMas = ops.getSize(sizeMas);
-				system("cls");
-			}
-			else {
-				exit(0);
-			}
-		}
-		else {
-			cout << "What function do you want to cause  the list?" << endl;
-			cout << "(0)Exit from program" << endl;
-			cout << "(1)output array on display" << endl;
-			cout << "(2)name search" << endl;
-			cout << "(3)to delete objest from array" << endl;
-			cout << "(4)to add new object to array" << endl;
-			cout << "(5)index output on display" << endl;
-			cin >> num;
-			system("cls");
-			switch (num) {
+		cout << "What function do you want to cause  the list?" << endl;
+		cout << "(0)Exit from program" << endl;
+		cout << "(1)output array on display" << endl;
+		cout << "(2)name search" << endl;
+		cout << "(3)to delete objest from array" << endl;
+		cout << "(4)to add new object to array" << endl;
+		cout << "(5)index output on display" << endl;
+		cin >> num;
+		system("cls");
+		switch (num) {
 			case 1:
 				ops.printArr();
 				cout << endl;
@@ -126,6 +111,6 @@ void menu(funcsForArray ops) {
 				ops.delMas();
 				exit(0);
 			}
-		}
+		
 	}
 }
