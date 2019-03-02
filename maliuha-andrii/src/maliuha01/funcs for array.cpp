@@ -1,7 +1,7 @@
 #include "Header.h"
 
 void funcsForArray::addObj(int ind, string n, float mg, float om, float twm) {
-	index = ind - 1;
+	ind = ind - 1;
 	workingProgram *timeMas = new workingProgram[size];
 	for (int i = 0; i < size; i++) {
 		timeMas[i] = mas[i];
@@ -9,13 +9,13 @@ void funcsForArray::addObj(int ind, string n, float mg, float om, float twm) {
 	delete[] mas;
 	mas = new workingProgram[size + 1];
 
-	mas[index].setName(n);
-	mas[index].setOpMemoryMb(om);
-	mas[index].setMemoryGb(mg);
-	mas[index].setTimeWorkMin(twm);
+	mas[ind].setName(n);
+	mas[ind].setOpMemoryMb(om);
+	mas[ind].setMemoryGb(mg);
+	mas[ind].setTimeWorkMin(twm);
 
 	for (int i = 0; i < size; i++) {
-		if (i >= index) {
+		if (i >= ind) {
 			mas[i + 1] = timeMas[i];
 		}
 		else {
@@ -29,7 +29,6 @@ void funcsForArray::addObj(int ind, string n, float mg, float om, float twm) {
 
 void funcsForArray::delObj(int ind) {
 	if (mas == NULL) {
-		cout << "Array is empty. Add at least one object to array." << endl;
 		return;
 	}
 
@@ -63,7 +62,6 @@ void funcsForArray::delObj(int ind) {
 
 void funcsForArray::printArr() {
 	if (mas == NULL) {
-		cout << "Array is empty. Add at least one object to array." << endl;
 		return;
 	}
 
@@ -72,26 +70,15 @@ void funcsForArray::printArr() {
 	}
 }
 
-void funcsForArray::setIndex(int ind) {
-	index = ind - 1;
-}
-
-int funcsForArray::getIndex(int ind) {
-	ind = index;
-	return ind;
-}
-
-void funcsForArray::indexOutput() {
+void funcsForArray::indexOutput(int ind) {
 	if (mas == NULL) {
-		cout << "Array is empty. Add at least one object to array." << endl;
 		return;
 	}
-	mas[index].print();
+	mas[ind].print();
 }
 
 void funcsForArray::nameSearch(string n) {
 	if (mas == NULL) {
-		cout << "Array is empty. Add at least one object to array." << endl;
 		return;
 	}
 
@@ -111,4 +98,9 @@ int funcsForArray::getSize(int sizeMas) {
 
 void funcsForArray::delMas() {
 	delete[] mas;
+}
+
+funcsForArray::funcsForArray() {
+	size = 0;
+	mas = NULL;
 }

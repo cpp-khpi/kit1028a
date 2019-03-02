@@ -1,13 +1,16 @@
 #include "Header.h"
 
-void menu(funcsForArray ops) {
+void menu() {
 	int num;
 	int ind;
 	int sizeMas = 0;
 	string n;
 	float om, mg, twm;
 
+	funcsForArray ops;
+
 	while (true) {
+		cout << "Quantity of objects in array: " << sizeMas << endl;
 		cout << "What function do you want to cause  the list?" << endl;
 		cout << "(0)Exit from program" << endl;
 		cout << "(1)output array on display" << endl;
@@ -44,8 +47,7 @@ void menu(funcsForArray ops) {
 				cout << "Enter index of object for delete it: ";
 				cin >> ind;
 				sizeMas = ops.getSize(sizeMas);
-				if (ind <= sizeMas) {
-					ops.setIndex(ind);
+				if (ind <= sizeMas + 1 && ind >= 1) {
 					ops.delObj(ind);
 					sizeMas = ops.getSize(sizeMas);
 					system("cls");
@@ -63,7 +65,7 @@ void menu(funcsForArray ops) {
 				cin >> ind;
 				sizeMas = ops.getSize(sizeMas);
 				if (ind <= sizeMas + 1 && ind >= 1) {
-					ops.setIndex(ind);
+					
 					cout << "Instead of a space use '_'. It is a feature of the program." << endl;
 					cout << "Otherwise the program will not work. You have been warned." << endl;
 					cout << "Enter name of program:" << endl;
@@ -93,8 +95,7 @@ void menu(funcsForArray ops) {
 				cin >> ind;
 				sizeMas = ops.getSize(sizeMas);
 				if (ind <= sizeMas && ind >= 1) {
-					ops.setIndex(ind);
-					ops.indexOutput();
+					ops.indexOutput(ind);
 
 					system("pause");
 					system("cls");
