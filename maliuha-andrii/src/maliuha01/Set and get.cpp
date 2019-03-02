@@ -1,39 +1,53 @@
 #include "Header.h"
 
 //setter
-void programOn::setName(string n) {
-	programOn::name = n;
+void workingProgram::setName(string n) {
+	workingProgram::name = n;
 }
 
-void programOn::setOpMemoryMb(float om) {
-	programOn::opMemoryMb = om;
+void workingProgram::setOpMemoryMb(float om) {
+	workingProgram::opMemoryMb = om;
 }
 
-void programOn::setMemoryGb(float mg) {
-	programOn::memoryGb = mg;
+void workingProgram::setMemoryGb(float mg) {
+	workingProgram::memoryGb = mg;
 }
 
-void programOn::setTimeWorkMin(float twm) {
-	programOn::timeWorkMin = twm;
+void workingProgram::setTimeWorkMin(float twm) {
+	workingProgram::timeWorkMin = twm;
 }
 
 
 //getter
-string programOn::getName(string n) {
-	n = programOn::name;
+string workingProgram::getName(string n) {
+	n = workingProgram::name;
 	return n;
 }
 
-float programOn::getOpMemoryMb(float om) {
-	om = programOn::opMemoryMb;
+float workingProgram::getOpMemoryMb(float om) {
+	om = workingProgram::opMemoryMb;
 	return om;
 }
 
-float programOn::getMemoryGb(float mg) {
-	mg = programOn::memoryGb;
+float workingProgram::getMemoryGb(float mg) {
+	mg = workingProgram::memoryGb;
 	return mg;
 }
-float programOn::getTimeWorkMin(float twm) {
-	twm = programOn::timeWorkMin;
+float workingProgram::getTimeWorkMin(float twm) {
+	twm = workingProgram::timeWorkMin;
 	return twm;
+}
+
+workingProgram::workingProgram() {
+	name = '\0';
+	opMemoryMb = 0;
+	memoryGb = 0;
+	timeWorkMin = 0;
+}
+
+void const workingProgram::print() {
+	cout << "Name of program: " << name << endl;
+	cout << "Amount of consumed RAM(Mb): " << opMemoryMb << endl;
+	cout << "Ocupied amount of hard disk memory(Gb): " << memoryGb << endl;
+	cout << "Time of work (in minutes): " << timeWorkMin << endl;
 }

@@ -1,6 +1,7 @@
 #include "Header.h"
 
 int main() {
-	funcs ops;
+	funcsForArray ops;
 	menu(ops);
 }
+

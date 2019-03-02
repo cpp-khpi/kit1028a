@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void menu(funcs ops) {
+void menu(funcsForArray ops) {
 	int num;
 	int ind;
 	int sizeMas = 0;

@@ -4,7 +4,7 @@
 
 int main() {
 	string n;
-	funcs ops;
+	funcsForArray ops;
 	float om, mg, twm;
 	n = "prog_1";
 	om = 300;
@@ -22,8 +22,8 @@ int main() {
 	system("pause");
 }
 
-bool funcs::testAdd(string n, float om, float mg, float twm, funcs ops) {
-	programOn *Expected = new programOn[2];
+bool funcsForArray::testAdd(string n, float om, float mg, float twm, funcsForArray ops) {
+	workingProgram *Expected = new workingProgram[2];
 	int myCount = 0;
 	Expected[0].setName(n);
 	Expected[0].setOpMemoryMb(om);
@@ -79,14 +79,14 @@ bool funcs::testAdd(string n, float om, float mg, float twm, funcs ops) {
 	delete[] Expected;
 }
 
-void funcs::setSize(int sizeMas) {
+void funcsForArray::setSize(int sizeMas) {
 	sizeMas = size;
 }
 
-void funcs::createArrTest() {
+void funcsForArray::createArrTest() {
 	string n;
 	float om, mg, twm;
-	mas = new programOn[size];
+	mas = new workingProgram[size];
 
 	n = "prog_1";
 	om = 300;
@@ -99,8 +99,8 @@ void funcs::createArrTest() {
 	mas[0].setTimeWorkMin(twm);
 }
 
-bool funcs::testDel(string n, float om, float mg, float twm) {
-	programOn *Expected = new programOn[2];
+bool funcsForArray::testDel(string n, float om, float mg, float twm) {
+	workingProgram *Expected = new workingProgram[2];
 	int myCount = 0;
 	Expected[0].setName(n);
 	Expected[0].setOpMemoryMb(om);

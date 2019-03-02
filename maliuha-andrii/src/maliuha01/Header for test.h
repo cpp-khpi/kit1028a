@@ -10,14 +10,14 @@ using std::cin;
 using std::endl;
 using std::string;
 
-class programOn {
+class workingProgram {
 private:
 	string name;
 	float opMemoryMb;
 	float memoryGb;
 	float timeWorkMin;
 public:
-	programOn() {
+	workingProgram() {
 		name = '\0';
 		opMemoryMb = 0;
 		memoryGb = 0;
@@ -36,11 +36,11 @@ public:
 	float getTimeWorkMin(float);
 };
 
-class funcs : public programOn {
+class funcsForArray : public workingProgram {
 private:
 	int size;
 	int index;
-	programOn *mas;
+	workingProgram *mas;
 public:
 
 	void createArr();
@@ -57,6 +57,6 @@ public:
 	void setSize(int sizeMas);
 	void createArrTest();
 	
-	bool testAdd(string n, float om, float mg, float twm, funcs ops);
+	bool testAdd(string n, float om, float mg, float twm, funcsForArray ops);
 	bool testDel(string n, float om, float mg, float twm);
 };
