@@ -18,9 +18,9 @@ public:
 	Phone * getPhoneArray();
 	void setPhoneArray(Phone *);
 
-	void inputSize();
+	int inputSize();
 	void readPhone(Phone *) const;
-	void createArray();
+	void createArray(int);
 	void addPhone(Phone *);
 	int inputIndex() const;
 	void removePhone(const int);

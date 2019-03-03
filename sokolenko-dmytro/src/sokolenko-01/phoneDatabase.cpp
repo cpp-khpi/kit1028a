@@ -1,4 +1,4 @@
-#include "processing.h"
+#include "phoneDatabase.h"
 
 int PhoneDatabase::getSize() { return size; }
 void PhoneDatabase::setSize(unsigned int newSize) { size = newSize; }
@@ -6,7 +6,7 @@ void PhoneDatabase::setSize(unsigned int newSize) { size = newSize; }
 Phone* PhoneDatabase::getPhoneArray() { return phoneArray; }
 void PhoneDatabase::setPhoneArray(Phone * newPhoneArray) { phoneArray = newPhoneArray; }
 
-void PhoneDatabase::inputSize()
+int PhoneDatabase::inputSize()
 {
 	int maxTries = 3;
 	int maxTriesLeft = maxTries;
@@ -32,6 +32,8 @@ void PhoneDatabase::inputSize()
 			break;
 		}
 	}
+
+	return size;
 }
 
 void PhoneDatabase::readPhone(Phone * tmpPhone) const
@@ -71,7 +73,7 @@ void PhoneDatabase::readPhone(Phone * tmpPhone) const
 }
 
 
-void PhoneDatabase::createArray()
+void PhoneDatabase::createArray(int size)
 {
 	phoneArray = new Phone[size];
 	for (int i = 0; i < size; i++) {
@@ -84,18 +86,18 @@ void PhoneDatabase::addPhone(Phone * addedPhone)
 {
 	Phone * newArr = new Phone[size + 1];
 	for (int i = 0; i < size; i++) {
-		(newArr + i)->setCost((phoneArray + i)->getCost());
-		(newArr + i)->setNumberOfSim((phoneArray + i)->getNumberOfSim());
-		(newArr + i)->setDisplay((phoneArray + i)->getDisplay());
-		(newArr + i)->setPermission((phoneArray + i)->getPermission());
-		(newArr + i)->setCapacity((phoneArray + i)->getCapacity());
+		newArr[i].setCost(phoneArray[i].getCost());
+		newArr[i].setNumberOfSim(phoneArray[i].getNumberOfSim());
+		newArr[i].setDisplay(phoneArray[i].getDisplay());
+		newArr[i].setPermission(phoneArray[i].getPermission());
+		newArr[i].setCapacity(phoneArray[i].getCapacity());
 	}
 
-	(newArr + size)->setCost(addedPhone->getCost());
-	(newArr + size)->setNumberOfSim((addedPhone)->getNumberOfSim());
-	(newArr + size)->setDisplay((addedPhone)->getDisplay());
-	(newArr + size)->setPermission((addedPhone)->getPermission());
-	(newArr + size)->setCapacity((addedPhone)->getCapacity());
+	newArr[size].setCost(addedPhone->getCost());
+	newArr[size].setNumberOfSim(addedPhone->getNumberOfSim());
+	newArr[size].setDisplay(addedPhone->getDisplay());
+	newArr[size].setPermission(addedPhone->getPermission());
+	newArr[size].setCapacity(addedPhone->getCapacity());
 
 	size++;
 
@@ -144,27 +146,25 @@ void PhoneDatabase::removePhone(const int index)
 {
 	Phone * newArr = new Phone[size + 1];
 	for (int i = 0; i < index; i++) {
-		(newArr + i)->setCost((phoneArray + i)->getCost());
-		(newArr + i)->setNumberOfSim((phoneArray + i)->getNumberOfSim());
-		(newArr + i)->setDisplay((phoneArray + i)->getDisplay());
-		(newArr + i)->setPermission((phoneArray + i)->getPermission());
-		(newArr + i)->setCapacity((phoneArray + i)->getCapacity());
+		newArr[i].setCost(phoneArray[i].getCost());
+		newArr[i].setNumberOfSim(phoneArray[i].getNumberOfSim());
+		newArr[i].setDisplay(phoneArray[i].getDisplay());
+		newArr[i].setPermission(phoneArray[i].getPermission());
+		newArr[i].setCapacity(phoneArray[i].getCapacity());
 	}
 
 	size--;
 
 	for (int i = index; i < size; i++) {
-		(newArr + i)->setCost((phoneArray + i + 1)->getCost());
-		(newArr + i)->setNumberOfSim((phoneArray + i + 1)->getNumberOfSim());
-		(newArr + i)->setDisplay((phoneArray + i + 1)->getDisplay());
-		(newArr + i)->setPermission((phoneArray + i + 1)->getPermission());
-		(newArr + i)->setCapacity((phoneArray + i + 1)->getCapacity());
+		newArr[i].setCost(phoneArray[i + 1].getCost());
+		newArr[i].setNumberOfSim(phoneArray[i + 1].getNumberOfSim());
+		newArr[i].setDisplay(phoneArray[i + 1].getDisplay());
+		newArr[i].setPermission(phoneArray[i + 1].getPermission());
+		newArr[i].setCapacity(phoneArray[i + 1].getCapacity());
 	}
 
 	delete[] phoneArray;
 	phoneArray = newArr;
-
-	cout << "Done! Element with index " << index << " is removed!" << endl;
 }
 
 void PhoneDatabase::getPhone(const int index) const

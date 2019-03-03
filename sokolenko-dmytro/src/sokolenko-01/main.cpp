@@ -1,5 +1,5 @@
 #include "phone.h"
-#include "processing.h"
+#include "phoneDatabase.h"
 
 // не работает очистка потока
 int main()
@@ -27,10 +27,9 @@ int main()
 	}
 	}
 
-	//Processing * comfyShop = new Processing; привет динамическое выделение памяти
 	PhoneDatabase comfyShop;
-	comfyShop.inputSize();
-	comfyShop.createArray();
+	int size = comfyShop.inputSize();
+	comfyShop.createArray(size);
 
 	cout << endl << endl << "Database with phone datas is created." << endl;
 	//вот тут вот так лучше, чтоб было красивенько по строчечно, или скоратить раза в 2?
@@ -77,6 +76,7 @@ int main()
 		case '2': {
 			index = comfyShop.inputIndex();
 			comfyShop.removePhone(index);
+			cout << "Done! Element with index " << index << " is removed!" << endl;
 			break;
 		}
 		case '3': {
