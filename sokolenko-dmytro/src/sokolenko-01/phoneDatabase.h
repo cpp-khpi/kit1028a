@@ -24,7 +24,8 @@ public:
 	void addPhone(Phone *);
 	int inputIndex() const;
 	void removePhone(const int);
-	void getPhone(const int) const;
+	Phone& getPhone(const int);
+	void printPhone(Phone *) const;
 	void showAll() const;
 	void deleteArray();
 };

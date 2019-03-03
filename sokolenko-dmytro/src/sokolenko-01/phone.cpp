@@ -1,9 +1,5 @@
 #include "phone.h"
 
-/*
-ƒолжны ли гетеры и сетеры записыватьс€ в 1 строку?//
-*/
-
 unsigned int Phone::getCost() { return cost; }
 void Phone::setCost(unsigned int newCost) { cost = newCost; }
 

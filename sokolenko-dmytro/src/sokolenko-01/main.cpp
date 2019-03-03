@@ -1,7 +1,6 @@
 #include "phone.h"
 #include "phoneDatabase.h"
 
-// не работает очистка потока
 int main()
 {
 	cout << "Hello! Please, choose what do you want to do:" << endl;
@@ -32,7 +31,6 @@ int main()
 	comfyShop.createArray(size);
 
 	cout << endl << endl << "Database with phone datas is created." << endl;
-	//вот тут вот так лучше, чтоб было красивенько по строчечно, или скоратить раза в 2?
 	while (true) {
 		cout << endl << endl << "Choose, what do you want do?" << endl << endl;
 		cout << "1 - Add new data." << endl;
@@ -81,7 +79,9 @@ int main()
 		}
 		case '3': {
 			index = comfyShop.inputIndex();
-			comfyShop.getPhone(index);
+			Phone tmp = comfyShop.getPhone(index);
+			cout << endl << endl << "Phone with index: " << index << endl << endl;
+			comfyShop.printPhone(&tmp);
 			break;
 		}
 		case '4': {

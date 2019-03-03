@@ -167,20 +167,26 @@ void PhoneDatabase::removePhone(const int index)
 	phoneArray = newArr;
 }
 
-void PhoneDatabase::getPhone(const int index) const
+Phone& PhoneDatabase::getPhone(const int index)
 {
-	cout << endl << endl << "Phone with index: " << index << endl << endl;
-	cout << "Cost, UAN: " << (phoneArray + index)->getCost() << endl;
-	cout << "Number of SIM-cards: " << (phoneArray + index)->getNumberOfSim() << endl;
-	cout << "Display: " << (phoneArray + index)->getDisplay() << endl;
-	cout << "Camera permission: " << (phoneArray + index)->getPermission() << endl;
-	cout << "Batery capacity, mAh: " << (phoneArray + index)->getCapacity() << endl;
+	return phoneArray[index];
+}
+
+void PhoneDatabase::printPhone(Phone * tmpPhone) const
+{
+	cout << "Cost, UAN: " << tmpPhone->getCost() << endl;
+	cout << "Number of SIM-cards: " << tmpPhone->getNumberOfSim() << endl;
+	cout << "Display: " << tmpPhone->getDisplay() << endl;
+	cout << "Camera permission: " << tmpPhone->getPermission() << endl;
+	cout << "Batery capacity, mAh: " << tmpPhone->getCapacity() << endl;
 }
 
 void PhoneDatabase::showAll() const
 {
-	for (int i = 0; i < size; i++)
-		getPhone(i);
+	for (int i = 0; i < size; i++) {
+		cout << endl << endl << "Phone with index: " << i << endl << endl;
+		printPhone(&phoneArray[i]);
+	}
 }
 
 void PhoneDatabase::deleteArray()
