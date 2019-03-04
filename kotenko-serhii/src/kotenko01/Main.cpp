@@ -20,7 +20,8 @@
  * @version 2.0
  */
 
-#include "Header.h"
+#include "InfoAuditoryLessons.h"
+#include "AuditoryLessons.h"
 
 int main(void) {
 	system("color A");
@@ -64,7 +65,7 @@ int main(void) {
 			int z = 0;
 			std::cout << std::endl << "Enter index : " ;
 			std::cin >> z;
-			Work.sbi(z);
+			Work.getByIndex(z);
 			break;
 		}
 	}
