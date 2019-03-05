@@ -2,12 +2,10 @@
 
 int main()
 {
-	Test test;
-	test.generateArray();
+	TestPhoneDatabase shopPhoneDatabase;
+	shopPhoneDatabase.generateArray();
 
 	Phone * tmpPhone = new Phone;
-	test.generateElem(tmpPhone);
-	test.testAddPhone(tmpPhone);
 	delete tmpPhone;
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);

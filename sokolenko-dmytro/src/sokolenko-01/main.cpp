@@ -7,12 +7,12 @@ int main()
 	cout << "1 - Enter in the database phones datas." << endl;
 	cout << "0 - Exit the program." << endl;
 
-	char proga = 0;
-	for (; proga != '0' && proga != '1'; ) {
+	char choice = 0;
+	for (; choice != '0' && choice != '1'; ) {
 		cout << "Option: ";
-		cin >> proga;
+		cin >> choice;
 	}
-	switch (proga) {
+	switch (choice) {
 	case '0': {
 		cout << "Press any key to exit.";
 		cin.get();
@@ -39,13 +39,13 @@ int main()
 		cout << "4 - Display all items on screen." << endl;
 		cout << endl << "0 - Exit the program." << endl;
 
-		proga = 0;
+		choice = 0;
 		int index;
-		for (; proga != '0' && proga != '1' && proga != '2' && proga != '3' && proga != '4'; ) {
+		for (; choice != '0' && choice != '1' && choice != '2' && choice != '3' && choice != '4'; ) {
 			cout << endl << "Option: ";
-			cin >> proga;
+			cin >> choice;
 		}
-		switch (proga) {
+		switch (choice) {
 		case '0': {
 			cout << "Press any key to exit.";
 
@@ -68,13 +68,14 @@ int main()
 			Phone * tmpPhone = new Phone;
 			comfyShop.readPhone(tmpPhone);
 			comfyShop.addPhone(tmpPhone);
+			cout << "Done! New element was added!" << endl;
 			delete tmpPhone;
 			break;
 		}
 		case '2': {
 			index = comfyShop.inputIndex();
 			comfyShop.removePhone(index);
-			cout << "Done! Element with index " << index << " is removed!" << endl;
+			cout << "Done! Element with index " << index << " was removed!" << endl;
 			break;
 		}
 		case '3': {

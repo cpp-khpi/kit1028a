@@ -3,7 +3,7 @@
 #include "phone.h"
 #include "phoneDatabase.h"
 
-class Test : public PhoneDatabase {
+class TestPhoneDatabase : public PhoneDatabase {
 public:
 	void generateArray();
 	void generateElem(Phone *);

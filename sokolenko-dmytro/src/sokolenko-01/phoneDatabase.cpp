@@ -72,7 +72,6 @@ void PhoneDatabase::readPhone(Phone * tmpPhone) const
 	(*tmpPhone).setCapacity(capacity);
 }
 
-
 void PhoneDatabase::createArray(int size)
 {
 	phoneArray = new Phone[size];
@@ -80,7 +79,6 @@ void PhoneDatabase::createArray(int size)
 		readPhone(phoneArray + i);
 	}
 }
-
 
 void PhoneDatabase::addPhone(Phone * addedPhone)
 {
