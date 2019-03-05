@@ -2,6 +2,7 @@
 
 void funcsForArray::addObj(int ind, string n, float mg, float om, float twm) {
 	ind = ind - 1;
+
 	workingProgram *timeMas = new workingProgram[size];
 	for (int i = 0; i < size; i++) {
 		timeMas[i] = mas[i];
@@ -74,7 +75,7 @@ void funcsForArray::indexOutput(int ind) {
 	if (mas == NULL) {
 		return;
 	}
-	mas[ind].print();
+	mas[ind-1].print();
 }
 
 void funcsForArray::nameSearch(string n) {
