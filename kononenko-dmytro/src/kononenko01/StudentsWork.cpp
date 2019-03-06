@@ -1,4 +1,5 @@
 #include "StudentsWork.h"
+#include "InfoWork.h"
 
 void StudentsWork::search(int index) {
 	if (index >= size) {
@@ -22,40 +23,30 @@ void StudentsWork::createArr(char **name) {
 		qual[i].set((*(name + i)));
 	}
 }
-void StudentsWork::add(int n, int mark, int pages, int type, char * name) {
+InfoWork* StudentsWork::add(int n, int mark, int pages, int type, char * name) {
 
 	if (n >= size) {
 		cout << "Error: invalid index" << endl;
-		return;
+		return qual;
 	}
 	int i;
 	int j = 0;
-
-	if (n >= size) {
-		return;
-	}
-
-	InfoWork* arr = new InfoWork[size];
-
-	for (int i = 0; i < size; i++)
-		arr[i] = this->qual[i];
-
-	delete[] qual;
+	 
 	size++;
-	qual = new InfoWork[size];
+	InfoWork* arr = new InfoWork[size];
 	for (i = 0; i < n; i++) {
-		this->qual[i] = arr[j];
+		arr[i] = this->qual[j];
 		j++;
 	}
 
-	this->qual[n].set_n(mark, pages, type, name);
+	arr[n].set_n(mark, pages, type, name);
 
 	for (i = n + 1; i < size; i++) {
-		this->qual[i] = arr[j];
+		arr[i] = this->qual[j];
 		j++;
 	}
-
-	delete[] arr;
+	delete[] qual;
+	qual = arr;
 }
 void StudentsWork::del(int n) {
 	if (n >= size) {
@@ -70,22 +61,16 @@ void StudentsWork::del(int n) {
 
 	size--;
 	InfoWork* arr = new InfoWork[size + 1];
-
-	for (int i = 0; i < size + 1; i++)
-		arr[i] = this->qual[i];
-
-	delete[] qual;
-	qual = new InfoWork[size];
 	for (int i = 0; i < n; i++) {
-		this->qual[i] = arr[j];
+		arr[i] = this->qual[j];
 		j++;
 	}
 	j++;
 	for (int i = n; i < size; i++) {
-		this->qual[i] = arr[j];
+		arr[i] = this->qual[j];
 		j++;
 	}
-	delete[] arr;
+	
 }
 void StudentsWork::testDel()
 {
