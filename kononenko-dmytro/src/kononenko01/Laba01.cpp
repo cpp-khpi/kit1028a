@@ -13,7 +13,6 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-
 int main() {
 	system("color 20");
 	StudentsWork qualWork;
@@ -27,10 +26,10 @@ int main() {
 	if (choose == 1) {
 		cout << "Input size: ";
 		cin >> x;
-		
+
 		qualWork.setSize(x);
-		
-		char** names= new char*[x];
+
+		char** names = new char*[x];
 		for (int i = 0; i < x; i++) {
 			names[i] = new char[256];
 		}
@@ -50,6 +49,7 @@ int main() {
 	}
 
 	do {
+		InfoWork elem;
 		cout << "\n";
 		cout << "0 - Exit" << endl;
 		cout << "1 - Print vector" << endl;
@@ -67,11 +67,11 @@ int main() {
 		case 2:
 			cout << "input index: ";
 			cin >> j;
-			
+
 			qualWork.search(j);
 			break;
 		case 3:
-			
+
 			int a, b, c;
 			char name[30];
 
@@ -85,7 +85,7 @@ int main() {
 			cin >> c;
 			cout << "input insert point: ";
 			cin >> j;
-			
+			elem.set_n(a, b, c, name);
 			qualWork.add(j, a, b, c, name);
 			break;
 		case 4:

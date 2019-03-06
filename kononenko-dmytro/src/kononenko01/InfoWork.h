@@ -14,9 +14,9 @@ private:
 	char *name;
 public:
 	InfoWork(int a, int b, int c, char* creator) {
-		pages = 0;
-		mark = 0;
-		type = 0;
+		pages = a;
+		mark = b;
+		type = c;
 		name = (char *) operator new (sizeof(char) * 256);
 		strcpy_s(name, 256, creator);
 	}

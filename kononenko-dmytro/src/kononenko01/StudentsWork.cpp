@@ -23,6 +23,11 @@ void StudentsWork::createArr(char **name) {
 	}
 }
 void StudentsWork::add(int n, int mark, int pages, int type, char * name) {
+
+	if (n >= size) {
+		cout << "Error: invalid index" << endl;
+		return;
+	}
 	int i;
 	int j = 0;
 
@@ -153,7 +158,7 @@ void StudentsWork::testAdd()
 	}
 }
 void StudentsWork::delArr() {
-	delete[] qual;
+	delete[size] qual;
 }
 void StudentsWork::printArr() {
 	for (int i = 0; i < size; i++) {
