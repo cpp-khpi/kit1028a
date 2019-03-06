@@ -1,7 +1,7 @@
 #include "Header.h"
 
 int main() {
-	functions test;
+	Functions test;
 
 	test.createObjects();
 	test.addObject(1);
@@ -9,7 +9,6 @@ int main() {
 	test.printall();
 	test.test();
 		
-
 	system("pause");
 	return 0;
 }

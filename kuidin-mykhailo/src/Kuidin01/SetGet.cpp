@@ -23,6 +23,5 @@ int School::getPupils() {
 	return pupils;
 }
 
-/*void functions::setCount(int c) {
-	count = c;
-}*/
+
+

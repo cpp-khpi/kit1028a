@@ -1,16 +1,34 @@
 ﻿#include "Header.h"
 
  int main() {
-	 functions tmp;
+	 int num = 0;
+	 int cos = 0;
+	 int pup = 0;
+
+	 Functions tmp;
 	 
 	 tmp.createObjects();
-	 tmp.addObject(2);
-	 tmp.addObject(3);
+	 cout << "\nEnter number of school: " << endl;
+	 cin >> num;
+	 cout << "How many pupils study in this school: " << endl;
+	 cin >> pup;
+	 cout << "Enter cost per month: " << endl;
+	 cin >> cos;
+	 tmp.addObject(2,num,pup,cos);
+
+	 cout << "\nEnter number of school: " << endl;
+	 cin >> num;
+	 cout << "How many pupils study in this school: " << endl;
+	 cin >> pup;
+	 cout << "Enter cost per month: " << endl;
+	 cin >> cos;
+	 tmp.addObject(3,num,pup,cos);
+
 	 tmp.delElem(2);
 	 tmp.find(2);
 	 tmp.printall();
 	 tmp.deleteall();
-	 //for (int i = 0; i < 4; ++i) s[i].~School();
+	 
 	 
 	 _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	 _CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
@@ -21,7 +39,7 @@
 	 _CrtDumpMemoryLeaks();
 
 	return 0;
-	//Исправить проблему с утечкой памяти и сделать доксиген
+	
 }
 
  

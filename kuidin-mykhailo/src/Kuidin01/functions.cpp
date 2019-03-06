@@ -1,18 +1,14 @@
 #include "Header.h"
 
-void functions::find(int index) {
-	int i = 0;
-	while (i != index) {
-		i++;
-	}
-
+void Functions::find(int x) {
+	
 	cout << "\nInformation about school that u find:\n";
-	s[i].print();
+	cout << "Number of school: " << s[x].getNumber() << endl << "Pupils: " << s[x].getPupils() << endl << "Cost per month: " << s[x].getCost() << endl << endl;
 }
 
-void functions::delElem(int index) {
+void Functions::delElem(int index) {
 	count--;
-	deltmp = (functions*)operator new(sizeof(functions)*count);
+	deltmp = (School*)operator new(sizeof(School)*count);
 	int j = 0;
 	for (int i = 0; i < count; i++) {
 		if (i == index) {
@@ -23,7 +19,7 @@ void functions::delElem(int index) {
 	}
 	
 	delete[] s;
-	s = (functions*) operator new (sizeof(functions)*count);
+	s = (School*) operator new (sizeof(School)*count);
 	for (int i = 0; i < count; i++) {
 		s[i] = deltmp[i];
 	}
@@ -31,63 +27,17 @@ void functions::delElem(int index) {
 	delete [] deltmp;
 }
 
-void functions::print() {
-	int number = getNumber();
-	int pupils = getPupils();
-	int cost = getCost();
-	cout << "Number of school: " << number << endl << "Pupils: " << pupils << endl << "Cost per month: " << cost << endl << endl;
-}
 
-void functions::addObject(int index) {
-	tmp = (functions*)operator new(sizeof(functions)*200);
-	for (int i = 0; i < count; i++) {
-		tmp[i] = s[i];
-	}
-	
-	delete [] s;
-	
-	int j = 0;
-	count++; // Потому что добавляем новый элемент
-	newS = (functions*)operator new(sizeof(functions) * count);
-	s = (functions*)operator new (sizeof(functions)*count);
-	for (int i = 0; i < count; i++) {
-		if (i != index) {
-			newS[i] = tmp[j];
-			j++;
-		}
-		else {
-			int a = 0;
-			cout << "\nEnter number of school: " << endl;
-			cin >> a;
-			newS[i].setNumber(a);
-			cout << "How many pupils study in this school: " << endl;
-			cin >> a;
-			newS[i].setPupils(a);
-			cout << "Enter cost per month: " << endl;
-			cin >> a;
-			newS[i].setCost(a);
-			
-		}
-
-	}
-	for (int i = 0; i < count; i++) {
-		s[i] = newS[i];
-	}
-	
-	delete [] newS;
-	delete [] tmp;
-}
-
-void functions::createObjects() {
-	functions t;
+void Functions::createObjects() {
+	Functions t;
 
 	cout << " How many objects you wnat to create: ";
 	cin >> count;
 		
- 	s = (functions*)operator new(sizeof(functions) * count);
+ 	s = (School*)operator new(sizeof(School) * count);
 
 	for (int i = 0; i < count; i++) {
-		new(&s[i])functions();
+		new(&s[i])Functions();
 	}
 
 	for (int i = 0; i < count; i++) {
@@ -96,21 +46,52 @@ void functions::createObjects() {
 		s[i].setPupils(rand()%100);
 	}
 }
+void Functions::addObject(int index, int num, int pup, int cost) {
+	tmp = (School*)operator new(sizeof(School) * 200);
+	for (int i = 0; i < count; i++) {
+		tmp[i] = s[i];
+	}
 
-void functions::printall() {
+	delete[] s;
+
+	int j = 0;
+	count++; // Потому что добавляем новый элемент
+	newS = (School*)operator new(sizeof(School) * count);
+	s = (School*)operator new (sizeof(School)*count);
+	for (int i = 0; i < index; i++) {
+		newS[i] = tmp[j];
+		j++;
+	}
+	newS[index].setNumber(num);
+	newS[index].setPupils(pup);
+	newS[index].setCost(cost);
+	for (int i = (index+1); i < count; i++) {
+		newS[i] = tmp[j];
+		j++;
+	}
+
+	for (int i = 0; i < count; i++) {
+		s[i] = newS[i];
+	}
+
+	delete[] newS;
+	delete[] tmp;
+}
+
+void Functions::printall() {
 	cout << "All schools:----------------------------------------\n";
 	for (int i = 0; i < count; i++) {
-		s[i].print();
+		cout << "Number of school: " << s[i].getNumber() << endl << "Pupils: " << s[i].getPupils() << endl << "Cost per month: " << s[i].getCost() << endl << endl;
 	}
 }
 
-void functions::deleteall() {
+void Functions::deleteall() {
 	delete [] s;
 }
 
-void functions::test(){
+void Functions::test(){
 	int snth = 0;
-	sTest = (functions*) operator new (sizeof(functions) * 20);
+	sTest = (School*) operator new (sizeof(School) * 20);
 
 	sTest[0].setCost(41);
 	sTest[0].setNumber(67);

@@ -25,7 +25,7 @@ public:
 		pupils = 0;
 		cost = 0;
 	}
-	School(const School &obj);
+
 	int getNumber();
 	int getCost();
 	int getPupils();
@@ -37,27 +37,26 @@ public:
 };
 
 
-class functions: public School {
+class Functions {
 private:
 	
 public:
 	int count;
-	functions *s;
-	functions *tmp;
-	functions *newS;
-	functions *deltmp;
-	functions *sTest;
-	functions() :School() {
+	School *s;
+	School *tmp;
+	School *newS;
+	School *deltmp;
+	School *sTest;
+	Functions() {
 
 	}
-	//~functions(){};
+	
 	void printall();
-	void addObject(int index);
+	void addObject(int index, int num, int pup, int cost);
 	void delElem(int index);
 	void find(int index);
-	void print();
 	void createObjects();
 	void deleteall();
 	void test();
-	//void setCount(int c);
+	
 };
