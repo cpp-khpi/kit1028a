@@ -9,7 +9,7 @@ using std::endl;
 using std::string;
 
 #include "workingProgram.h"
-#include "funcsForArray.h"
+#include "Array.h"
 
 
 void menu();
