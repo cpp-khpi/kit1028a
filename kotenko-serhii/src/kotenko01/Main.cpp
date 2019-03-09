@@ -17,7 +17,7 @@
  *
  * @author Сергій Котенко
  * @date 24.02.19
- * @version 2.0
+ * @version 3.0
  */
 
 #include "InfoAuditoryLessons.h"
