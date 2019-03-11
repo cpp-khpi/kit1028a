@@ -10,6 +10,7 @@ private:
 	float timeWorkMin;
 public:
 	workingProgram();
+	workingProgram(char *name, float opMemoryMb, float memoryGb, float timeWorkMin);
 	workingProgram(const workingProgram&);
 
 	void const print();
@@ -23,4 +24,6 @@ public:
 	float getOpMemoryMb(float);
 	float getMemoryGb(float);
 	float getTimeWorkMin(float);
+
+	~workingProgram();
 };

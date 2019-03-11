@@ -58,3 +58,14 @@ workingProgram::workingProgram(const workingProgram &obj) {
 	memoryGb = obj.memoryGb;
 	timeWorkMin = obj.timeWorkMin;
 }
+
+workingProgram::~workingProgram() {
+	delete[] name;
+}
+
+workingProgram::workingProgram(char *name, float opMemoryMb, float memoryGb, float timeWorkMin) {
+	strcpy(this->name, name);
+	this->opMemoryMb = opMemoryMb;
+	this->memoryGb = memoryGb;
+	this->timeWorkMin = timeWorkMin;
+}

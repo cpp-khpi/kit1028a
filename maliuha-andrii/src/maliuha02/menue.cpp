@@ -7,7 +7,7 @@ void menu() {
 	char* n = (char*)calloc(50, sizeof(char));
 	float om, mg, twm;
 
-	funcsForArray ops;
+	Array ops;
 
 	while (true) {
 		cout << "Quantity of objects in array: " << sizeMas << endl;
@@ -22,7 +22,7 @@ void menu() {
 		system("cls");
 		switch (num) {
 		case 1:
-			ops.printArr();
+			ops.showAll();
 			cout << endl;
 			system("pause");
 			system("cls");
@@ -31,6 +31,11 @@ void menu() {
 			cout << "Instead of a space use '_'. It is a feature of the program." << endl;
 			cout << "Otherwise the program will not work. You have been warned." << endl;
 			cout << "('0' exit from search)Enter name of program from array: ";
+			
+			while (getchar() != '\n') {
+				continue;
+			}
+
 			gets_s(n, 49);
 			if (n == "0") {
 				system("cls");
@@ -48,7 +53,7 @@ void menu() {
 			cin >> ind;
 			sizeMas = ops.getSize(sizeMas);
 			if (ind <= sizeMas + 1 && ind >= 1) {
-				ops.delObj(ind);
+				ops.removeProgram(ind);
 				sizeMas = ops.getSize(sizeMas);
 				system("cls");
 				break;
@@ -69,6 +74,7 @@ void menu() {
 				cout << "Instead of a space use '_'. It is a feature of the program." << endl;
 				cout << "Otherwise the program will not work. You have been warned." << endl;
 				cout << "Enter name of program:" << endl;
+
 				while (getchar()!='\n'){
 					continue;
 				}
@@ -80,7 +86,7 @@ void menu() {
 				cin >> mg;
 				cout << "Enter time of work (in minutes):" << endl;
 				cin >> twm;
-				ops.addObj(ind, n, mg, om, twm);
+				ops.addProgram(ind, n, mg, om, twm);
 
 				sizeMas = ops.getSize(sizeMas);
 				system("cls");
@@ -99,7 +105,7 @@ void menu() {
 			cin >> ind;
 			sizeMas = ops.getSize(sizeMas);
 			if (ind <= sizeMas && ind >= 1) {
-				ops.indexOutput(ind);
+				ops.getProgram(ind);
 
 				system("pause");
 				system("cls");
