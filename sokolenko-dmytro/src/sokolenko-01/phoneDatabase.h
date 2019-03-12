@@ -8,7 +8,6 @@ using std::cout;
 using std::endl;
 
 class PhoneDatabase {
-protected:
 	int size;
 	Phone * phoneArray;
 public:
@@ -19,11 +18,11 @@ public:
 	void setPhoneArray(Phone *);
 
 	int inputSize();
-	void readPhone(Phone *) const;
+	void readPhone(Phone &) const;
 	void createArray(int);
-	void addPhone(Phone *);
+	void addPhone(Phone &);
 	int inputIndex() const;
-	void removePhone(const int);
+	void removePhone(const int); // работает даже с 0 элементом
 	Phone& getPhone(const int);
 	void printPhone(Phone *) const;
 	void showAll() const;

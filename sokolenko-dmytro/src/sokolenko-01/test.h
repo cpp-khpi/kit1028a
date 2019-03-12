@@ -2,10 +2,13 @@
 
 #include "phone.h"
 #include "phoneDatabase.h"
+#include <ctime>
 
-class TestPhoneDatabase : public PhoneDatabase {
+
+class TestPhoneDatabase {
+private:
+	PhoneDatabase phoneDatabase;
 public:
-	void generateArray();
-	void generateElem(Phone *);
-	void testAddPhone(Phone *);
+	bool phoneComparison(Phone &, Phone &);
+	bool testAddPhone();
 };

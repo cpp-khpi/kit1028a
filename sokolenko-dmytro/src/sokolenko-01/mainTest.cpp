@@ -2,12 +2,13 @@
 
 int main()
 {
-	TestPhoneDatabase shopPhoneDatabase;
-	shopPhoneDatabase.generateArray();
-
-	Phone * tmpPhone = new Phone;
-	delete tmpPhone;
-
+	TestPhoneDatabase testPhoneDatabase;
+	
+	if (testPhoneDatabase.testAddPhone() == true)
+		cout << "Good";
+	else
+		cout << "Bad";
+	
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
 	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
@@ -18,3 +19,15 @@ int main()
 
 	return 0;
 }
+
+/*
+TestPhoneDatabase * test = new TestPhoneDatabase;
+	(*test).generatePhoneArray();
+
+	Phone * tmpPhone = new Phone;
+	(*test).generatePhone(*tmpPhone);
+	(*test).testAddPhone(*tmpPhone);
+	delete[1] tmpPhone;
+
+	delete[1] test;
+*/

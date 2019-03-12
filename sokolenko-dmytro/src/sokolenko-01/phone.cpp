@@ -1,10 +1,10 @@
 #include "phone.h"
 
-unsigned int Phone::getCost() { return cost; }
-void Phone::setCost(unsigned int newCost) { cost = newCost; }
+unsigned int Phone::getPrice() { return price; }
+void Phone::setPrice(unsigned int newPrice) { price = newPrice; }
 
-unsigned int Phone::getNumberOfSim() { return numberOfSim; }
-void Phone::setNumberOfSim(unsigned int newNumberOfSim) { numberOfSim = newNumberOfSim; }
+unsigned int Phone::getSimCardsNumber() { return simCardsNumber; }
+void Phone::setSimCardsNumber(unsigned int newsimCardsNumber) { simCardsNumber = newsimCardsNumber; }
 
 float Phone::getDisplay() { return display; }
 void Phone::setDisplay(float newDisplay) { display = newDisplay; }

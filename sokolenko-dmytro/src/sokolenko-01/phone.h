@@ -1,18 +1,17 @@
 #pragma once
 
 class Phone {
-private:
-	unsigned int cost;
-	unsigned int numberOfSim;
+	unsigned int price;
+	unsigned int simCardsNumber;
 	float display;
 	unsigned int permission;
 	unsigned int capacity;
 public:
-	unsigned int getCost();
-	void setCost(unsigned int);
+	unsigned int getPrice();
+	void setPrice(unsigned int);
 
-	unsigned int getNumberOfSim();
-	void setNumberOfSim(unsigned int);
+	unsigned int getSimCardsNumber();
+	void setSimCardsNumber(unsigned int);
 
 	float getDisplay();
 	void setDisplay(float);

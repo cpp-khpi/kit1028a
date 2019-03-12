@@ -39,6 +39,8 @@ int main()
 		cout << "4 - Display all items on screen." << endl;
 		cout << endl << "0 - Exit the program." << endl;
 
+		// Менюшка - всё в одну строку, или разбить?
+
 		choice = 0;
 		int index;
 		for (; choice != '0' && choice != '1' && choice != '2' && choice != '3' && choice != '4'; ) {
@@ -66,8 +68,8 @@ int main()
 		}
 		case '1': {
 			Phone * tmpPhone = new Phone;
-			comfyShop.readPhone(tmpPhone);
-			comfyShop.addPhone(tmpPhone);
+			comfyShop.readPhone(*tmpPhone);
+			comfyShop.addPhone(*tmpPhone);
 			cout << "Done! New element was added!" << endl;
 			delete tmpPhone;
 			break;
