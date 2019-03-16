@@ -19,7 +19,7 @@ public:
 	void createArr(string* name);
 	void search(int index);
 	void printArr();
-	void rate();
+	float rate();
 	void printFile(string file);
 	void add(int n, int mark, int pages, int type, string name);
 	void del(int n);

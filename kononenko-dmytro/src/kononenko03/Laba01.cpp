@@ -6,8 +6,6 @@
 */
 
 #include <iostream>
-#include <string>
-#include <fstream>
 #include "InfoWork.h"
 #include "StudentsWork.h"
 
@@ -26,6 +24,7 @@ int main() {
 
 
 	if (choose == 1) {
+		string names;
 		string file{ "cppstudio.txt" };
 
 		cout << "Input size: ";
@@ -63,7 +62,6 @@ int main() {
 
 
 		do {
-			string name;
 			cout << "\n";
 			cout << "0 - Exit" << endl;
 			cout << "1 - Print vector" << endl;
@@ -90,7 +88,7 @@ int main() {
 				int a, b, c;
 
 				cout << "input name: ";
-				cin >> name;
+				cin >> names;
 				cout << "input mark: ";
 				cin >> a;
 				cout << "input size: ";
@@ -99,7 +97,7 @@ int main() {
 				cin >> c;
 				cout << "input insert point: ";
 				cin >> j;
-				qualWork.add(j, a, b, c, name);
+				qualWork.add(j, a, b, c, names);
 				system("cls");
 				break;
 			case 4:
@@ -109,7 +107,8 @@ int main() {
 				system("cls");
 				break;
 			case 5:
-				qualWork.rate();
+				cout << "There your persent: ";
+				cout << qualWork.rate();
 				break;
 			default:
 				break;
@@ -119,11 +118,8 @@ int main() {
 
 
 	}else {
-	return 0;
+		return 0;
 	}
-	
-	//qualWork.testAdd();
-	//qualWork.testDel();
 
 	qualWork.delArr(); 
 

@@ -60,7 +60,7 @@ void StudentsWork::del(int n) {
 	int j = 0;
 
 	size--;
-	InfoWork* arr = new InfoWork[size + 1];
+	InfoWork* arr = new InfoWork[size];
 	for (int i = 0; i < n; i++) {
 		arr[i] = this->qual[j];
 		j++;
@@ -70,7 +70,8 @@ void StudentsWork::del(int n) {
 		arr[i] = this->qual[j];
 		j++;
 	}
-	
+	delete[] qual;
+	qual = arr;
 }
 void StudentsWork::testDel()
 {
@@ -107,8 +108,8 @@ void StudentsWork::testDel()
 }
 void StudentsWork::testAdd()
 {
-	int n = 2;
-	char name[] = { "Kononenko" };
+	int n = 0;
+	string name = { "Kononenko" };
 	int a = 4;
 	int b = 377;
 	int c = 2;
@@ -174,7 +175,7 @@ void StudentsWork::printFile(string file) {
 	}
 	fout.close();
 }
-void StudentsWork::rate() { //найти процент магистров
+float StudentsWork::rate() { //найти процент магистров
 	float counter = 0;
 	for (int i = 0; i < size; i++) {
 		int type = qual[i].getType();
@@ -183,8 +184,7 @@ void StudentsWork::rate() { //найти процент магистров
 		}
 	}
 	counter = counter * 100 / this->size;
-	cout << "There your persent: ";
-	cout << counter;
+	return counter;
 }
 void StudentsWork::setSize(int size) {
 	this->size = size;
