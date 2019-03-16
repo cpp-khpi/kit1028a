@@ -23,11 +23,11 @@ void StudentsWork::createArr(char **name) {
 		qual[i].set((*(name + i)));
 	}
 }
-InfoWork* StudentsWork::add(int n, int mark, int pages, int type, char * name) {
+void StudentsWork::add(int n, int mark, int pages, int type, char * name) {
 
 	if (n >= size) {
 		cout << "Error: invalid index" << endl;
-		return qual;
+		return;
 	}
 	int i;
 	int j = 0;
@@ -60,7 +60,7 @@ void StudentsWork::del(int n) {
 	int j = 0;
 
 	size--;
-	InfoWork* arr = new InfoWork[size + 1];
+	InfoWork* arr = new InfoWork[size];
 	for (int i = 0; i < n; i++) {
 		arr[i] = this->qual[j];
 		j++;
@@ -71,6 +71,8 @@ void StudentsWork::del(int n) {
 		j++;
 	}
 	
+	delete[] qual;
+	qual = arr;
 }
 void StudentsWork::testDel()
 {
@@ -158,7 +160,7 @@ void StudentsWork::printArr() {
 		}
 	}
 }
-void StudentsWork::rate() { //найти процент магистров
+float StudentsWork::rate() { //найти процент магистров
 	float counter = 0;
 	for (int i = 0; i < size; i++) {
 		int type = qual[i].getType();
@@ -167,8 +169,7 @@ void StudentsWork::rate() { //найти процент магистров
 		}
 	}
 	counter = counter * 100 / this->size;
-	cout << "There your persent: ";
-	cout << counter;
+	return counter;
 }
 void StudentsWork::setSize(int size) {
 	this->size = size;

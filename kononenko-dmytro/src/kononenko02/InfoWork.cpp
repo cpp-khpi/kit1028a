@@ -1,5 +1,17 @@
 #include "InfoWork.h"
 
+
+InfoWork::InfoWork() :pages(0), mark(0), type(0), name() {
+	name = new char[256];
+};
+InfoWork::InfoWork(int a, int b, int c, char* creator) :pages(a), mark(b), type(c){
+	name = new char[256];
+	strcpy_s(name, 256, creator);
+};
+InfoWork::InfoWork(const InfoWork &obj) :pages(obj.pages), mark(obj.mark), type(obj.type), name(obj.name) {};
+InfoWork::~InfoWork() {
+	delete[] name;
+}
 void InfoWork::set(char *creator) {
 	mark = rand() % 5 + 1;
 	pages = rand() % 336 + 100;

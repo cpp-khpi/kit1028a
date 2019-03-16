@@ -16,7 +16,7 @@ public:
 	void createArr(char** name);
 	void search(int index);
 	void printArr();
-	void rate();
+	float rate();
 	void add(int n, int mark, int pages, int type, char * name);
 	void del(int n);
 	void testDel();

@@ -94,7 +94,8 @@ int main() {
 			qualWork.del(j);
 			break;
 		case 5:
-			qualWork.rate();
+			cout << "Here your persent:";
+			cout << qualWork.rate();
 			break;
 		default:
 			break;
