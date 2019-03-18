@@ -17,5 +17,4 @@ using std::string;
 #include "workingProgram.h"
 #include "Array.h"
 
-
 void menu();

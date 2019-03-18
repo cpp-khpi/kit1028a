@@ -42,6 +42,7 @@ float workingProgram::getMemoryGb(float mg) {
 	mg = memoryGb;
 	return mg;
 }
+
 float workingProgram::getTimeWorkMin(float twm) {
 	twm = timeWorkMin;
 	return twm;

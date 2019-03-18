@@ -19,6 +19,8 @@ void menu() {
 		cout << "(3)to delete objest from array" << endl;
 		cout << "(4)to add new object to array" << endl;
 		cout << "(5)index output on display" << endl;
+		cout << "(6)show programs, that take up more memory of a given size" << endl;
+		cout << "(7)to delete suspicious programs from array" << endl;
 		cin >> num;
 		system("cls");
 		
@@ -120,6 +122,19 @@ void menu() {
 				system("cls");
 				break;
 			}
+		case 6:
+			cout << "Enter size of memory: ";
+			cin >> mg;
+			ops.findProgram(mg);
+			
+			system("pause");
+			system("cls");
+			break;
+		case 7:
+			ops.removeViruses();
+			sizeMas = ops.getSize(sizeMas);
+
+			break;
 		case 0:
 			ops.delMas();
 			delete[] n;

@@ -19,7 +19,7 @@ void Array::addProgram(int ind, char* n, char* p, float mg, float om, float twm)
 			mg = mas[i].getMemoryGb(mg);
 			twm = mas[i].getTimeWorkMin(twm);
 			timeMas[i + 1].setName(n);
-			timeMas[ind].setPublisher(p);
+			timeMas[i + 1].setPublisher(p);
 			timeMas[i + 1].setOpMemoryMb(om);
 			timeMas[i + 1].setMemoryGb(mg);
 			timeMas[i + 1].setTimeWorkMin(twm);
@@ -31,7 +31,7 @@ void Array::addProgram(int ind, char* n, char* p, float mg, float om, float twm)
 			mg = mas[i].getMemoryGb(mg);
 			twm = mas[i].getTimeWorkMin(twm);
 			timeMas[i].setName(n);
-			timeMas[ind].setPublisher(p);
+			timeMas[i].setPublisher(p);
 			timeMas[i].setOpMemoryMb(om);
 			timeMas[i].setMemoryGb(mg);
 			timeMas[i].setTimeWorkMin(twm);
@@ -132,4 +132,27 @@ void Array::delMas() {
 }
 
 Array::Array() :size(0), mas(NULL) {
+}
+
+void Array::findProgram(float memoryGB) {
+	float timeMemory = 0;
+	
+	for (int i = 0; i < size; i++) {
+		timeMemory = mas[i].getMemoryGb(timeMemory);
+		if (memoryGB < timeMemory) {
+			mas[i].print();
+		}
+	}
+
+}
+
+void Array::removeViruses() {
+	char *p = "unknown";
+	char *p2 = new char[50];
+	for (int i = 0; i < size; i++) {
+		p2 = mas[i].getPublisher(p2);
+		if (strcmp(p, p2) == 0) {
+			removeProgram(i);
+		}
+	}
 }
