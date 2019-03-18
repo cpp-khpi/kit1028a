@@ -4,7 +4,8 @@ void menu() {
 	int num;
 	int ind;
 	int sizeMas = 0;
-	char* n = (char*)calloc(50, sizeof(char));
+	char* n = new char[50];
+	char* p = new char[50];
 	float om, mg, twm;
 
 	Array ops;
@@ -20,6 +21,7 @@ void menu() {
 		cout << "(5)index output on display" << endl;
 		cin >> num;
 		system("cls");
+		
 		switch (num) {
 		case 1:
 			ops.showAll();
@@ -28,8 +30,6 @@ void menu() {
 			system("cls");
 			break;
 		case 2:
-			cout << "Instead of a space use '_'. It is a feature of the program." << endl;
-			cout << "Otherwise the program will not work. You have been warned." << endl;
 			cout << "('0' exit from search)Enter name of program from array: ";
 			
 			while (getchar() != '\n') {
@@ -37,6 +37,7 @@ void menu() {
 			}
 
 			gets_s(n, 49);
+			
 			if (n == "0") {
 				system("cls");
 				break;
@@ -71,22 +72,23 @@ void menu() {
 			sizeMas = ops.getSize(sizeMas);
 			if (ind <= sizeMas + 1 && ind >= 1) {
 
-				cout << "Instead of a space use '_'. It is a feature of the program." << endl;
-				cout << "Otherwise the program will not work. You have been warned." << endl;
-				cout << "Enter name of program:" << endl;
-
 				while (getchar()!='\n'){
 					continue;
 				}
 
+				cout << "Enter name of program:" << endl;
 				gets_s(n, 49);
+
+				cout << "Enter name of publisher(if you don't know, enter 'unknown'):" << endl;
+				gets_s(p, 49);
+
 				cout << "Enter amount of consumed RAM(Mb):" << endl;
 				cin >> om;
 				cout << "Enter ocupied amount of hard disk memory(Mg):" << endl;
 				cin >> mg;
 				cout << "Enter time of work (in minutes):" << endl;
 				cin >> twm;
-				ops.addProgram(ind, n, mg, om, twm);
+				ops.addProgram(ind, n, p, mg, om, twm);
 
 				sizeMas = ops.getSize(sizeMas);
 				system("cls");
@@ -120,6 +122,8 @@ void menu() {
 			}
 		case 0:
 			ops.delMas();
+			delete[] n;
+			delete[] p;
 			return;
 		}
 	}
