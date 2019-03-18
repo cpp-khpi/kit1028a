@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "phone.h"
+#include "Phone.h"
 
 using std::cin;
 using std::cout;
@@ -22,7 +22,7 @@ public:
 	void createArray(int);
 	void addPhone(Phone &);
 	int inputIndex() const;
-	void removePhone(const int); // работает даже с 0 элементом
+	void removePhone(const int);
 	Phone& getPhone(const int);
 	void printPhone(Phone *) const;
 	void showAll() const;

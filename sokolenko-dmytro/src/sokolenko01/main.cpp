@@ -1,5 +1,5 @@
-#include "phone.h"
-#include "phoneDatabase.h"
+#include "Phone.h"
+#include "PhoneDatabase.h"
 
 int main()
 {
@@ -38,8 +38,6 @@ int main()
 		cout << "3 - Get phone data by index." << endl;
 		cout << "4 - Display all items on screen." << endl;
 		cout << endl << "0 - Exit the program." << endl;
-
-		// Менюшка - всё в одну строку, или разбить?
 
 		choice = 0;
 		int index;

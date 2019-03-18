@@ -1,9 +1,7 @@
 #pragma once
 
-#include "phone.h"
-#include "phoneDatabase.h"
-#include <ctime>
-
+#include "Phone.h"
+#include "PhoneDatabase.h"
 
 class TestPhoneDatabase {
 private:
@@ -11,4 +9,5 @@ private:
 public:
 	bool phoneComparison(Phone &, Phone &);
 	bool testAddPhone();
+	bool testRemovePhone();
 };

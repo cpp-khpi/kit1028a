@@ -1,4 +1,4 @@
-#include "phone.h"
+#include "Phone.h"
 
 unsigned int Phone::getPrice() { return price; }
 void Phone::setPrice(unsigned int newPrice) { price = newPrice; }
