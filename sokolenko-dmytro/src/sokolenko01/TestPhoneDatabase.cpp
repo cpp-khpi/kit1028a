@@ -147,10 +147,61 @@ bool TestPhoneDatabase::testRemovePhone()
 	*/ 
 	
 	bool result;
-	if (isRemoveFromMid == true || isRemoveFromBegin == true)
+	if (isRemoveFromMid == true && isRemoveFromBegin == true)
 		result = true;
 	else
 		result = false;
 
 	return result;
+}
+
+bool TestPhoneDatabase::testGetPhone()
+{
+	int size = 1;
+	phoneDatabase.setSize(size);
+
+	Phone * testPhoneArray = new Phone[size];
+	phoneDatabase.setPhoneArray(testPhoneArray);
+
+	testPhoneArray[0].setPrice(size);
+	testPhoneArray[0].setSimCardsNumber(size);
+	testPhoneArray[0].setDisplay(size);
+	testPhoneArray[0].setPermission(size);
+	testPhoneArray[0].setCapacity(size);
+
+	int index = 0;
+
+	Phone * tmpTestPhone = new Phone;
+
+	tmpTestPhone->setPrice(testPhoneArray[0].getPrice());
+	tmpTestPhone->setSimCardsNumber(testPhoneArray[0].getSimCardsNumber());
+	tmpTestPhone->setDisplay(testPhoneArray[0].getDisplay());
+	tmpTestPhone->setPermission(testPhoneArray[0].getPermission());
+	tmpTestPhone->setCapacity(testPhoneArray[0].getCapacity());
+
+	Phone tmpGetPhone = phoneDatabase.getPhone(index);
+	testPhoneArray = phoneDatabase.getPhoneArray();
+
+	bool result;
+	if (phoneComparison(tmpGetPhone, *tmpTestPhone) == true)
+		result = true;
+	else
+		result = false;
+
+	delete[] testPhoneArray;
+	delete tmpTestPhone;
+
+	return result;
+}
+
+bool TestPhoneDatabase::testAll()
+{
+	bool isAddPhone = testAddPhone();
+	bool isRemovePhone = testRemovePhone();
+	bool isGetPhone = testGetPhone();
+	if (isAddPhone == true && isRemovePhone == true && isGetPhone == true)
+		return true;
+	else
+		return false;
+
 }

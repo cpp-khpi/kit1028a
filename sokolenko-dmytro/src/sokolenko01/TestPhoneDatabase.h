@@ -6,8 +6,10 @@
 class TestPhoneDatabase {
 private:
 	PhoneDatabase phoneDatabase;
-public:
 	bool phoneComparison(Phone &, Phone &);
 	bool testAddPhone();
 	bool testRemovePhone();
+	bool testGetPhone();
+public:
+	bool testAll();
 };

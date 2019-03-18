@@ -3,17 +3,10 @@
 int main()
 {
 	TestPhoneDatabase testPhoneDatabase;
-	
-	if (testPhoneDatabase.testAddPhone() == true)
-		cout << "Good" << endl;
+	if (testPhoneDatabase.testAll() == true)
+		cout << "All tests are passed! Your program is working! Well done! :)";
 	else
-		cout << "Bad";
-
-	if (testPhoneDatabase.testRemovePhone() == true)
-		cout << "Good" << endl;
-	else
-		cout << "Bad";
-
+		cout << "Tests are not passed. I'm so sorry! :(";
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
