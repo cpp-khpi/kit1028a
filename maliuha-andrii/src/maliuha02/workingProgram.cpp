@@ -23,29 +23,24 @@ void workingProgram::setTimeWorkMin(float twm) {
 
 
 //getter
-char* workingProgram::getName(char* n) {
-	strcpy(n, name);
-	return n;
+char* workingProgram::getName() {
+	return name;
 }
 
-char* workingProgram::getPublisher(char* p) {
-	strcpy(p, publisher);
-	return p;
+char* workingProgram::getPublisher() {
+	return publisher;
 }
 
-float workingProgram::getOpMemoryMb(float om) {
-	om = opMemoryMb;
-	return om;
+float workingProgram::getOpMemoryMb() {
+	return opMemoryMb;
 }
 
-float workingProgram::getMemoryGb(float mg) {
-	mg = memoryGb;
-	return mg;
+float workingProgram::getMemoryGb() {
+	return memoryGb;
 }
 
-float workingProgram::getTimeWorkMin(float twm) {
-	twm = timeWorkMin;
-	return twm;
+float workingProgram::getTimeWorkMin() {
+	return timeWorkMin;
 }
 
 workingProgram::workingProgram() : name(NULL), publisher(NULL), opMemoryMb(0), memoryGb(0), timeWorkMin(0) {

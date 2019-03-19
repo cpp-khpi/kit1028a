@@ -23,9 +23,9 @@ public:
 	void setMemoryGb(float);
 	void setTimeWorkMin(float);
 
-	char* getName(char*);
-	char* getPublisher(char*);
-	float getOpMemoryMb(float);
-	float getMemoryGb(float);
-	float getTimeWorkMin(float);
+	char* getName();
+	char* getPublisher();
+	float getOpMemoryMb();
+	float getMemoryGb();
+	float getTimeWorkMin();
 };
