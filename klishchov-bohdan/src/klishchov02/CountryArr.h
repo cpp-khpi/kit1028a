@@ -1,21 +1,17 @@
 #pragma once
 #include"Country.h"
-class CountryArr : Country
-
-{
-public:
-	CountryArr();
-	void CountryAdd(Country country);
-	void CountryPrint() const;
-	void CountryRemove(int id);
-	Country & CList(int id)const;
-	Country & Min();
-
+class CountryArr {
 private:
-	Country *country;
-	int count;
-
-
-
-
+	int size;
+	Country *arr;
+public:
+	void getSize(int size);
+	void newArray(char **s);
+	void print();
+	void addElem(int population, int area, int revenue, char *name);
+	void deleteElem(int l);
+	void getByIndex(int index);
+	void deleteArray();
+	Country maxPop();
+	void printMax(Country max);
 };

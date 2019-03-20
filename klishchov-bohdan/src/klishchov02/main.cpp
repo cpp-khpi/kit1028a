@@ -7,23 +7,40 @@
 #include"CountryArr.h"
 
 
-int main()
-{
-	Country C1(555, (char*)"Poland", 21, 160, 190);
-	CountryArr C2;
-	C2.CountryAdd(C1);
-	C1.CountryFill(111, (char*)"USA", 19, 152, 127);
-	C2.CountryAdd(C1);
-	C1.CountryFill(222, (char*)"Japan", 18, 140, 146);
-	C2.CountryAdd(C1);
-	C1.CountryFill(123, (char*)"Greese", 15, 195, 193);
-	C2.CountryAdd(C1);
-	C2.CountryPrint();
-	printf("\n");
+int main() {
 
-	C2.CountryRemove(0);
-	Country minimum = C2.Min();
-	C2.CountryPrint();
-	system("pause");
+	CountryArr country;
+	Country Max;
+
+	int i = 1;
+	country.getSize(i);
+
+	char** name = new char*[i];
+	for (int j = 0; j < i; j++) {
+		name[j] = new char[24];
+	}
+	for (int j = 0; j < i; j++) {
+		std::cout << "Enter name:  ";
+		std::cin >> name[j];
+	}
+	country.newArray(name);
+	country.addElem(232142, 53423, 654321, (char*)"Ukraine");
+	country.addElem(32142, 5323, 23321, (char*)"Poland");
+	country.addElem(2422, 523423, 5654321, (char*)"Japan");
+	country.deleteElem(1);
+	country.getByIndex(1);
+	country.print();
+	Max = country.maxPop();
+	country.deleteArray();
+	country.printMax(Max);
+
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+	_CrtDumpMemoryLeaks();
+
 	return 0;
 }

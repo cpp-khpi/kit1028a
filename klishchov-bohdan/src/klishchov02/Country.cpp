@@ -1,66 +1,34 @@
 #include"Country.h"
-Country::Country() {}
+Country::Country() :population(0), area(0), revenue(0), name() {
+	name = new char[24];
+};
+Country::Country(int a, int b, int c, char* Name) :population(a), area(b), revenue(c) {
+	name = new char[24];
+	strcpy_s(name, 24, Name);
+};
+Country::Country(const Country &obj) :population(obj.population), area(obj.area), revenue(obj.revenue), name(obj.name) {};
 
-Country::Country(int Id, char Name[20], int popul, int area1, int reven){
-	id = Id;
-	strcpy_s(name, Name);
-	population = popul;
-	area = area1;
-	revenue = reven;
-	strcpy_s(name, Name);
-}
-
-void Country::setID(int ID) {
-
-	id = ID;
-
-}
-int Country::getID() {
-
-	return id;
-}
-
-void Country::setPopul(int popul) {
-
-	population = popul;
-
-}
-int Country::getPopul() {
-
-	return population;
-}
-void Country::setArea(int area1) {
-	area = area1;
+int Country::getPopulation() {
+	return Country::population;
 }
 int Country::getArea() {
-	return area;
+	return Country::area;
 }
-void Country::setReven(int reven) {
-	revenue = reven;
-}
-int Country::getReven() {
-	return revenue;
-}
-void Country::setName(char Name[20]) {
-	strcpy_s(name, Name);
+int Country::getRevenue() {
+	return Country::revenue;
 }
 char *Country::getName() {
-
-	return (char*)name;
+	return Country::name;
 }
-
-
-void Country::CountryPrint() const
-{
-	printf("%i\t%s\t%i\t%i\t%i\n", id, name, population, area, revenue);
+void Country::setInfo(char *s) {
+	population = rand() % 10000 + 40000;
+	area = rand() % 10000 + 40000;
+	revenue = rand() % 10000 + 40000;
+	strcpy_s(name, 24, s);
 }
-
-
-void Country::CountryFill(int Id, char Name[20], int popul, int area1, int reven) {
-	id = Id;
-	strcpy_s(name, Name);
-	population = popul;
-	area = area1;
-	revenue = reven;
-	strcpy_s(name, Name);
+void Country::setData(int population, int area, int revenue, char *name) {
+	strcpy_s(Country::name, 24, name);
+	Country::population = population;
+	Country::area = area;
+	Country::revenue = revenue;
 }
