@@ -12,6 +12,7 @@ int main()
 		cout << "Option: ";
 		cin >> choice;
 	}
+
 	switch (choice) {
 	case '0': {
 		cout << "Press any key to exit.";
@@ -51,11 +52,10 @@ int main()
 			cout << endl << "Option: ";
 			cin >> choice;
 		}
+
 		switch (choice) {
 		case '0': {
 			cout << "Press any key to exit.";
-
-			comfyShop.deleteArray();
 
 			cin.get();
 			cin.get();
@@ -71,7 +71,7 @@ int main()
 			_CrtDumpMemoryLeaks();
 		}
 		case '1': {
-			Phone * tmpPhone = new Phone;
+			tmpPhone = new Phone;
 			comfyShop.readPhone(*tmpPhone);
 			comfyShop.addPhone(*tmpPhone);
 			cout << "Done! New element was added!" << endl;
@@ -86,9 +86,9 @@ int main()
 		}
 		case '3': {
 			index = comfyShop.inputIndex();
-			Phone tmp = comfyShop.getPhone(index);
+			Phone phoneFromArray = comfyShop.getPhone(index);
 			cout << endl << endl << "Phone with index: " << index << endl << endl;
-			comfyShop.printPhone(&tmp);
+			comfyShop.printPhone(phoneFromArray);
 			break;
 		}
 		case '4': {

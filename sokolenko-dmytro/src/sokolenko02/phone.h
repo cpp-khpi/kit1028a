@@ -1,4 +1,13 @@
+/**
+* @file phone.h
+* Оголошення базового класу Phone.
+* @author Sokolenko Dmitro
+* @version 0.1
+* @date 2019.03.20
+*/
+
 #pragma once
+
 #include <iostream>
 #include <cstring>
 
@@ -6,79 +15,133 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-// конструкторы ведь в хедере?
-
+/** 
+* Опис класу Phone з його полями та методами.
+* Використовуються коментарі в стилі Javadoc для обробки пакетом Doxygen.
+*/
 class Phone {
+private:
+	/** Назва телефону. */
 	char * title;
+	/** Ціна телефону. */
 	unsigned int price;
+	/** Кількість sim-карт у телефоні. */
 	unsigned int simCardsNumber;
+	/** Щільність пікселів екрану телефону. */
 	unsigned int resolution;
+	/** Ємкість акумулятору телефону. */
 	unsigned int capacity;
 public:
-	Phone()
-	{
-		const int TITLELEN = 50;
-		const char * stdTitle = "Nokia 3310";
-		title = new char[TITLELEN];
-		strncpy_s(title, TITLELEN, stdTitle, strlen(stdTitle));
+	/** 
+	* Конструктор за замовчуванням.
+	* Інізіалізація полів.
+	* Використовується список ініціалізації числових змінних,
+	* в тілі конструктора виконується виділення пам'яті та копіювання рядка.
+	*/
+	Phone();
 
-		price = 1000;
-		simCardsNumber = 1;
-		resolution = 4032;
-		capacity = 900;
+	/** 
+	* Конструктор з параметрами. 
+	* Інізіалізація полів.
+	* Використовується список ініціалізації числових змінних,
+	* в тілі конструктора виконується виділення пам'яті та копіювання рядка.
+	* @param newTitle з використанням бібліотечної функції копіюється у поле Phone::title.
+	* @param newPrice ініціалізує поле Phone::price.
+	* @param newSimNum ініціалізує поле Phone::simCardsNumber.
+	* @param newResolution ініціалізує поле Phone::resolution.
+	* @param newCapacity ініціалізує поле Phone::capacity.
+	*/
+	Phone(char *, unsigned int, unsigned int, unsigned int, unsigned int);
 
-		cout << "Default constructor! Phone" << endl;
-	}
+	/**
+	* Конструктор копіювання.
+	* Інізіалізація полів.
+	* Використовується список ініціалізації числових змінних,
+	* в тілі конструктора виконується виділення пам'яті та копіювання рядка.
+	* @param copiedPhone: ініціалізація полів нового об'єкту значеннями полів передаваємого.
+	*/
+	Phone(const Phone &);
 
-	Phone(char * newTitle, unsigned int newPrice, unsigned int newSimNum, unsigned int newResolution, unsigned int newCapacity)
-	{
-		const int TITLELEN = 50;
-		title = new char[TITLELEN];
-		strncpy_s(title, TITLELEN, newTitle, strlen(newTitle));
+	/**
+	* Деструктор. Звільнення виділеної пам'яті для рядку.
+	*/
+	~Phone();
 
-		price = newPrice;
-		simCardsNumber = newSimNum;
-		resolution = newResolution;
-		capacity = newCapacity;
+	/**
+	* Перевантажений оператор присваювання.
+	* @param copiedPhone: значення його полів присвоюються полям поточного об'єкту.
+	*/
+	Phone& operator = (const Phone &);
 
-		cout << "Constructor with param. Phone" << endl;
-	}
-
-	Phone(const Phone & copiedPhone)
-	{
-		const int TITLELEN = 50;
-		title = new char[TITLELEN];
-		strncpy_s(title, TITLELEN, copiedPhone.title, strlen(copiedPhone.title));
-
-		price = copiedPhone.price;
-		simCardsNumber = copiedPhone.simCardsNumber;
-		resolution = copiedPhone.resolution;
-		capacity = copiedPhone.capacity;
-
-		cout << "Copy constructor. Phone" << endl;
-	}
-
-	~Phone()
-	{
-		delete[] title;
-
-		cout << "Destructor. Phone" << endl;
-	}
-
+	/**
+	* Присвоювання полям классу нових значень.
+	* Використовується список ініціалізації числових змінних,
+	* в тілі конструктора виконується виділення пам'яті та копіювання рядка.
+	* @param newTitle присвоюється полю Phone::title через функцію копіювання.
+	* @param newPrice присвоюється полю Phone::price.
+	* @param newSimNum присвоюється полю Phone::simCardsNumber.
+	* @param newResolution присвоюється полю Phone::resolution.
+	* @param newCapacity присвоюється полю Phone::capacity.
+	*/
 	void setData(char *, unsigned int, unsigned int, unsigned int, unsigned int);
 
+	/**
+	* Зчитування поля Phone::title.
+	* @return поточне значення поля Phone::title.
+	*/
 	char * getTitle();
+
+	/**
+	* Встановлення значння змінної Phone::title.
+	* @param newTitle присвоюється Phone::title.
+	*/
 	void setTitle(char *);
 
+	/**
+	* Зчитування поля Phone::price.
+	* @return поточне значення поля Phone::price.
+	*/
 	unsigned int getPrice();
+
+	/**
+	* Встановлення значння змінної Phone::price.
+	* @param newPrice присвоюється Phone::price.
+	*/
 	void setPrice(unsigned int);
 
+	/**
+	* Зчитування поля Phone::simCardsNumber.
+	* @return поточне значення поля Phone::simCardsNumber.
+	*/
 	unsigned int getSimCardsNumber();
+
+	/**
+	* Встановлення значння змінної Phone::simCardsNumber.
+	* @param newSimCardsNumber присвоюється Phone::simCardsNumber.
+	*/
 	void setSimCardsNumber(unsigned int);
 
+	/**
+	* Зчитування поля Phone::resolution.
+	* @return поточне значення поля Phone::resolution.
+	*/
 	unsigned int getResolution();
+
+	/**
+	* Встановлення значння змінної Phone::resolution.
+	* @param newResolution присвоюється Phone::resolution.
+	*/
 	void setResolution(unsigned int);
 
+	/**
+	* Зчитування поля Phone::capacity.
+	* @return поточне значення поля Phone::capacity.
+	*/
 	unsigned int getCapacity();
+
+	/**
+	* Встановлення значння змінної Phone::capacity.
+	* @param newCapacity присвоюється Phone::capacity.
+	*/
 	void setCapacity(unsigned int);
 };
