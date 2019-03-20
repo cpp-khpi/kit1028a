@@ -23,6 +23,11 @@ void InfoStorge::menu() {
 			
 			cout << "In which position u want add new school? Last position:" << tmp.count << endl;
 			cin >> index;
+
+			while (index > tmp.count || index < 0) {
+				cout << "You can't put in this position, choose another! Last position: " << tmp.count << endl;
+				cin >> index;
+			}
 			
 			cout << "Enter cost per month: ";
 			cin >> cos;
