@@ -1,13 +1,107 @@
 #include "StudentsWork.h"
 #include "InfoWork.h"
 
-
-
-void StudentsWork::search(int index) {
-	if (index >= size) {
-		cout << "imposible to find\n";
-		return;
+void StudentsWork::sortByMark(int b) {
+	InfoWork temp;
+	if (b = 0) {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (qual[i].getMark() > qual[j].getMark()) {
+					temp = qual[i];
+					qual[i] = qual[j];
+					qual[j] = temp;
+				}
+			}
+		}
 	}
+	else {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (qual[i].getMark() < qual[j].getMark()) {
+					temp = qual[i];
+					qual[i] = qual[j];
+					qual[j] = temp;
+				}
+			}
+		}
+	}
+}
+
+void StudentsWork::sortBySize(int b) {
+	if (b = 0) {
+		InfoWork temp;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (qual[i].getPages() > qual[j].getPages()) {
+					temp = qual[i];
+					qual[i] = qual[j];
+					qual[j] = temp;
+				}
+			}
+		}
+	}
+	else {
+		InfoWork temp;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (qual[i].getPages() < qual[j].getPages()) {
+					temp = qual[i];
+					qual[i] = qual[j];
+					qual[j] = temp;
+				}
+			}
+		}
+	}
+}
+
+void StudentsWork::sortByType(int b) {
+	if (b = 0) {
+		InfoWork temp;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (qual[i].getType() > qual[j].getType()) {
+					temp = qual[i];
+					qual[i] = qual[j];
+					qual[j] = temp;
+				}
+			}
+		}
+	}
+	else {
+		InfoWork temp;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (qual[i].getType() < qual[j].getType()) {
+					temp = qual[i];
+					qual[i] = qual[j];
+					qual[j] = temp;
+				}
+			}
+		}
+	}
+}
+
+void StudentsWork::sortBy(StudentsWork qual,int x, int(*fun)()){
+	
+	int j = fun();
+
+	switch (x)
+	{
+	case 0:
+		qual.sortByMark(j);
+		break;
+	case 1:
+		qual.sortBySize(j);
+		break;
+	case 2:
+		qual.sortByType(j);
+		break;
+	default:
+		break;
+	}
+}
+
+int StudentsWork::search(int index) {
 
 	cout << "Name: " << qual[index].getName();
 	cout << "Mark= " << qual[index].getMark();
@@ -18,6 +112,7 @@ void StudentsWork::search(int index) {
 	else {
 		cout << " MAGISTR" << endl;
 	}
+	return 0;
 }
 void StudentsWork::createArr(string *name) {
 	qual = new InfoWork[size];
@@ -25,11 +120,10 @@ void StudentsWork::createArr(string *name) {
 		qual[i].set(name[i]);
 	}
 }
-void StudentsWork::add(int n, int mark, int pages, int type, string name) {
+int StudentsWork::add(int n, int mark, int pages, int type, string name) {
 
 	if (n >= size) {
-		cout << "Error: invalid index" << endl;
-		return;
+		return 1;
 	}
 	int i;
 	int j = 0;
@@ -49,15 +143,16 @@ void StudentsWork::add(int n, int mark, int pages, int type, string name) {
 	}
 	delete[] qual;
 	qual = arr;
+	return 0;
 }
-void StudentsWork::del(int n) {
+int StudentsWork::del(int n) {
 	if (n >= size) {
 		cout << "Error: invalid index" << endl;
-		return;
+		return 2;
 	}
 	if (size < 2) {
 		cout << "Error: you can not delete last element" << endl;
-		return;
+		return 1;
 	}
 	int j = 0;
 
@@ -74,6 +169,7 @@ void StudentsWork::del(int n) {
 	}
 	delete[] qual;
 	qual = arr;
+	return 0;
 }
 void StudentsWork::testDel()
 {
@@ -191,10 +287,10 @@ float StudentsWork::rate() { //найти процент магистров
 void StudentsWork::setSize(int size) {
 	this->size = size;
 }
-void StudentsWork::sort() {
-	regex regex_sort("([\\w]+)( )([\\w]+)");
+void StudentsWork::sortName() {
+	regex regex_sort("[\\w]+[\\s]{1,}");
 	for (int i = 0; i < size; i++) {
-		if (regex_match(qual[i].getName(),regex_sort))
+		if (regex_search(qual[i].getName(),regex_sort))
 		{
 			cout << "Name: " << qual[i].getName();;
 			cout << " Mark= " << qual[i].getMark();

@@ -9,12 +9,21 @@
 #include "InfoWork.h"
 #include "StudentsWork.h"
 
+int random() {
+	srand(time(NULL));
+	int x = rand() % 2;
+	return x;
+}
+
 int main() {
 	system("color 0A");
 	StudentsWork qualWork;
 	ifstream fin;
+	int(*pointer)();
 	int j, x;
 	int choose = 0;
+	int ErrorTest;
+	pointer = random;
 
 	cout << "0 - Exit" << endl;
 	cout << "1 - Create vector" << endl;
@@ -23,7 +32,7 @@ int main() {
 
 
 	if (choose == 1) {
-		regex regex_repeat("[\\s]{2,3}");
+		regex regex_repeat("[\\s]{2,}");
 		regex regex_firstSymbol("((^[A-Z])[\\w\\s]+)");
 		string names;
 		string file{ "cppstudio.txt" };
@@ -80,7 +89,8 @@ int main() {
 			cout << "3 - Add element" << endl;
 			cout << "4 - Delete element" << endl;
 			cout << "5 - Find persent" << endl;
-			cout << "6 - Sorted output" << endl;
+			cout << "6 - Sorted by Name output" << endl;
+			cout << "7 - Sort" << endl;
 			cout << "Choose: ";
 			cin >> choose;
 			switch (choose)
@@ -93,7 +103,9 @@ int main() {
 				cout << "input index: ";
 				cin >> j;
 
-				qualWork.search(j);
+				if (qualWork.search(j) != 0) {
+					cout << "imposible to find\n";
+				}
 				break;
 			case 3:
 
@@ -114,13 +126,23 @@ int main() {
 				cin >> c;
 				cout << "input insert point: ";
 				cin >> j;
-				qualWork.add(j, a, b, c, names);
-				system("cls");
+				if (qualWork.add(j, a, b, c, names) != 0) {
+					cout << "Error: invalid index" << endl;
+				}
 				break;
 			case 4:
 				cout << "input delete point: ";
 				cin >> j;
-				qualWork.del(j);
+
+				ErrorTest = qualWork.del(j);
+
+				if (ErrorTest == 2) {
+					cout << "Error: invalid index" << endl;
+					break;
+				}if (ErrorTest == 1) {
+					cout << "Error: you can not delete last element" << endl;
+					break;
+				}
 				system("cls");
 				break;
 			case 5:
@@ -128,7 +150,16 @@ int main() {
 				cout << qualWork.rate();
 				break;
 			case 6:
-				qualWork.sort();
+				qualWork.sortName();
+				break;
+			case 7:
+				cout << "Which type of sort do you want to perfom:" << endl;
+				cout << "0 - By mark" << endl;
+				cout << "1 - By size" << endl;
+				cout << "2 - By type" << endl;
+				cout << "Choose: ";
+				cin >> j;
+				qualWork.sortBy(qualWork,j,pointer);
 				break;
 			default:
 				break;
@@ -151,5 +182,5 @@ int main() {
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
 	_CrtDumpMemoryLeaks();
 
-	return 0;
+	return _CrtDumpMemoryLeaks();
 }

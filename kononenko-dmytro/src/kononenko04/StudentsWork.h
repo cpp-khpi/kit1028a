@@ -3,27 +3,28 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-using std::cin;
-using std::cout;
-using std::endl;
 using std::ofstream;
 using std::ifstream;
 
-
 class StudentsWork {
 private:
-	int size;
-	InfoWork *qual;
+	size_t size;
+	InfoW *qual;
 public:
-	void sort();
+	StudentsWork():size(0) {};
+	void sortName();
 	void setSize(int size);
 	void createArr(string* name);
-	void search(int index);
+	void sortBy(StudentsWork qual,int x, int(*)());
+	void sortByMark(int b);
+	void sortBySize(int b);
+	void sortByType(int b);
+	int search(int index);
 	void printArr();
 	float rate();
 	void printFile(string file);
-	void add(int n, int mark, int pages, int type, string name);
-	void del(int n);
+	int add(int n, int mark, int pages, int type, string name);
+	int del(int n);
 	void testDel();
 	void testAdd();
 	void delArr();

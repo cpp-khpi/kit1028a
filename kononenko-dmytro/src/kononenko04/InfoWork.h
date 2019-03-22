@@ -1,4 +1,5 @@
 #pragma once
+#include <cstddef>
 #include <iostream>
 #include <string>
 #include <regex>
@@ -28,4 +29,4 @@ public:
 	int getMark();
 	int getType();
 	string getName();
-};
+}typedef InfoW;
