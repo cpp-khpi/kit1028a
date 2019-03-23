@@ -53,7 +53,7 @@ void const workingProgram::print() {
 	cout << "Publisher: " << publisher << endl;
 	cout << "Amount of consumed RAM(Mb): " << opMemoryMb << endl;
 	cout << "Ocupied amount of hard disk memory(Gb): " << memoryGb << endl;
-	cout << "Time of work (in minutes): " << timeWorkMin << endl;
+	cout << "Time of work (in minutes): " << timeWorkMin << endl << endl;
 }
 
 workingProgram::workingProgram(const workingProgram &obj) {
@@ -67,6 +67,8 @@ workingProgram::workingProgram(const workingProgram &obj) {
 workingProgram::~workingProgram() {
 	delete[] name;
 	delete[] publisher;
+	name = NULL;
+	publisher = NULL;
 }
 
 workingProgram::workingProgram(char *name, char* publisher, float opMemoryMb, float memoryGb, float timeWorkMin) {

@@ -11,31 +11,32 @@ void Array::addProgram(int ind, char* n, char* p, float mg, float om, float twm)
 	timeMas[ind].setMemoryGb(mg);
 	timeMas[ind].setTimeWorkMin(twm);
 
-	for (int i = 0; i < size; i++) {
-		if (i >= ind) {
-			n = mas[i].getName();
-			p = mas[i].getPublisher();
-			om = mas[i].getOpMemoryMb();
-			mg = mas[i].getMemoryGb();
-			twm = mas[i].getTimeWorkMin();
-			timeMas[i + 1].setName(n);
-			timeMas[i + 1].setPublisher(p);
-			timeMas[i + 1].setOpMemoryMb(om);
-			timeMas[i + 1].setMemoryGb(mg);
-			timeMas[i + 1].setTimeWorkMin(twm);
-		}
-		else {
-			n = mas[i].getName();
-			p = mas[i].getPublisher();
-			om = mas[i].getOpMemoryMb();
-			mg = mas[i].getMemoryGb();
-			twm = mas[i].getTimeWorkMin();
-			timeMas[i].setName(n);
-			timeMas[i].setPublisher(p);
-			timeMas[i].setOpMemoryMb(om);
-			timeMas[i].setMemoryGb(mg);
-			timeMas[i].setTimeWorkMin(twm);
-		}
+	int i = 0;
+	while (i < ind) {
+		n = mas[i].getName();
+		p = mas[i].getPublisher();
+		om = mas[i].getOpMemoryMb();
+		mg = mas[i].getMemoryGb();
+		twm = mas[i].getTimeWorkMin();
+		timeMas[i].setName(n);
+		timeMas[i].setPublisher(p);
+		timeMas[i].setOpMemoryMb(om);
+		timeMas[i].setMemoryGb(mg);
+		timeMas[i].setTimeWorkMin(twm);
+		i++;
+	}
+	while (i < size) {
+		n = mas[i].getName();
+		p = mas[i].getPublisher();
+		om = mas[i].getOpMemoryMb();
+		mg = mas[i].getMemoryGb();
+		twm = mas[i].getTimeWorkMin();
+		timeMas[i + 1].setName(n);
+		timeMas[i + 1].setPublisher(p);
+		timeMas[i + 1].setOpMemoryMb(om);
+		timeMas[i + 1].setMemoryGb(mg);
+		timeMas[i + 1].setTimeWorkMin(twm);
+		i++;
 	}
 
 	delete[] mas;
@@ -56,32 +57,34 @@ void Array::removeProgram(int ind) {
 	float mg,  om, twm;
 
 	workingProgram *timeMas = new workingProgram[size - 1];
-	for (int i = 0; i < size - 1; i++) {
-		if (i < ind) {
-			n = mas[i].getName();
-			p = mas[i].getPublisher();
-			om = mas[i].getOpMemoryMb();
-			mg = mas[i].getMemoryGb();
-			twm = mas[i].getTimeWorkMin();
+	
+	int i = 0;
+	while (i < ind) {
+		n = mas[i].getName();
+		p = mas[i].getPublisher();
+		om = mas[i].getOpMemoryMb();
+		mg = mas[i].getMemoryGb();
+		twm = mas[i].getTimeWorkMin();
+		timeMas[i].setName(n);
+		timeMas[i].setPublisher(p);
+		timeMas[i].setOpMemoryMb(om);
+		timeMas[i].setMemoryGb(mg);
+		timeMas[i].setTimeWorkMin(twm);
+		i++;
+	}
+	if (size > 1) {
+		while(i < size - 1) {
+			n = mas[i + 1].getName();
+			p = mas[i + 1].getPublisher();
+			om = mas[i + 1].getOpMemoryMb();
+			mg = mas[i + 1].getMemoryGb();
+			twm = mas[i + 1].getTimeWorkMin();
 			timeMas[i].setName(n);
 			timeMas[i].setPublisher(p);
 			timeMas[i].setOpMemoryMb(om);
 			timeMas[i].setMemoryGb(mg);
 			timeMas[i].setTimeWorkMin(twm);
-		}
-		else {
-			if (size > 1) {
-				n = mas[i].getName();
-				p = mas[i].getPublisher();
-				om = mas[i].getOpMemoryMb();
-				mg = mas[i].getMemoryGb();
-				twm = mas[i].getTimeWorkMin();
-				timeMas[i + 1].setName(n);
-				timeMas[i + 1].setPublisher(p);
-				timeMas[i + 1].setOpMemoryMb(om);
-				timeMas[i + 1].setMemoryGb(mg);
-				timeMas[i + 1].setTimeWorkMin(twm);
-			}
+			i++;
 		}
 	}
 	delete[] mas;
@@ -136,6 +139,10 @@ Array::Array() :size(0), mas(NULL) {
 }
 
 void Array::findProgram(float memoryGB) {
+	if (size == 0) {
+		return;
+	}
+	
 	float timeMemory = 0;
 	
 	for (int i = 0; i < size; i++) {
@@ -148,6 +155,10 @@ void Array::findProgram(float memoryGB) {
 }
 
 void Array::removeViruses() {
+	if (size == 0) {
+		return;
+	}
+	
 	char *p = "unknown";
 	char *p2 = NULL;
 	for (int i = 0; i < size; i++) {
