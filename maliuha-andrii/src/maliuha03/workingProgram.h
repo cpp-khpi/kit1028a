@@ -12,6 +12,7 @@ private:
 public:
 	workingProgram();
 
+	void setObj(stringstream&);
 	stringstream print();
 
 	void setName(string);
@@ -19,7 +20,6 @@ public:
 	void setOpMemoryMb(float);
 	void setMemoryGb(float);
 	void setTimeWorkMin(float);
-
 	string getName();
 	string getPublisher();
 	float getOpMemoryMb();

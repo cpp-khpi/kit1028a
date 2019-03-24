@@ -8,6 +8,9 @@ void menu() {
 	string p;
 	float om, mg, twm;
 
+	stringstream objInfo;
+	workingProgram newObj;
+
 	Array ops;
 
 	while (true) {
@@ -84,7 +87,18 @@ void menu() {
 				cin >> mg;
 				cout << "Enter time of work (in minutes):" << endl;
 				cin >> twm;
-				ops.addProgram(ind, n, p, mg, om, twm);
+
+				objInfo << n << "|" << p << "|" << om << "|" << mg << "|" << twm << "|";
+				newObj.setObj(objInfo);
+				objInfo.str("");
+				objInfo.clear();
+				ops.addProgram(newObj, ind);
+
+				newObj.setName("");
+				newObj.setPublisher("");
+				newObj.setOpMemoryMb(0);
+				newObj.setMemoryGb(0);
+				newObj.setTimeWorkMin(0);
 
 				sizeMas = ops.getSize(sizeMas);
 				system("cls");

@@ -8,7 +8,7 @@ private:
 public:
 	Array();
 
-	void addProgram(int ind, string n, string p, float mg, float om, float twm);
+	void addProgram(workingProgram&, int);
 	void showAll();
 	void removeProgram(int ind);
 	void getProgram(int ind);

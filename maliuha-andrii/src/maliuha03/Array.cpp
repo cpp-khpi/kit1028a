@@ -1,9 +1,19 @@
 #include "Header.h"
 
-void Array::addProgram(int ind, string n, string p, float mg, float om, float twm) {
+void Array::addProgram(workingProgram &newObj, int ind) {
 	ind = ind - 1;
 
 	workingProgram *timeMas = new workingProgram[size + 1];
+
+	string n;
+	string p;
+	float om, mg, twm;
+
+	n = newObj.getName();
+	p = newObj.getPublisher();
+	om = newObj.getOpMemoryMb();
+	mg = newObj.getMemoryGb();
+	twm = newObj.getTimeWorkMin();
 
 	timeMas[ind].setName(n);
 	timeMas[ind].setPublisher(p);
@@ -130,3 +140,4 @@ void Array::removeViruses() {
 		}
 	}
 }
+
