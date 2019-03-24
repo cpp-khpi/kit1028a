@@ -58,8 +58,10 @@ void Array::showAll() {
 		return;
 	}
 
+	stringstream showObj;
 	for (int i = 0; i < size; i++) {
-		mas[i].print();
+		stringstream showObj = mas[i].print();
+		cout << showObj.str() << endl;
 	}
 }
 

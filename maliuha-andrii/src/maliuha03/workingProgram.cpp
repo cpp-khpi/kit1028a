@@ -46,11 +46,13 @@ float workingProgram::getTimeWorkMin() {
 workingProgram::workingProgram() : name(""), publisher(""), opMemoryMb(0), memoryGb(0), timeWorkMin(0) {
 }
 
-void const workingProgram::print() {
-	cout << "Name of program: " << name << endl;
-	cout << "Publisher: " << publisher << endl;
-	cout << "Amount of consumed RAM(Mb): " << opMemoryMb << endl;
-	cout << "Ocupied amount of hard disk memory(Gb): " << memoryGb << endl;
-	cout << "Time of work (in minutes): " << timeWorkMin << endl << endl;
+stringstream workingProgram::print() {
+	stringstream lineObj;
+	lineObj << "Name of program: " << name << "\n";
+	lineObj << "Publisher: " << publisher << "\n";
+	lineObj << "Amount of consumed RAM(Mb): " << opMemoryMb << "\n";
+	lineObj << "Ocupied amount of hard disk memory(Gb): " << memoryGb << "\n";
+	lineObj << "Time of work (in minutes): " << timeWorkMin << "\n";
+	return lineObj;
 }
 

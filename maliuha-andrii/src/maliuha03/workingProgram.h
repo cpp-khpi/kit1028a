@@ -12,7 +12,7 @@ private:
 public:
 	workingProgram();
 
-	void const print();
+	stringstream print();
 
 	void setName(string);
 	void setPublisher(string);
