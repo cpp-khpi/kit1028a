@@ -1,31 +1,38 @@
 #include "phoneDatabase.h"
 
-int PhoneDatabase::getSize() { return size; }
-void PhoneDatabase::setSize(unsigned int newSize) { size = newSize; }
+int PhoneDatabase::getSize() const { return size; }
+void PhoneDatabase::setSize(int newSize) { size = newSize; }
 
-Phone* PhoneDatabase::getPhoneArray() { return phoneArray; }
+Phone* PhoneDatabase::getPhoneArray() const { return phoneArray; }
 void PhoneDatabase::setPhoneArray(Phone * newPhoneArray) { phoneArray = newPhoneArray; }
 
-PhoneDatabase::PhoneDatabase()
+PhoneDatabase::PhoneDatabase() : size(1)
 {
-	size = 0;
 	phoneArray = new Phone[size];
 
 	cout << "Default constructor! PhoneDatabase" << endl;
 }
 
-PhoneDatabase::PhoneDatabase(int newSize, Phone * newPhoneArray)
+PhoneDatabase::PhoneDatabase(int newSize, Phone * newPhoneArray) : 
+	size(newSize)
 {
-	size = newSize;
-	phoneArray = newPhoneArray;
+	delete[] phoneArray;
+	phoneArray = new Phone[size];
+
+	for (int i = 0; i < size; i++)
+		phoneArray[i] = newPhoneArray[i];
 
 	cout << "Constructor with param. PhoneDatabase" << endl;
 }
 
-PhoneDatabase::PhoneDatabase(const PhoneDatabase & copiedPhoneDatabase)
+PhoneDatabase::PhoneDatabase(const PhoneDatabase & copiedPhoneDatabase) :
+	size(copiedPhoneDatabase.size)
 {
-	size = copiedPhoneDatabase.size;
-	phoneArray = copiedPhoneDatabase.phoneArray;
+	delete[] phoneArray;
+	phoneArray = new Phone[size];
+
+	for (int i = 0; i < size; i++)
+		phoneArray[i] = copiedPhoneDatabase.phoneArray[i];
 
 	cout << "Copy constructor. PhoneDatabase" << endl;
 }
@@ -33,6 +40,7 @@ PhoneDatabase::PhoneDatabase(const PhoneDatabase & copiedPhoneDatabase)
 PhoneDatabase::~PhoneDatabase()
 {
 	delete[] phoneArray;
+	phoneArray = nullptr;
 
 	cout << "Destructor. PhoneDatabase" << endl;
 }
@@ -100,7 +108,7 @@ void PhoneDatabase::readPhone(Phone & newPhone) const
 	cout << "Batery capacity, mAh: ";
 	cin >> capacity;
 
-	newPhone.setData(title, price, simCardsNumber, resolution, capacity);
+	newPhone.setPhoneInfo(title, price, simCardsNumber, resolution, capacity);
 }
 
 void PhoneDatabase::addPhone(Phone & addedPhone)
@@ -109,6 +117,7 @@ void PhoneDatabase::addPhone(Phone & addedPhone)
 	for (int i = 0; i < size; i++) {
 		newPhoneArr[i] = phoneArray[i];
 	}
+
 	size++;
 
 	newPhoneArr[size - 1] = addedPhone;
@@ -122,7 +131,8 @@ int PhoneDatabase::inputIndex() const
 	int index;
 	int maxTries = 2;
 	int maxTriesLeft = maxTries;
-	cout << endl << "Enter index of element that you want to remove. You can choose from 0 to " << size - 1 << "." << endl;
+	cout << endl << "Enter index of element that you want to remove.";
+	cout << "You can choose from 0 to " << size - 1 << "." << endl;
 	cout << "(If you choose larger value, the last index will be selected)." << endl << endl;
 	for (int i = 0; i < maxTries; i++) {
 		rewind(stdin);
@@ -155,6 +165,11 @@ int PhoneDatabase::inputIndex() const
 
 void PhoneDatabase::removePhone(const int index)
 {
+	if (size == 0) {
+		cout << "ERROR! The array is empty, addind a new object isn't possible!" << endl;
+		return;
+	}
+
 	Phone * newArr = new Phone[size + 1];
 	for (int i = 0; i < index; i++) {
 		newArr[i] = phoneArray[i];
@@ -172,26 +187,48 @@ void PhoneDatabase::removePhone(const int index)
 
 Phone& PhoneDatabase::getPhone(const int index)
 {
+	if (size == 0) {
+		cout << "ERROR! The array is empty, addind a new object isn't possible!" << endl;
+	}
+
 	return phoneArray[index];
 }
 
-void PhoneDatabase::printPhone(Phone & tmpPhone) const
+void PhoneDatabase::printPhone(Phone & printedPhone) const
 {
-	cout << "Cost, UAN: " << tmpPhone.getPrice() << endl;
-	cout << "Number of SIM-cards: " << tmpPhone.getSimCardsNumber() << endl;
-	cout << "Screen resolution, pixeles: " << tmpPhone.getResolution() << endl;
-	cout << "Batery capacity, mAh: " << tmpPhone.getCapacity() << endl;
+	cout << "Phone title: " << printedPhone.getTitle() << endl;
+	cout << "Cost, UAN: " << printedPhone.getPrice() << endl;
+	cout << "Number of SIM-cards: " << printedPhone.getSimCardsNumber() << endl;
+	cout << "Screen resolution, pixeles: " << printedPhone.getResolution() << endl;
+	cout << "Batery capacity, mAh: " << printedPhone.getCapacity() << endl;
 }
 
 void PhoneDatabase::showAll() const
 {
+	if (size == 0) {
+		cout << "The array is empty." << endl;
+	}
+
 	for (int i = 0; i < size; i++) {
 		cout << endl << endl << "Phone with index: " << i << endl << endl;
 		printPhone(phoneArray[i]);
 	}
 }
 
-void PhoneDatabase::deleteArray()
+Phone& PhoneDatabase::getSmallestResolutPhone() const
 {
-	delete[] phoneArray;
+	if (size == 0) {
+		cout << "ERROR! The array is empty! You can't get element!";
+	}
+
+	int smallestResInd = 0;
+	unsigned int smallestResolut = phoneArray[0].getResolution();
+	for (int i = 1; i < size; i++) {
+		if (phoneArray[i].getResolution() < smallestResolut) {
+			smallestResolut = phoneArray[i].getResolution();
+			smallestResInd = i;
+		}
+	}
+
+	return phoneArray[smallestResInd];
 }

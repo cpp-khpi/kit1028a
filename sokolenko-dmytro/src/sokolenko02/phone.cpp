@@ -10,7 +10,8 @@ Phone::Phone() : price(1000), simCardsNumber(1), resolution(4032), capacity(900)
 	cout << "Default constructor! Phone" << endl;
 }
 
-Phone::Phone(char * newTitle, unsigned int newPrice, unsigned int newSimNum, unsigned int newResolution, unsigned int newCapacity) :
+Phone::Phone(char * newTitle, unsigned int newPrice, unsigned int newSimNum,
+	unsigned int newResolution, unsigned int newCapacity) :
 	price(newPrice),
 	simCardsNumber(newSimNum),
 	resolution(newResolution),
@@ -40,6 +41,7 @@ Phone::Phone(const Phone & copiedPhone) :
 Phone::~Phone()
 {
 	delete[] title;
+	title = nullptr;
 
 	cout << "Destructor. Phone" << endl;
 }
@@ -67,7 +69,8 @@ Phone& Phone::operator = (const Phone & copiedPhone)
 	return *this;
 }
 
-void Phone::setData(char * newTitle, unsigned int newPrice, unsigned int newSimNum, unsigned int newResolution, unsigned int newCapacity)
+void Phone::setPhoneInfo(char * newTitle, unsigned int newPrice, unsigned int newSimNum,
+	unsigned int newResolution, unsigned int newCapacity)
 {
 	const int TITLELEN = 50;
 	strncpy_s(title, TITLELEN, newTitle, strlen(newTitle));
@@ -78,17 +81,17 @@ void Phone::setData(char * newTitle, unsigned int newPrice, unsigned int newSimN
 	capacity = newCapacity;
 }
 
-char * Phone::getTitle() { return title; }
+char * Phone::getTitle() const { return title; }
 void Phone::setTitle(char * newTitle) { title = newTitle; }
 
-unsigned int Phone::getPrice() { return price; }
+unsigned int Phone::getPrice() const { return price; }
 void Phone::setPrice(unsigned int newPrice) { price = newPrice; }
 
-unsigned int Phone::getSimCardsNumber() { return simCardsNumber; }
+unsigned int Phone::getSimCardsNumber() const { return simCardsNumber; }
 void Phone::setSimCardsNumber(unsigned int newsimCardsNumber) { simCardsNumber = newsimCardsNumber; }
 
-unsigned int Phone::getResolution() { return resolution; }
+unsigned int Phone::getResolution() const { return resolution; }
 void Phone::setResolution(unsigned int newResolution) { resolution = newResolution; }
 
-unsigned int Phone::getCapacity() { return capacity; }
+unsigned int Phone::getCapacity() const { return capacity; }
 void Phone::setCapacity(unsigned int newCapacity) { capacity = newCapacity; }

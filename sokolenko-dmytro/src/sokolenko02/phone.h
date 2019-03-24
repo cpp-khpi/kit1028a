@@ -77,19 +77,19 @@ public:
 	* Присвоювання полям классу нових значень.
 	* Використовується список ініціалізації числових змінних,
 	* в тілі конструктора виконується виділення пам'яті та копіювання рядка.
-	* @param newTitle присвоюється полю Phone::title через функцію копіювання.
-	* @param newPrice присвоюється полю Phone::price.
-	* @param newSimNum присвоюється полю Phone::simCardsNumber.
-	* @param newResolution присвоюється полю Phone::resolution.
-	* @param newCapacity присвоюється полю Phone::capacity.
+	* @param newTitle ініціалізує поле Phone::title через функцію копіювання.
+	* @param newPrice ініціалізує поле Phone::price.
+	* @param newSimNum ініціалізує поле Phone::simCardsNumber.
+	* @param newResolution ініціалізує поле Phone::resolution.
+	* @param newCapacity ініціалізує поле Phone::capacity.
 	*/
-	void setData(char *, unsigned int, unsigned int, unsigned int, unsigned int);
+	void setPhoneInfo(char *, unsigned int, unsigned int, unsigned int, unsigned int);
 
 	/**
 	* Зчитування поля Phone::title.
 	* @return поточне значення поля Phone::title.
 	*/
-	char * getTitle();
+	char * getTitle() const;
 
 	/**
 	* Встановлення значння змінної Phone::title.
@@ -101,7 +101,7 @@ public:
 	* Зчитування поля Phone::price.
 	* @return поточне значення поля Phone::price.
 	*/
-	unsigned int getPrice();
+	unsigned int getPrice() const;
 
 	/**
 	* Встановлення значння змінної Phone::price.
@@ -113,7 +113,7 @@ public:
 	* Зчитування поля Phone::simCardsNumber.
 	* @return поточне значення поля Phone::simCardsNumber.
 	*/
-	unsigned int getSimCardsNumber();
+	unsigned int getSimCardsNumber() const;
 
 	/**
 	* Встановлення значння змінної Phone::simCardsNumber.
@@ -125,7 +125,7 @@ public:
 	* Зчитування поля Phone::resolution.
 	* @return поточне значення поля Phone::resolution.
 	*/
-	unsigned int getResolution();
+	unsigned int getResolution() const;
 
 	/**
 	* Встановлення значння змінної Phone::resolution.
@@ -137,7 +137,7 @@ public:
 	* Зчитування поля Phone::capacity.
 	* @return поточне значення поля Phone::capacity.
 	*/
-	unsigned int getCapacity();
+	unsigned int getCapacity() const;
 
 	/**
 	* Встановлення значння змінної Phone::capacity.
