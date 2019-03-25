@@ -1,11 +1,5 @@
 #include "InfoIndependentsWork.h"
 
-InfoIndependentsWork::InfoIndependentsWork() {
-	amount = 0;
-	written = 0;
-	mark = 0;
-	surname = (char *) operator new (sizeof(char) * 256);
-}
 int InfoIndependentsWork::getAmount() {
 	return InfoIndependentsWork::amount;
 }
@@ -18,7 +12,7 @@ int InfoIndependentsWork::getMark() {
 char *InfoIndependentsWork::getSurname() {
 	return InfoIndependentsWork::surname;
 }
-void InfoIndependentsWork::setInfo(char *s) {
+void InfoIndependentsWork::generation_values(char *s) {
 	amount = 8 + rand() % 8;
 	written = amount - rand() % 8;
 	mark = 1 + rand() % 5;

@@ -1,14 +1,14 @@
 /*
  * @ mainpage
- * @ author Сергій Котенко
- * @ date 10.03.19
- * @ version 2.0
+ * @ author - Kotenko Sergey
+ * @ date - 10.03.19
+ * @ version - 3.0
  */
 
 #include "InfoIndependentsWork.h"
 #include "IndependentsWork.h"
 
-int main(void) {
+int main() {
 	system("color A");
 
 	InfoIndependentsWork Do;
@@ -29,23 +29,38 @@ int main(void) {
 		std::cout << "Enter surname:  ";
 		std::cin >> surname[j];
 	}
+
 	system("cls");
 	Work.newArray(surname);
+	for (int j = 0; j < i; j++) {
+		delete[]surname[j];
+	} 
+	delete[] surname;
 	Work.print();
 
-	char option = 0;
+	int option = 0;
 	do {
 		std::cout << "Choose option:" << std::endl << "1 - Exit " << std::endl << "2 - Add element" << std::endl << "3 - Delete element" << std::endl << "4 - Search by index" << std::endl;
 		std::cout << std::endl;
 		std::cin >> option;
 
 		switch (option) {
-		case'1': {
+		case 1: {
 			system("cls");
 			Work.deleteArray();
+
+			_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+			_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
+			_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+			_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
+			_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+			_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+			_CrtDumpMemoryLeaks();
+			system("pause");
+
 			exit(0);
 		}
-		case'2': {
+		case 2: {
 			system("cls");
 			int amount, written, mark;
 			char surname[30];
@@ -64,7 +79,7 @@ int main(void) {
 			Work.print();
 			break;
 		}
-		case '3': {
+		case 3: {
 			int j = 0;
 			std::cout << std::endl << "Enter index by delete element : ";
 			std::cin >> j;
@@ -74,7 +89,7 @@ int main(void) {
 			Work.print();
 			break;
 		}
-		case '4': {
+		case 4: {
 			int z = 0;
 			std::cout << std::endl << "Enter index : " ;
 			std::cin >> z;
@@ -87,11 +102,5 @@ int main(void) {
 		}
 	} while (option != 0);
 
-	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
-	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
-	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
-	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
-	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
-	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
-	_CrtDumpMemoryLeaks();
+	return 0;
 }

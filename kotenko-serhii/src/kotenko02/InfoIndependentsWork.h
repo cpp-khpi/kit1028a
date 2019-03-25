@@ -9,13 +9,16 @@ private:
 	int mark;
 	char *surname;
 public:
-	InfoIndependentsWork();
+	InfoIndependentsWork() : amount(0), written(0), mark(0) {
+		surname = (char *) operator new (sizeof(char) * 256);
+	};
 	int getAmount();
 	int getWritten();
 	int getMark();
 	char *getSurname();
-	void setInfo(char *s);
+	void generation_values(char *s);
 	void setData(int amount, int written, int mark, char *surname);
 	~InfoIndependentsWork() {
+		delete[] surname;
 	}
 };
