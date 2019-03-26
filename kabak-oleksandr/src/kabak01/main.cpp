@@ -12,10 +12,10 @@ int main() {
 		StudentsWorks Students(N);
 
 		printf("\nYour list:\n");
-		Students.print_all();
+		Students.showAll();
 
-		printf("Student who wants to join the group:\n");
-		Students.print_new_stud();
+		printf("\n\nStudent who wants to join the group:\n\n");
+		Students.getNewStud();
 		getchar(); getchar();
 
 		int i = 1;
@@ -31,40 +31,47 @@ int main() {
 			}else {
 				switch (N) {
 				case 1:
-					Students.print_all();
+					Students.showAll();
 					break;
 
+
 				case 2:
-					Students.print_new_stud();
+					Students.getNewStud();
 					break;
+
 
 				case 3:
 					i = 2;
 					while (i > 1) {
-						printf("Select student index:");
-						scanf_s("%d", &N);
-						if (N > Students.getSIZE() || N <= 0) {
-							printf("\nSorry, you entered a non-existent index.\n");
-						}
-						else {
-							Students.print_stud(N - 1);
-							i = 1;
-						}
+							printf("Select student index:");
+							scanf_s("%d", &N);
+
+							if (N > Students.getSIZE() || N <= 0) {
+								printf("\nSorry, you entered a non-existent index.\n");
+							}
+							else {
+								Students.getStud(N - 1);
+								i = 1;
+							}
+						
 					}
+										
 					break;
+
 
 				case 4:
 					i = 2;
 					while (i > 1) {
 						printf("Choose a place in the journal for a new student:");
 						scanf_s("%d", &N);
+
 						if (N > Students.getSIZE() || N <= 0) {
 							printf("\nSorry, you entered a non-existent index.\n");
 						}
 						else {
-							Students.add_Stud(N);
+							Students.addStud(N);
 							printf("\nResult:\n");
-							Students.print_all();
+							Students.showAll();
 							i = 1;
 						}
 					}
@@ -73,26 +80,29 @@ int main() {
 				case 5:
 					i = 2;
 					while (i > 1) {
-						printf("Select the student number of which you want to remove from the list:");
-						scanf_s("%d", &N);
-						if (N > Students.getSIZE() || N <= 0) {
-							printf("\nSorry, you entered a non-existent index.\n");
-						}
-						else {
-							Students.del_Stud(N - 1);
-							printf("\nResult:\n");
-							Students.print_all();
+						if (Students.getSIZE() > 0) {
+							printf("Select the student number of which you want to remove from the list:");
+							scanf_s("%d", &N);
+
+							if (N > Students.getSIZE() || N <= 0) {
+								printf("\nSorry, you entered a non-existent index.\n");
+							}else {
+								Students.removeStud(N - 1);
+								printf("\nResult:\n");
+								Students.showAll();
+								i = 1;
+							}
+						}else {
+							cout << "List is clear!.-.\n";
 							i = 1;
 						}
 					}
 					break;
 
 				case 6:
-					printf("Choose a number for a new student(the last one is logical c: )");
-					scanf_s("%d", &N);
-					Students.setStud(N);
-					printf("\nResult:\n");
-					Students.print_all();
+					printf("Do you want changeinfo about new student ?\nOk:\n ");
+					Students.setNewStud();
+					Students.getNewStud();
 					break;
 
 				case 0:
@@ -107,6 +117,6 @@ int main() {
 			getchar(); getchar();
 		}
 	}
-	getchar(); getchar();
+	
 	return 0;
 }

@@ -1,35 +1,45 @@
 #pragma once
 #include "StudentsWorks.h"
 
-StudentsWorks::StudentsWorks(int SIZE):SIZE(0){
-	new_student.setInfo(SIZE + 1);
+StudentsWorks::StudentsWorks(int SIZE): SIZE(SIZE),list(),new_student(){
 	list = new TestsInfo[SIZE];
+
 	for (int i = 0; i < SIZE; i++)
-		list[i].setInfo(i + 1);
-	this->SIZE = SIZE;
+		list[i].setInfo(i + 1, rand() % 7 + 3, rand() % 4 + 1);
+	
+	new_student.setInfo(SIZE + 1, rand() % 7 + 3, rand() % 4 + 1);
 }
+
 StudentsWorks::~StudentsWorks() {
 	delete[]list;
 	printf("\nMemory cleanup successful!");
 }
 
-int  StudentsWorks::getSIZE()const {
-	return this->SIZE;
-}
-void StudentsWorks::setStud(const int num) {
-	if (num <= list[SIZE].idInfo() ) {
-		printf("\nSince this number is incorrect, its number will be next after the last:%d\n",SIZE+1);
+int  StudentsWorks::getSIZE()const {return this->SIZE;}
+void StudentsWorks::setNewStud() {
+	int works, pages;
+	int i = 2;
+	while (i > 1) {
+		cout << "Enter the number of student works(0-10)";
+		cin >> works;
+		if (works < 0 || works >10) {
+			cout << "You entered an invalid value, try again\n";
+		}
+		else { i = 1; }
 	}
-	else if(num==SIZE+1){
-		new_student.setInfo(num);
+	while (i > 0) {
+		cout << "Enter the number of pages in works(1-5)";
+		cin >> pages;
+		if (pages < 1 || pages >5) {
+			cout << "You entered an invalid value, try again\n";
+		}
+		else { i = 0; }
 	}
-	else if (num > SIZE + 1) {
-		printf("Since this number exceeds the size of the list, its number will be the next after the last:%d\n", SIZE + 1);
-		new_student.setInfo(SIZE + 1);
-	}
+
+	new_student.setInfo(SIZE + 1, works, pages);
 }
 
-void StudentsWorks::add_Stud(const int num) {
+void StudentsWorks::addStud(const int num) {
 	SIZE++;
 	TestsInfo *tmp_list = new TestsInfo[SIZE];
 	for (int i = 0; i < num - 1; i++)
@@ -43,12 +53,12 @@ void StudentsWorks::add_Stud(const int num) {
 	delete[]list;
 	list = tmp_list;
 }
-void StudentsWorks::del_Stud(const int num) {
+void StudentsWorks::removeStud(const int num) {
 	SIZE--;
 	TestsInfo *tmp_list = new TestsInfo[SIZE];
 	for (int i = 0; i < num; i++)
 		tmp_list[i] = list[i];
-
+	
 	for (int i = num; i < SIZE; i++)
 		tmp_list[i] = list[i + 1];
 
@@ -57,15 +67,16 @@ void StudentsWorks::del_Stud(const int num) {
 }
 
 
-void StudentsWorks::print_stud(const int num)const {
-	list[num].getInfo();
+void StudentsWorks::getStud(const int num)const {
+	list[num].printInfo();
 }
-void StudentsWorks::print_new_stud()const{
-	new_student.getInfo();
+void StudentsWorks::getNewStud()const{
+	cout << "The new number will be ->  ";
+	new_student.printInfo();
 }
-void StudentsWorks::print_all()const {
-	printf("Current student journal:\n\n");
+void StudentsWorks::showAll()const {
+	printf("\nCurrent student journal:\n\n");
 	for (int i = 0; i < SIZE; i++) {
-		list[i].getInfo();
+		list[i].printInfo();
 	}
 }

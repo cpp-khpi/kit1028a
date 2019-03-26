@@ -1,12 +1,10 @@
 #pragma once
 #include <sstream>
 #include <iostream>
-#include <stdio.h>
-#include <conio.h>
-#include <string>
 #include <fstream>
-using std::cout;
+#include <string>
 using std::cin;
+using std::cout;
 using std::endl;
 using std::string;
 using std::stringstream;
@@ -18,13 +16,16 @@ private:
 	string surname;
 public:
 	TestsInfo();
-	TestsInfo(int num);
+	TestsInfo(int num, int works, int pages,string surname);
 	TestsInfo(const TestsInfo &o);
+	~TestsInfo() {};
 
-	void setSurname(string surname);
-	void setInfo(int num);
-	string getInfo()const;
-
+	void setInfo(int num, int works, int pages,string surname);
+	int getNum()const;
 	int getWorks()const;
-	int idInfo()const;
+	int getPages()const;
+	int getMark()const;
+	string getSurname()const;
+
+	string printInfo()const;
 };

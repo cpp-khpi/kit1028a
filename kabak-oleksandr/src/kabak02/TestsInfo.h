@@ -13,13 +13,16 @@ private:
 	char surname[20];
 public:
 	TestsInfo();
-	TestsInfo(int num);
+	TestsInfo(int num, int works, int pages,char* surname);
 	TestsInfo(const TestsInfo &o);
+	~TestsInfo() {};
 
-	void setSurname(char * surname);
-	void setInfo(int num);
-	string getInfo()const;
-
+	void setInfo(int num, int works, int pages, char* surname);
+	int getNum()const;
 	int getWorks()const;
-	int idInfo()const;
+	int getPages()const;
+	int getMark()const;
+	char* getSurname()const;
+
+	void printInfo()const;
 };

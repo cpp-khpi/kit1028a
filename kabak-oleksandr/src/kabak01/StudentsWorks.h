@@ -12,11 +12,11 @@ public:
 	~StudentsWorks();
 
 	int getSIZE()const;
-	void setStud(const int num);
-	void del_Stud(const int num);
-	void add_Stud(const int num);
+	void setNewStud();
+	void addStud(const int num);
+	void removeStud(const int num);
 
-	void print_stud(const int num)const;
-	void print_new_stud()const;
-	void print_all()const;
+	void getStud(const int num)const;
+	void getNewStud()const;
+	void showAll()const;
 };

@@ -8,16 +8,17 @@ private:
 	TestsInfo *list;
 
 public:
-	StudentsWorks(string SIZE);
+	StudentsWorks(int SIZE);
 	~StudentsWorks();
 
-	void setStud(const int num);
+	void setNewStud();
+	int getSIZE();
 	void infoWorks(const int num);
 
-	void del_Stud(const int num);
-	void add_Stud(const int num);
+	void removeStud(const int num);
+	void addStud(const int num);
 
-	void print_stud(const int num)const;
-	void print_new_stud();
-	void print_all()const;
+	void getStud(const int num)const;
+	void getNewStud();
+	void showAll()const;
 };
