@@ -46,25 +46,25 @@ Phone::~Phone()
 	cout << "Destructor. Phone" << endl;
 }
 
-Phone& Phone::operator = (const Phone & copiedPhone)
+Phone& Phone::operator= (const Phone & copiedPhone)
 {
+	if (this == &copiedPhone) {
+		return *this;
+
+		cout << "Self assignment!" << endl;
+	}
+
 	const int TITLELEN = 50;
+	delete[] title;
+	title = new char[TITLELEN];
+	strncpy_s(title, TITLELEN, copiedPhone.title, strlen(copiedPhone.title));
 
-	if (this != &copiedPhone) {
-		delete[] title;
-		title = new char[TITLELEN];
-		strncpy_s(title, TITLELEN, copiedPhone.title, strlen(copiedPhone.title));
+	price = copiedPhone.price;
+	simCardsNumber = copiedPhone.simCardsNumber;
+	resolution = copiedPhone.resolution;
+	capacity = copiedPhone.capacity;
 
-		price = copiedPhone.price;
-		simCardsNumber = copiedPhone.simCardsNumber;
-		resolution = copiedPhone.resolution;
-		capacity = copiedPhone.capacity;
-
-		cout << "Assignment" << endl;
-	}
-	else {
-		cout << "Self assignment" << endl;
-	}
+	cout << "Assignment" << endl;
 
 	return *this;
 }
