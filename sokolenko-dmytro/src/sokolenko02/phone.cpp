@@ -69,6 +69,20 @@ Phone& Phone::operator= (const Phone & copiedPhone)
 	return *this;
 }
 
+bool Phone::operator==(const Phone& otherPhone) const
+{
+	bool isEqualTitle = strcmp(this->getTitle(), otherPhone.getTitle()) == 0;
+	bool isEqualPrice = this->getPrice() == otherPhone.getPrice();
+	bool isEqualSimNumb = this->getSimCardsNumber() == otherPhone.getSimCardsNumber();
+	bool isEqualResol = this->getResolution() == otherPhone.getResolution();
+	bool isEqualCapac = this->getCapacity() == otherPhone.getCapacity();
+
+	if (isEqualPrice && isEqualSimNumb && isEqualResol && isEqualCapac && isEqualTitle)
+		return true;
+	else
+		return false;
+}
+
 void Phone::setPhoneInfo(char * newTitle, unsigned int newPrice, unsigned int newSimNum,
 	unsigned int newResolution, unsigned int newCapacity)
 {
