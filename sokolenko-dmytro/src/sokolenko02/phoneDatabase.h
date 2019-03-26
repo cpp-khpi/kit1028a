@@ -65,7 +65,16 @@ public:
 	* Деструктор. Звільнення виділеної пам'яті для масиву.
 	*/
 	~PhoneDatabase();
-	
+
+	/**
+	* Метод порівняння двох масивів об'єктів класу Phone.
+	* @param firstPhoneArr - вказівник на перший порівнюваний масив.
+	* @param secondPhoneArr - вказівник на другий порівнюваний масив.
+	* @return статус вказівників на масива об'єктів
+	* класу Phone: рівні чи ні.
+	*/
+	bool comparisonPhoneArray(const Phone*, const Phone*, int, int) const;
+
 	/**
 	* Зчитування поля PhoneDatabase::size.
 	* @return поточне значення поля PhoneDatabase::size.

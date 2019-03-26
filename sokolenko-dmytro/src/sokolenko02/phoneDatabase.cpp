@@ -45,6 +45,22 @@ PhoneDatabase::~PhoneDatabase()
 	cout << "Destructor. PhoneDatabase" << endl;
 }
 
+bool PhoneDatabase::comparisonPhoneArray(const Phone* phoneArray1, const Phone* phoneArray2,
+	int size1, int size2) const
+{
+	if (size1 != size2) {
+		return false;
+	}
+
+	for (int i = 0; i < size1; i++) {
+		if (phoneArray1[i] != phoneArray2[i]) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 int PhoneDatabase::inputSize()
 {
 	int size;

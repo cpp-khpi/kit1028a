@@ -83,6 +83,12 @@ bool Phone::operator==(const Phone& otherPhone) const
 		return false;
 }
 
+bool Phone::operator!=(const Phone& otherPhone) const
+{
+	return !(*this == otherPhone);
+}
+
+
 void Phone::setPhoneInfo(char * newTitle, unsigned int newPrice, unsigned int newSimNum,
 	unsigned int newResolution, unsigned int newCapacity)
 {
