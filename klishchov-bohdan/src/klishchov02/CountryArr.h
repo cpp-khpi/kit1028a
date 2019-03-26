@@ -6,9 +6,9 @@ private:
 	Country *arr;
 public:
 	void getSize(int size);
-	void newArray(char **s);
+	void newArray(std::string name);
 	void print();
-	void addElem(int population, int area, int revenue, char *name);
+	void addElem(int population, int area, int revenue, std::string s);
 	void deleteElem(int l);
 	void getByIndex(int index);
 	void deleteArray();

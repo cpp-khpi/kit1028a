@@ -2,10 +2,10 @@
 void CountryArr::getSize(int size) {
 	CountryArr::size = size;
 }
-void CountryArr::newArray(char **name) {
+void CountryArr::newArray(std::string name) {
 	arr = new Country[size];
 	for (int i = 0; i < size; i++) {
-		arr[i].setInfo((*(name + i)));
+		arr[i].setInfo(name);
 	}
 }
 void CountryArr::print() {
@@ -13,7 +13,7 @@ void CountryArr::print() {
 		int population = arr[i].getPopulation();
 		int area = arr[i].getArea();
 		int revenue = arr[i].getRevenue();
-		char *name = arr[i].getName();
+		std::string name = arr[i].getName();
 
 		std::cout << "The name of country: " << name << std::endl;
 		std::cout << "Population: " << population << std::endl;
@@ -21,47 +21,63 @@ void CountryArr::print() {
 		std::cout << "Revenue: " << revenue << std::endl << std::endl;
 	}
 }
-void CountryArr::addElem(int population, int area, int revenue, char *name) {
+void CountryArr::addElem(int population, int area, int revenue, std::string name) {
 
-	Country *mas = new Country[size + 1];
+	Country *temp = new Country[size];
 
 	for (int i = 0; i < size; i++) {
-		mas[i] = CountryArr::arr[i];
+		temp[i] = CountryArr::arr[i];
 	}
+
+	delete[] arr;
+
+	CountryArr::arr = new Country[size + 1];
+
+	for (int i = 0; i < size; i++) {
+		CountryArr::arr[i] = temp[i];
+	}
+
+	delete[] temp;
+
+	CountryArr::arr[size].setData(population, area, revenue, name);
 
 	size++;
-
-	mas[size - 1].setData(population, area, revenue, name);
-
-	arr = mas;
 }
-void CountryArr::deleteElem(int l) {
-	Country* mas = new Country[size];
+void CountryArr::deleteElem(int index) {
+	Country* temp = new Country[size - 1];
+	
+	for (int i = 0, j = 0; j < size; i++, j++)
+	{
+		if (j == index)
+		{
+			j++;
+		}
+		temp[i] = CountryArr::arr[j];
+	}
 
-	int j = 0;
-	for (int i = 0; i < l - 1; i++) {
-		mas[i] = CountryArr::arr[j];
-		j++;
+	delete[] CountryArr::arr;
+
+	CountryArr::arr = new Country[size - 1];
+
+	for (int i = 0; i < size - 1; i++)
+	{
+		CountryArr::arr[i] = temp[i];
 	}
-	j++;
-	for (int i = l - 1; i < size; i++) {
-		mas[i] = CountryArr::arr[j];
-		j++;
-	}
+
+	delete[] temp;
+
 	size--;
-
-	arr = mas;
 }
 void CountryArr::getByIndex(int index) {
-	if (index - 1 >= size) {
+	if (index >= size) {
 		std::cout << std::endl << "Error" << std::endl << std::endl;
 		return;
 	}
 
-	int population = arr[index - 1].getPopulation();
-	int area = arr[index - 1].getArea();
-	int revenue = arr[index - 1].getRevenue();
-	char *name = arr[index - 1].getName();
+	int population = arr[index].getPopulation();
+	int area = arr[index].getArea();
+	int revenue = arr[index].getRevenue();
+	std::string name = arr[index].getName();
 
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -90,7 +106,7 @@ void CountryArr::printMax(Country min) { {
 		int population = min.getPopulation();
 		int area = min.getArea();
 		int revenue = min.getRevenue();
-		char *name = min.getName();
+		std::string name = min.getName();
 
 		std::cout << "The name of country: " << name << std::endl;
 		std::cout << "Population: " << population << std::endl;

@@ -1,10 +1,8 @@
 #include"Country.h"
 Country::Country() :population(0), area(0), revenue(0), name() {
-	name = new char[24];
 };
-Country::Country(int a, int b, int c, char* Name) :population(a), area(b), revenue(c) {
-	name = new char[24];
-	strcpy_s(name, 24, Name);
+Country::Country(int a, int b, int c, std::string Name) :population(a), area(b), revenue(c) {
+	name = Name;
 };
 Country::Country(const Country &obj) :population(obj.population), area(obj.area), revenue(obj.revenue), name(obj.name) {};
 
@@ -17,17 +15,17 @@ int Country::getArea() {
 int Country::getRevenue() {
 	return Country::revenue;
 }
-char *Country::getName() {
+std::string Country::getName() {
 	return Country::name;
 }
-void Country::setInfo(char *s) {
+void Country::setInfo(std::string s) {
 	population = rand() % 10000 + 40000;
 	area = rand() % 10000 + 40000;
 	revenue = rand() % 10000 + 40000;
-	strcpy_s(name, 24, s);
+	name = s;
 }
-void Country::setData(int population, int area, int revenue, char *name) {
-	strcpy_s(Country::name, 24, name);
+void Country::setData(int population, int area, int revenue, std::string name) {
+	Country::name = name;
 	Country::population = population;
 	Country::area = area;
 	Country::revenue = revenue;
