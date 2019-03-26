@@ -2,8 +2,8 @@
 * @file phoneDatabase.h
 * Оголошення класу PhoneDatabase.
 * @author Sokolenko Dmitro
-* @version 0.1
-* @date 2019.03.20
+* @version 0.3
+* @date 2019.03.27
 */
 
 
