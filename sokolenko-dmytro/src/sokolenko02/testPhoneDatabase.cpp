@@ -49,6 +49,7 @@ bool TestPhoneDatabase::testAddPhone()
 	}
 
 	delete newPhone;
+	delete[] testPhoneArray;
 	delete[] expectedPhoneArray;
 	delete[] titleValue;
 
@@ -171,6 +172,7 @@ bool TestPhoneDatabase::testRemovePhone()
 	}
 
 	delete[] expectedPhoneArray;
+	delete[] testPhoneArray;
 	delete[] titleValue;
 
 
@@ -208,6 +210,7 @@ bool TestPhoneDatabase::testGetPhone()
 	bool result = receivedPhone == expectedPhone;
 
 	delete[] titleValue;
+	delete[] phoneArray;
 
 	return result;
 }
@@ -238,6 +241,7 @@ bool TestPhoneDatabase::testGetSmallestResolutPhone()
 	bool result = receivedPhone == expectedPhone;
 
 	delete[] titleValue;
+	//delete[] phoneArray;
 
 	return result;
 }
