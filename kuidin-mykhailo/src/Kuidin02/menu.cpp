@@ -24,7 +24,7 @@ void InfoStorge::menu() {
 			cout << "In which position u want add new school? Last position:" << tmp.count << endl;
 			cin >> index;
 
-			while (index > tmp.count || index < 0) {
+			while (tmp.count < index || index < 1) {
 				cout << "You can't put in this position, choose another! Last position: " << tmp.count << endl;
 				cin >> index;
 			}
@@ -43,7 +43,7 @@ void InfoStorge::menu() {
 
 			cout << "Enter number of employers: ";
 			cin >> emp;
-			tmp.addObject(index,num,cos,pup,emp,p);
+			tmp.addObject((index-1),num,cos,pup,emp,p);
 			break;
 		case 2:
 			system("cls");
@@ -57,7 +57,7 @@ void InfoStorge::menu() {
 
 			cout << "Enter index ";
 			cin >> i;
-			tmp.find((i-1));
+			tmp.find(i);
 			break;
 		case 4:
 			system("cls");

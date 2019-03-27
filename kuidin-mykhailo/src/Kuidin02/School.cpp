@@ -46,3 +46,4 @@ void School::getName(char *ptr) {
 void School::deleteName() {
 	delete[] name;
 }
+

@@ -17,10 +17,15 @@ private:
 	unsigned int employers;
 	char *name;
 public:
-	
-	School() : number(10), pupils(10), cost(10), employers(10) {
-		strcpy(name, "0");
+
+	School() {
+		number = 0;
+		pupils = 0;
+		cost = 0;
+		employers = 0;
+		strcpy(name, 0);
 	}
+	
 
 	School(int num, int cos, int pup, int emp, char *p) {
 		number = num;
@@ -36,9 +41,7 @@ public:
 		employers = obj.employers;
 		strcpy(name, obj.name);
 	}
-	/*~School() {
-		delete[] name;
-	}*/
+	
 	int getNumber();
 	int getCost();
 	int getPupils();

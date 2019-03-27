@@ -10,8 +10,7 @@ void InfoStorge::delElem(int index) {
 	int edit = 0;
 	char ptr[20];
 
-	count--;
-	School *deltmp = (School*)operator new(sizeof(School)*count);
+	School *deltmp = (School*)operator new(sizeof(School)*(count-1));
 	int j = 0;
 	for (int i = 0; i < index; i++) {
 		edit = s[i].getCost();
@@ -29,9 +28,7 @@ void InfoStorge::delElem(int index) {
 		
 	}
 
-	j++;
-
-	for (int i = index; i < count; i++) {
+	for (int i = (index + 1) ; i < count; i++) {
 		edit = s[i].getCost();
 		deltmp[j].setCost(edit);
 		edit = s[i].getNumber();
@@ -46,7 +43,7 @@ void InfoStorge::delElem(int index) {
 		j++;
 
 	}
-
+	count--;
 	s[index].deleteName();
 	delete[] s;
 	s = deltmp;
@@ -66,9 +63,10 @@ void InfoStorge::addObject(int index, int num, int cos, int pup, int emp, char *
 	int edit = 0;
 	char ptr[20];
 	
-	count++;
+
 	int j = 0;
-	School *tmp = (School*)operator new (sizeof(School)*count);
+	School *tmp = (School*) operator new (sizeof(School)*(count+1));
+	
 	
 	for (int i = 0; i < index; i++) {
 		edit = s[i].getCost();
@@ -91,7 +89,8 @@ void InfoStorge::addObject(int index, int num, int cos, int pup, int emp, char *
 	tmp[index].setEmployers(emp);
 	tmp[index].setName(p);
 	tmp[index].setPupils(pup);
-	for (int i = index + 1; i < count; i++) {
+	j++;
+	for (int i = index; i < count; i++) {
 		edit = s[i].getCost();
 		tmp[j].setCost(edit);
 		edit = s[i].getNumber();
@@ -103,8 +102,9 @@ void InfoStorge::addObject(int index, int num, int cos, int pup, int emp, char *
 		s[i].getName(ptr);
 		tmp[j].setName(ptr);
 		s[i].deleteName();
+		j++;
 	}
-	
+	count++;
 	delete[] s;
 	s = tmp;
 	
