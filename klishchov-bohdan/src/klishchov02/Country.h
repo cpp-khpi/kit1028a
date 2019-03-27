@@ -8,6 +8,7 @@ private:
 	int population;
 	int area;
 	int revenue;
+	char *fakeName;
 	std::string name;
 public:
 	Country();
