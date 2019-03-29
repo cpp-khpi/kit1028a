@@ -12,7 +12,6 @@ private:
 public:
 	workingProgram();
 
-	void setObj(stringstream&);
 	stringstream print();
 
 	void setName(string);

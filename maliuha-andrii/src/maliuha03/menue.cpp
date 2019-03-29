@@ -8,7 +8,6 @@ void menu() {
 	string p;
 	float om, mg, twm;
 
-	stringstream objInfo;
 	workingProgram newObj;
 
 	Array ops;
@@ -75,23 +74,7 @@ void menu() {
 			cin.ignore();
 			if (ind <= sizeMas + 1 && ind >= 1) {
 
-				cout << "Enter name of program:" << endl;
-				getline(cin, n);
-
-				cout << "Enter name of publisher(if you don't know, enter 'unknown'):" << endl;
-				getline(cin, p);
-
-				cout << "Enter amount of consumed RAM(Mb):" << endl;
-				cin >> om;
-				cout << "Enter ocupied amount of hard disk memory(Mg):" << endl;
-				cin >> mg;
-				cout << "Enter time of work (in minutes):" << endl;
-				cin >> twm;
-
-				objInfo << n << "|" << p << "|" << om << "|" << mg << "|" << twm << "|";
-				newObj.setObj(objInfo);
-				objInfo.str("");
-				objInfo.clear();
+				ops.setInfoObj(newObj);
 				ops.addProgram(newObj, ind);
 
 				newObj.setName("");

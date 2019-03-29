@@ -8,6 +8,7 @@ private:
 public:
 	Array();
 
+	void setInfoObj(workingProgram&);
 	void addProgram(workingProgram&, int);
 	void showAll();
 	void removeProgram(int ind);
