@@ -8,6 +8,7 @@ private:
 public:
 	Array();
 
+	void writeToFile();
 	void readFromFile(int&, workingProgram&, Array&);
 	void setInfoObj(workingProgram&);
 	void addProgram(workingProgram&, int);

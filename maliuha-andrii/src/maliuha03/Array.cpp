@@ -39,6 +39,8 @@ void Array::addProgram(workingProgram &newObj, int ind) {
 
 void Array::removeProgram(int ind) {
 	if (size == 0) {
+		cout << "Array is empty" << endl;
+		system("pause");
 		return;
 	}
 	ind = ind - 1;
@@ -65,6 +67,8 @@ void Array::removeProgram(int ind) {
 
 void Array::showAll() {
 	if (size == 0) {
+		cout << "Array is empty" << endl;
+		system("pause");
 		return;
 	}
 
@@ -77,6 +81,8 @@ void Array::showAll() {
 
 void Array::getProgram(int ind) {
 	if (size == 0) {
+		cout << "Array is empty" << endl;
+		system("pause");
 		return;
 	}
 	mas[ind - 1].print();
@@ -84,6 +90,8 @@ void Array::getProgram(int ind) {
 
 void Array::nameSearch(string n) {
 	if (size == 0) {
+		cout << "Array is empty" << endl;
+		system("pause");
 		return;
 	}
 
@@ -111,6 +119,7 @@ Array::Array() :size(0), mas(NULL) {
 
 void Array::findProgram(float memoryGB) {
 	if (size == 0) {
+		cout << "Array is empty" << endl;
 		return;
 	}
 
@@ -127,6 +136,9 @@ void Array::findProgram(float memoryGB) {
 
 void Array::removeViruses() {
 	if (size == 0) {
+		cout << "Array is empty" << endl;
+		system("pause");
+		system("cls");
 		return;
 	}
 
@@ -154,7 +166,7 @@ void Array::setInfoObj(workingProgram &obj) {
 
 	cout << "Enter amount of consumed RAM(Mb):" << endl;
 	cin >> om;
-	cout << "Enter ocupied amount of hard disk memory(Mg):" << endl;
+	cout << "Enter ocupied amount of hard disk memory(Gg):" << endl;
 	cin >> mg;
 	cout << "Enter time of work (in minutes):" << endl;
 	cin >> twm;
@@ -208,4 +220,22 @@ void Array::readFromFile(int &sizeMas, workingProgram &newObj, Array &ops) {
 	}
 	objects.close();
 
+}
+
+void Array::writeToFile() {
+	ofstream txt;
+	txt.open("E:/File for projects/maliuha03w.txt");
+	if (!txt.is_open()) {
+		cout << "File was not opened" << endl;
+		system("pause");
+		return;
+	}
+	for (int i = 0; i < size; i++) {
+		txt << "Name of program: " << mas[i].getName() << endl;
+		txt << "Publisher: " << mas[i].getPublisher() << endl;
+		txt << "Amount of consumed RAM(Mb): " << mas[i].getOpMemoryMb() << endl;
+		txt << "Ocupied amount of hard disk memory(Gb): " << mas[i].getMemoryGb() << endl;
+		txt << "Time of work (in minutes): " << mas[i].getTimeWorkMin() << endl;
+		txt << "--------------------------------" << endl;
+	}
 }

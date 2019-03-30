@@ -25,6 +25,7 @@ void menu() {
 		cout << "(6)show programs, that take up more memory of a given size" << endl;
 		cout << "(7)to delete suspicious programs from array" << endl;
 		cout << "(8)to read inforamtion of objects from file" << endl;
+		cout << "(9)to write array to file" << endl;
 		cin >> num;
 		system("cls");
 
@@ -129,6 +130,9 @@ void menu() {
 			break;
 		case 8:
 			ops.readFromFile(sizeMas, newObj, ops);
+			break;
+		case 9:
+			ops.writeToFile();
 			break;
 		case 0:
 			ops.delMas();
