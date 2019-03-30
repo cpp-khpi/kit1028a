@@ -11,11 +11,12 @@ void menu() {
 	workingProgram newObj;
 
 	Array ops;
+	ifstream objects;
 
 	while (true) {
 		cout << "Quantity of objects in array: " << sizeMas << endl;
 		cout << "What function do you want to cause  the list?" << endl;
-		cout << "(0)Exit from program" << endl;
+		cout << "(0)exit from program" << endl;
 		cout << "(1)output array on display" << endl;
 		cout << "(2)name search" << endl;
 		cout << "(3)to delete objest from array" << endl;
@@ -23,6 +24,7 @@ void menu() {
 		cout << "(5)index output on display" << endl;
 		cout << "(6)show programs, that take up more memory of a given size" << endl;
 		cout << "(7)to delete suspicious programs from array" << endl;
+		cout << "(8)to read inforamtion of objects from file" << endl;
 		cin >> num;
 		system("cls");
 
@@ -124,6 +126,9 @@ void menu() {
 		case 7:
 			ops.removeViruses();
 			sizeMas = ops.getSize(sizeMas);
+			break;
+		case 8:
+			ops.readFromFile(sizeMas, newObj, ops);
 			break;
 		case 0:
 			ops.delMas();

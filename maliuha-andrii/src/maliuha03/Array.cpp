@@ -165,3 +165,47 @@ void Array::setInfoObj(workingProgram &obj) {
 	obj.setMemoryGb(mg);
 	obj.setTimeWorkMin(twm);
 }
+
+void Array::readFromFile(int &sizeMas, workingProgram &newObj, Array &ops) {
+	string n;
+	string p;
+	float om, mg, twm;
+	int ind;
+	ifstream objects;
+	objects.open("E:/File for projects/maliuha03.txt");
+
+	if (!objects.is_open()) {
+		cout << "File was not opened" << endl;
+		system("pause");
+		return;
+	}
+
+	while (true) {
+		getline(objects, n);
+		if (n == "end") {
+			break;
+		}
+		getline(objects, p);
+		objects >> om;
+		objects >> mg;
+		objects >> twm;
+
+		newObj.setName(n);
+		newObj.setPublisher(p);
+		newObj.setOpMemoryMb(om);
+		newObj.setMemoryGb(mg);
+		newObj.setTimeWorkMin(twm);
+		ind = sizeMas + 1;
+		ops.addProgram(newObj, ind);
+
+		getline(objects, n);
+		newObj.setName("");
+		newObj.setPublisher("");
+		newObj.setOpMemoryMb(0);
+		newObj.setMemoryGb(0);
+		newObj.setTimeWorkMin(0);
+		sizeMas = ops.getSize(sizeMas);
+	}
+	objects.close();
+
+}
