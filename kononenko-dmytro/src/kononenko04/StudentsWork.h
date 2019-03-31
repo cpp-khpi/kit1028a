@@ -11,11 +11,11 @@ private:
 	size_t size;
 	InfoW *qual;
 public:
-	StudentsWork():size(0) {};
+	StudentsWork() :size(0) {};
 	void sortName();
 	void setSize(int size);
 	void createArr(string* name);
-	void sortBy(StudentsWork qual,int x, int(*)());
+	void sortBy(StudentsWork qual, int x, int(*)());
 	void sortByMark(int b);
 	void sortBySize(int b);
 	void sortByType(int b);
@@ -23,7 +23,7 @@ public:
 	void printArr();
 	float rate();
 	void printFile(string file);
-	int add(int n, int mark, int pages, int type, string name);
+	int add(InfoWork obj,int n);
 	int del(int n);
 	void testDel();
 	void testAdd();

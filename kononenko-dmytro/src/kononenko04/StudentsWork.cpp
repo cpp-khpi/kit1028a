@@ -81,8 +81,8 @@ void StudentsWork::sortByType(int b) {
 	}
 }
 
-void StudentsWork::sortBy(StudentsWork qual,int x, int(*fun)()){
-	
+void StudentsWork::sortBy(StudentsWork qual, int x, int(*fun)()) {
+
 	int j = fun();
 
 	switch (x)
@@ -120,14 +120,14 @@ void StudentsWork::createArr(string *name) {
 		qual[i].set(name[i]);
 	}
 }
-int StudentsWork::add(int n, int mark, int pages, int type, string name) {
+int StudentsWork::add(InfoWork obj, int n) {
 
 	if (n >= size) {
 		return 1;
 	}
 	int i;
 	int j = 0;
-	 
+
 	size++;
 	InfoWork* arr = new InfoWork[size];
 	for (i = 0; i < n; i++) {
@@ -135,7 +135,7 @@ int StudentsWork::add(int n, int mark, int pages, int type, string name) {
 		j++;
 	}
 
-	arr[n].set_n(mark, pages, type, name);
+	arr[n] = obj;
 
 	for (i = n + 1; i < size; i++) {
 		arr[i] = this->qual[j];
@@ -212,7 +212,7 @@ void StudentsWork::testAdd()
 	int b = 377;
 	int c = 2;
 	InfoWork tester;
-	tester.set_n(a, b, c, name);
+	tester.set_n(a, b, c, name, "Molchanov");
 
 	InfoWork* arr = new InfoWork[size];
 
@@ -225,7 +225,7 @@ void StudentsWork::testAdd()
 
 	for (int i = 0, j = 0; i < size; i++) {
 		if (i == n) {
-			this->qual[i].set_n(a, b, c, name);
+			this->qual[i].set_n(a, b, c, name,"Molchanov");
 			i++;
 		}
 		this->qual[i] = arr[j];
@@ -241,20 +241,19 @@ void StudentsWork::testAdd()
 		cout << "Your programm is not working well" << endl;
 	}
 }
-void StudentsWork::delArr() {
-	delete[] qual;
-}
+
 void StudentsWork::printArr() {
 	for (int i = 0; i < size; i++) {
 		cout << "Name: " << qual[i].getName();;
 		cout << " Mark= " << qual[i].getMark();
 		cout << " Size= " << qual[i].getPages();
 		if (qual[i].getType() == 1) {
-			cout << " BACALAVR" << endl;
+			cout << " BACALAVR" ;
 		}
 		else {
-			cout << " MAGISTR" << endl;
+			cout << " MAGISTR" ;
 		}
+		cout << " Teacher: " << qual[i].getTch() << endl;
 	}
 }
 void StudentsWork::printFile(string file) {
@@ -265,11 +264,12 @@ void StudentsWork::printFile(string file) {
 		fout << " Mark= " << qual[i].getMark();
 		fout << " Size= " << qual[i].getPages();
 		if (qual[i].getType() == 1) {
-			fout << " BACALAVR" << endl;
+			fout << " BACALAVR";
 		}
 		else {
-			fout << " MAGISTR" << endl;
+			fout << " MAGISTR" ;
 		}
+		fout << " Teacher: " << qual[i].getTch() << endl;
 	}
 	fout.close();
 }
@@ -288,20 +288,25 @@ void StudentsWork::setSize(int size) {
 	this->size = size;
 }
 void StudentsWork::sortName() {
-	regex regex_sort("[\\w]+[\\s]{1,}");
+	regex regex_sort("[\\w]+[\\s]{1}[\\w]+");
 	for (int i = 0; i < size; i++) {
-		if (regex_search(qual[i].getName(),regex_sort))
+		if (regex_search(qual[i].getName(), regex_sort))
 		{
 			cout << "Name: " << qual[i].getName();;
 			cout << " Mark= " << qual[i].getMark();
 			cout << " Size= " << qual[i].getPages();
 			if (qual[i].getType() == 1) {
-				cout << " BACALAVR" << endl;
+				cout << " BACALAVR" ;
 			}
 			else {
-				cout << " MAGISTR" << endl;
+				cout << " MAGISTR" ;
 			}
+			cout << " Teacher: " << qual[i].getTch() << endl;
 		}
 	}
 
+}
+
+void StudentsWork::delArr() {
+	delete[] qual;
 }

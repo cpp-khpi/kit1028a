@@ -33,8 +33,7 @@ int main() {
 
 	if (choose == 1) {
 		regex regex_repeat("[\\s]{2,}");
-		regex regex_firstSymbol("((^[A-Z])[\\w\\s]+)");
-		string names;
+		regex regex_firstSymbol("^[A-Z]");
 		string file{ "cppstudio.txt" };
 
 		cout << "Input size: ";
@@ -55,8 +54,8 @@ int main() {
 			cin.ignore();
 			fin.open("cppNames.txt");
 			for (int i = 0; i < x; i++) {
-				getline(fin,name[i]);
-				if (!(regex_match(name[i], regex_firstSymbol)) ||regex_search(name[i],regex_repeat)){
+				getline(fin, name[i]);
+				if (!(regex_search(name[i], regex_firstSymbol)) || regex_search(name[i], regex_repeat)) {
 					cout << "Use upper case for first symbol:" << endl;
 					getline(cin, name[i]);
 				}
@@ -68,8 +67,8 @@ int main() {
 			cin.ignore();
 			for (int i = 0; i < x; i++) {
 				cout << "input name:";
-				getline(cin,name[i]);
-				if (!(regex_match(name[i], regex_firstSymbol)) || regex_search(name[i], regex_repeat)) {
+				getline(cin, name[i]);
+				if (!(regex_search(name[i], regex_firstSymbol)) || regex_search(name[i], regex_repeat)) {
 					cout << "Use upper case for first symbol:" << endl;
 					getline(cin, name[i]);
 				}
@@ -107,14 +106,15 @@ int main() {
 					cout << "imposible to find\n";
 				}
 				break;
-			case 3:
-
+			case 3: {
+				string names,names2;
+				InfoWork obj;
 				int a, b, c;
 				cin.ignore();
 
 				cout << "input name:";
 				getline(cin, names);
-				if (!(regex_match(names, regex_firstSymbol)) || regex_search(names, regex_repeat)){
+				if (!(regex_search(names, regex_firstSymbol)) || regex_search(names, regex_repeat)) {
 					cout << "Use upper case for first symbol:" << endl;
 					getline(cin, names);
 				}
@@ -124,12 +124,17 @@ int main() {
 				cin >> b;
 				cout << "input type: ";
 				cin >> c;
+				cout << "input teacher's name: ";
+				cin.ignore();
+				getline(cin, names2);
 				cout << "input insert point: ";
 				cin >> j;
-				if (qualWork.add(j, a, b, c, names) != 0) {
+				obj.set_n(a, b, c, names,names2);
+				if (qualWork.add(obj,j) != 0) {
 					cout << "Error: invalid index" << endl;
 				}
 				break;
+			}
 			case 4:
 				cout << "input delete point: ";
 				cin >> j;
@@ -159,7 +164,7 @@ int main() {
 				cout << "2 - By type" << endl;
 				cout << "Choose: ";
 				cin >> j;
-				qualWork.sortBy(qualWork,j,pointer);
+				qualWork.sortBy(qualWork, j, pointer);
 				break;
 			default:
 				break;
@@ -168,11 +173,12 @@ int main() {
 
 
 
-	}else {
+	}
+	else {
 		return 0;
 	}
 
-	qualWork.delArr(); 
+	qualWork.delArr();
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
@@ -180,7 +186,6 @@ int main() {
 	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
 	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
-	_CrtDumpMemoryLeaks();
 
 	return _CrtDumpMemoryLeaks();
 }
