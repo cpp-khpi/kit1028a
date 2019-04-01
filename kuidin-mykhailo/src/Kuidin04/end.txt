@@ -1,0 +1,12 @@
+Cost per month: 300
+Type of School: Kharkiv gymnasium
+Number of School: 179
+Pupils: 200
+Employers: 20
+
+Cost per month: 300
+Type of School: Kharkiv gymnasium
+Number of School: 179
+Pupils: 200
+Employers: 20
+
