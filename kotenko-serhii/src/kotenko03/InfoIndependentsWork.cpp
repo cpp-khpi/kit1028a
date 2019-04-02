@@ -1,5 +1,9 @@
 #include "InfoIndependentsWork.h"
 
+InfoIndependentsWork::InfoIndependentsWork():amount(0), written(0), mark(0) {
+}
+InfoIndependentsWork::InfoIndependentsWork(const InfoIndependentsWork &obj) : amount(obj.amount), written(obj.written), mark(obj.mark) {
+}
 int InfoIndependentsWork::getAmount() {
 	return InfoIndependentsWork::amount;
 }

@@ -3,6 +3,7 @@
 #include <ctime>
 #include <fstream>
 #include <string>
+#include <cstdio>
 
 class InfoIndependentsWork {
 private:
@@ -11,10 +12,8 @@ private:
 	int mark;
 	std::string surname;
 public:
-	InfoIndependentsWork() : amount(0), written(0), mark(0) {
-	}
-	InfoIndependentsWork(const InfoIndependentsWork &Info) : amount(Info.amount), written(Info.written), mark(Info.mark){
-	}
+	InfoIndependentsWork();
+	InfoIndependentsWork(const InfoIndependentsWork &obj);
 	int getAmount();
 	int getWritten();
 	int getMark();

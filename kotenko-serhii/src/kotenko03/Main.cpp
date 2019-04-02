@@ -1,8 +1,8 @@
 /*
  * @ mainpage
  * @ author - Kotenko Sergey
- * @ date - 10.03.19
- * @ version - 1.0
+ * @ date - 24.03.19
+ * @ version - 2.0
  */
 
 #include "InfoIndependentsWork.h"
@@ -17,7 +17,7 @@ int main() {
 	std::cout << "Enter size : ";
 	std::cin >> i;
 
-	Work.getSize(i);
+	Work.setSize(i);
 	system("cls");
 
 	std::string *surname = new std::string[i];
@@ -29,29 +29,12 @@ int main() {
 
 	int option = 0;
 	do {
-		std::cout << "Choose option:" << std::endl << "1 - Exit " << std::endl << "2 - Add element" << std::endl << "3 - Delete element" << std::endl << "4 - Search by index" << std::endl;
+		std::cout << "Choose option:" << std::endl << "0 - Exit " << std::endl << "1 - Add element" << std::endl << "2 - Delete element" << std::endl << "3 - Search by index" << std::endl << "4 - Search by Surname" << std::endl;
 		std::cout << std::endl;
 		std::cin >> option;
 
 		switch (option) {
 		case 1: {
-			Work.writeToFile();
-
-			system("cls");
-			Work.deleteArray();
-
-			_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
-			_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
-			_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
-			_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
-			_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
-			_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
-			_CrtDumpMemoryLeaks();
-			system("pause");
-
-			exit(0);
-		}
-		case 2: {
 			int amount, written, mark;
 			std::string surname;
 			std::cout << "Enter student surname: ";
@@ -69,7 +52,7 @@ int main() {
 			Work.print();
 			break;
 		}
-		case 3: {
+		case 2: {
 			int j = 0;
 			std::cout << std::endl << "Enter index by delete element : ";
 			std::cin >> j;
@@ -79,7 +62,7 @@ int main() {
 			Work.print();
 			break;
 		}
-		case 4: {
+		case 3: {
 			int z = 0;
 			std::cout << std::endl << "Enter index : ";
 			std::cin >> z;
@@ -89,11 +72,32 @@ int main() {
 			Work.getByIndex(z);
 			break;
 		}
+		case 4: {
+			system("cls");
+			std::string search_surname;
+			std::cout << "Enter searches surname : ";
+			std::cin >> search_surname;
+
+			Work.searchBySurname(search_surname);
+			break;
+		}
 		default: {
 			break;
 		}
 		}
 	} while (option != 0);
 
-	return 0;
+	Work.writeToFile();
+	system("cls");
+	Work.deleteArray();
+
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+	_CrtDumpMemoryLeaks();
+
+	return _CrtDumpMemoryLeaks();
 }

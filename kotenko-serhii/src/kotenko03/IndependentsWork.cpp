@@ -1,6 +1,6 @@
 #include "IndependentsWork.h"
 
-void IndependentsWork::getSize(int size) {
+void IndependentsWork::setSize(int size) {
 	IndependentsWork::size = size;
 }
 void IndependentsWork::readFromFile(std::string *surname) {
@@ -87,7 +87,6 @@ void IndependentsWork::getByIndex(int index) {
 void IndependentsWork::writeToFile() {
 	std::ofstream fout;
 	fout.open("InfoStud.txt");
-
 	for (int i = 0; i < size; i++) {
 		fout << "Student surname: " << arr[i].getSurname() << std::endl;
 		fout << "Amount of independent works: " << arr[i].getAmount() << std::endl;
@@ -98,4 +97,17 @@ void IndependentsWork::writeToFile() {
 }
 void IndependentsWork::deleteArray() {
 	delete[]arr;
+}
+void IndependentsWork::searchBySurname(std::string search_surname) {
+	for (int i = 0; i < size; i++) {
+		if (search_surname == arr[i].getSurname()) {
+			std::cout << std::endl;
+			std::cout << "--------------------------------------------------------------------------------" << std::endl;
+			std::cout << "Student surname: " << arr[i].getSurname() << std::endl;
+			std::cout << "Amount of independent works: " << arr[i].getAmount() << std::endl;
+			std::cout << "Amount of written independent works: " << arr[i].getWritten() << std::endl;
+			std::cout << "Student mark (average): " << arr[i].getMark() << std::endl << std::endl;
+			std::cout << "--------------------------------------------------------------------------------" << std::endl;
+		}
+	}
 }
