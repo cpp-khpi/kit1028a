@@ -7,12 +7,14 @@ void menu() {
 	string n;
 	string p;
 	float om, mg, twm;
-
+	string info;
 	workingProgram newObj;
 
+	string endFile;
 	Array ops;
 	ifstream objects;
 
+	string endOfFile;
 	while (true) {
 		cout << "Quantity of objects in array: " << sizeMas << endl;
 		cout << "What function do you want to cause  the list?" << endl;
@@ -77,7 +79,8 @@ void menu() {
 			cin.ignore();
 			if (ind <= sizeMas + 1 && ind >= 1) {
 
-				ops.setInfoObj(newObj);
+				ops.setInfoObj(info);
+				newObj.setObj(info);
 				ops.addProgram(newObj, ind);
 
 				newObj.setName("");
@@ -97,6 +100,8 @@ void menu() {
 				system("cls");
 				break;
 			}
+
+			info = "";
 			break;
 		case 5:
 			cout << "Enter number of object from array: ";
@@ -129,7 +134,32 @@ void menu() {
 			sizeMas = ops.getSize();
 			break;
 		case 8:
-			ops.readFromFile(sizeMas, newObj);
+			objects.open("E:/File for projects/maliuha03.txt");
+
+			if (!objects.is_open()) {
+				cout << "File was not opened" << endl;
+				system("pause");
+				break;
+			}
+
+			while (true) {
+				ind = sizeMas + 1;
+				ops.readFromFile(objects, info, endFile);
+				if (endFile == "end") {
+					break;
+				}
+				newObj.setObj(info);
+				ops.addProgram(newObj, ind);
+
+				newObj.setName("");
+				newObj.setPublisher("");
+				newObj.setOpMemoryMb(0);
+				newObj.setMemoryGb(0);
+				newObj.setTimeWorkMin(0);
+				info = "";
+				sizeMas = ops.getSize();
+			}
+			objects.close();
 			break;
 		case 9:
 			ops.writeToFile();

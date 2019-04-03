@@ -35,17 +35,17 @@ public:
 
 	/**
 	* Метод для чтения информации об объектах из файла.
-	* @param sizeMas увеличивается на 1.
-	* @param newObj используется для записи информации о новом объекте.
-	* Вызывается метод добавление нового объекта в массив.
+	* @param objects хранит открытый файл для чтения.
+	* @param info собирает информацию об объекте.
+	* @param n завершает работу метода, когда файл прочитан до конца.
 	*/
-	void readFromFile(int &sizeMas, workingProgram &newObj);
+	void readFromFile(ifstream &objects, string &info, string &n);
 	
 	/**
 	* Метод создан для чтения с клавиатуры информации об объекте.
-	* @param newObj используется для записи информации о новом объекте.
+	* @param info используется для записи информации о новом объекте.
 	*/
-	void setInfoObj(workingProgram& obj);
+	void setInfoObj(string &info);
 
 	/**
 	* Метод создан для добавления объекта в массив.

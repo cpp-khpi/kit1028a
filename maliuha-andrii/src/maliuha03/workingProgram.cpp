@@ -56,3 +56,48 @@ stringstream workingProgram::print() {
 	return lineObj;
 }
 
+void workingProgram::setObj(string &info) {
+	stringstream timeLine;
+
+
+	int i = 0;
+	while (info[i] != '|') {
+		name += info[i];
+		i++;
+	}
+	i++;
+
+	while (info[i] != '|') {
+		publisher += info[i];
+		i++;
+	}
+	i++;
+
+	while (info[i] != '|') {
+		timeLine << info[i];
+		i++;
+	}
+	i++;
+
+	timeLine >> opMemoryMb;
+	timeLine.str("");
+	timeLine.clear();
+
+
+	while (info[i] != '|') {
+		timeLine << info[i];
+		i++;
+	}
+	i++;
+
+	timeLine >> memoryGb;
+	timeLine.str("");
+	timeLine.clear();
+
+	while (info[i] != '|') {
+		timeLine << info[i];
+		i++;
+	}
+	timeLine >> timeWorkMin;
+	timeLine.str("");
+}

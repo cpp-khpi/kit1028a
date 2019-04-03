@@ -142,83 +142,68 @@ void Array::removeViruses() {
 	}
 
 	string p = "unknown";
-	string p2 = "";
 	int i = 0;
 	for (; i < size; i++) {
-		p2 = mas[i].getPublisher();
-		if (p == p2) {
+		if (p == mas[i].getPublisher()) {
 			removeProgram(i + 1);
 		}
 	}
 }
 
-void Array::setInfoObj(workingProgram &obj) {
+void Array::setInfoObj(string &info) {
 	string n;
 	string p;
 	float om, mg, twm;
+	stringstream infoObj;
 	
 	cout << "Enter name of program:" << endl;
 	getline(cin, n);
+	infoObj << n << "|";
 
 	cout << "Enter name of publisher(if you don't know, enter 'unknown'):" << endl;
 	getline(cin, p);
-
+	infoObj << p << "|";
+	
 	cout << "Enter amount of consumed RAM(Mb):" << endl;
 	cin >> om;
+	infoObj << om << "|";
+	
 	cout << "Enter ocupied amount of hard disk memory(Gg):" << endl;
 	cin >> mg;
+	infoObj << mg << "|";
+
 	cout << "Enter time of work (in minutes):" << endl;
 	cin >> twm;
+	infoObj << twm << "|";
 
-	obj.setName(n);
-	obj.setPublisher(p);
-	obj.setOpMemoryMb(om);
-	obj.setMemoryGb(mg);
-	obj.setTimeWorkMin(twm);
+	getline(infoObj, info);
 }
 
-void Array::readFromFile(int &sizeMas, workingProgram &newObj) {
-	string n;
+void Array::readFromFile(ifstream &objects, string &info, string &n) {
 	string p;
 	float om, mg, twm;
-	int ind;
-	ifstream objects;
-	objects.open("E:/File for projects/maliuha03.txt");
+	stringstream infoObj;
 
-	if (!objects.is_open()) {
-		cout << "File was not opened" << endl;
-		system("pause");
+	getline(objects, n);
+	if (n == "end") {
 		return;
 	}
+	infoObj << n << "|";
 
-	while (true) {
-		getline(objects, n);
-		if (n == "end") {
-			break;
-		}
-		getline(objects, p);
-		objects >> om;
-		objects >> mg;
-		objects >> twm;
+	getline(objects, p);
+	infoObj << p << "|";
 
-		newObj.setName(n);
-		newObj.setPublisher(p);
-		newObj.setOpMemoryMb(om);
-		newObj.setMemoryGb(mg);
-		newObj.setTimeWorkMin(twm);
-		ind = sizeMas + 1;
-		addProgram(newObj, ind);
+	objects >> om;
+	infoObj << om << "|";
 
-		getline(objects, n);
-		newObj.setName("");
-		newObj.setPublisher("");
-		newObj.setOpMemoryMb(0);
-		newObj.setMemoryGb(0);
-		newObj.setTimeWorkMin(0);
-		sizeMas = getSize();
-	}
-	objects.close();
+	objects >> mg;
+	infoObj << mg << "|";
 
+	objects >> twm;
+	infoObj << twm << "|";
+
+	getline(objects, n);
+	getline(infoObj, info);
 }
 
 void Array::writeToFile() {
@@ -235,6 +220,6 @@ void Array::writeToFile() {
 		txt << "Amount of consumed RAM(Mb): " << mas[i].getOpMemoryMb() << endl;
 		txt << "Ocupied amount of hard disk memory(Gb): " << mas[i].getMemoryGb() << endl;
 		txt << "Time of work (in minutes): " << mas[i].getTimeWorkMin() << endl;
-		txt << "--------------------------------" << endl;
+		txt << "------------------------------------------------------" << endl;
 	}
 }

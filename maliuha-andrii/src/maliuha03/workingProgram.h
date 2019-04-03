@@ -46,6 +46,13 @@ public:
 	*/
 	stringstream print();
 
+
+	/**
+	* Метод, который заполняет значения полей объекта.
+	* @param info хранит информацию о новом объекте.
+	*/
+	void setObj(string &info);
+
 	/**
 	* Установка поля workingProgram::name.
 	* @param name присваивается полю workingProgram::name.
