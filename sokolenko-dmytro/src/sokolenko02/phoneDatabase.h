@@ -1,5 +1,5 @@
 /**
-* @file phoneDatabase.h
+* @file PhoneDatabase.h
 * Оголошення класу PhoneDatabase.
 * @author Sokolenko Dmitro
 * @version 0.3
@@ -67,6 +67,15 @@ public:
 	~PhoneDatabase();
 
 	/**
+	* Присвоєння полів класу PhoneDatabase.
+	* @param newSize присвоюєтьяс полю PhoneDatabase::size.
+	* @param newPhoneArray. З передаваемого масиву виконується
+	* копіювання об'єктів класу Phone у поточний масив
+	* за допомогою перевантаженого оператора присвоєння.
+	*/
+	void setPhoneDatabaseInfo(int, Phone *);
+
+	/**
 	* Метод порівняння двох масивів об'єктів класу Phone.
 	* @param firstPhoneArr - вказівник на перший порівнюваний масив.
 	* @param secondPhoneArr - вказівник на другий порівнюваний масив.
@@ -82,29 +91,10 @@ public:
 	int getSize() const;
 
 	/**
-	* Встановлення значння змінної PhoneDatabase::size.
-	* @param newSize присвоюється PhoneDatabase::size.
-	*/
-	void setSize(int);
-
-	/**
 	* Зчитування поля PhoneDatabase::phoneArray.
 	* @return поточне значення поля PhoneDatabase::phoneArray.
 	*/
 	Phone * getPhoneArray() const;
-
-	/**
-	* Встановлення значння змінної PhoneDatabase::phoneArray.
-	* @param newSize присвоюється PhoneDatabase::phoneArray.
-	*/
-	void setPhoneArray(Phone *);
-
-	/**
-	* Зчитування розміру масиву з клавіатури та запис значення у поле PhoneDatabase::size.
-	* @return зчитане значення поля PhoneDatabase::size.
-	*/
-	int inputSize();
-
 
 	/**
 	* Зчитування з консолі інформації та її запис

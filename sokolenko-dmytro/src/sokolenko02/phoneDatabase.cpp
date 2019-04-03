@@ -1,16 +1,14 @@
-#include "phoneDatabase.h"
+#include "PhoneDatabase.h"
 
 int PhoneDatabase::getSize() const { return size; }
-void PhoneDatabase::setSize(int newSize) { size = newSize; }
 
 Phone* PhoneDatabase::getPhoneArray() const { return phoneArray; }
-void PhoneDatabase::setPhoneArray(Phone * newPhoneArray) { phoneArray = newPhoneArray; }
 
 PhoneDatabase::PhoneDatabase() : size(1)
 {
 	phoneArray = new Phone[size];
 
-	cout << "Default constructor! PhoneDatabase" << endl;
+	//cout << "Default constructor! PhoneDatabase" << endl;
 }
 
 PhoneDatabase::PhoneDatabase(int newSize, Phone * newPhoneArray) : 
@@ -22,7 +20,7 @@ PhoneDatabase::PhoneDatabase(int newSize, Phone * newPhoneArray) :
 	for (int i = 0; i < size; i++)
 		phoneArray[i] = newPhoneArray[i];
 
-	cout << "Constructor with param. PhoneDatabase" << endl;
+	//cout << "Constructor with param. PhoneDatabase" << endl;
 }
 
 PhoneDatabase::PhoneDatabase(const PhoneDatabase & copiedPhoneDatabase) :
@@ -34,7 +32,7 @@ PhoneDatabase::PhoneDatabase(const PhoneDatabase & copiedPhoneDatabase) :
 	for (int i = 0; i < size; i++)
 		phoneArray[i] = copiedPhoneDatabase.phoneArray[i];
 
-	cout << "Copy constructor. PhoneDatabase" << endl;
+	//cout << "Copy constructor. PhoneDatabase" << endl;
 }
 
 PhoneDatabase::~PhoneDatabase()
@@ -42,7 +40,18 @@ PhoneDatabase::~PhoneDatabase()
 	delete[] phoneArray;
 	phoneArray = nullptr;
 
-	cout << "Destructor. PhoneDatabase" << endl;
+	//cout << "Destructor. PhoneDatabase" << endl;
+}
+
+void PhoneDatabase::setPhoneDatabaseInfo(int newSize, Phone * newPhoneArray)
+{
+	size = newSize;
+
+	delete[] phoneArray;
+	phoneArray = new Phone[size];
+
+	for (int i = 0; i < size; i++)
+		phoneArray[i] = newPhoneArray[i];
 }
 
 bool PhoneDatabase::comparisonPhoneArray(const Phone* phoneArray1, const Phone* phoneArray2,
@@ -59,37 +68,6 @@ bool PhoneDatabase::comparisonPhoneArray(const Phone* phoneArray1, const Phone* 
 	}
 
 	return true;
-}
-
-int PhoneDatabase::inputSize()
-{
-	int size;
-	int maxTries = 3;
-	int maxTriesLeft = maxTries;
-	rewind(stdin);
-	cout << "Enter size of array!" << endl;
-	for (int i = 0; i < maxTries; i++) {
-		cout << "Size: ";
-		cin >> size;
-		if (size <= 0) {
-			maxTriesLeft--;
-			cout << "Incorrect size. Enter it again." << endl;
-			cout << "You have " << maxTriesLeft << " attempts left." << endl << endl;
-			if (maxTriesLeft == 0) {
-				cout << "You have no attempts left. ERROR!" << endl;
-				cout << "Press any key to exit.";
-				system("color C");
-				cin.get();
-				cin.get();
-				exit(1);
-			}
-		}
-		else {
-			break;
-		}
-	}
-
-	return size;
 }
 
 void PhoneDatabase::readPhone(Phone & newPhone) const

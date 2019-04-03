@@ -1,14 +1,14 @@
-#include "testPhoneDatabase.h"
+#include "TestPhoneDatabase.h"
 
 bool TestPhoneDatabase::testAddPhone()
 {
-	int expectedSize = 3;
-	Phone * expectedPhoneArray = new Phone[expectedSize];
-
 	const int TITLESTRLEN = 10;
 	char * titleValue = new char[TITLESTRLEN];
 
 	/* Створення очікуваного масиву. */
+
+	int expectedSize = 3;
+	Phone * expectedPhoneArray = new Phone[expectedSize];
 	
 	for (int i = 0; i < expectedSize; i++) {
 		_itoa_s(i, titleValue, TITLESTRLEN, 10);
@@ -18,14 +18,14 @@ bool TestPhoneDatabase::testAddPhone()
 	/* Створення тестуємого масиву, розмір менше очікуваного на 1. */
 
 	int testSize = expectedSize - 1;
-	phoneDatabase.setSize(testSize);
 	Phone * testPhoneArray = new Phone[testSize];
-	phoneDatabase.setPhoneArray(testPhoneArray);
 
 	for (int i = 0; i < testSize; i++) {
 		_itoa_s(i, titleValue, TITLESTRLEN, 10);
 		testPhoneArray[i].setPhoneInfo(titleValue, i, i, i, i);
 	}
+
+	phoneDatabase.setPhoneDatabaseInfo(testSize, testPhoneArray);
 
 	/* Створення додаваємого об'єкту. */
 
@@ -41,15 +41,12 @@ bool TestPhoneDatabase::testAddPhone()
 	/* Порівняння очікуваємого і тестового масивів. */
 
 	bool result;
-	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize)) {
+	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize))
 		result = true;
-	}
-	else {
+	else
 		result = false;
-	}
 
 	delete newPhone;
-	delete[] testPhoneArray;
 	delete[] expectedPhoneArray;
 	delete[] titleValue;
 
@@ -58,13 +55,14 @@ bool TestPhoneDatabase::testAddPhone()
 
 bool TestPhoneDatabase::testRemovePhone()
 {
-	int expectedSize;
-	Phone * expectedPhoneArray;
-	int testSize;
-	Phone * testPhoneArray;
-
 	const int TITLESTRLEN = 10;
 	char * titleValue = new char[TITLESTRLEN];
+
+	int expectedSize;
+	Phone * expectedPhoneArray;
+
+	int testSize;
+	Phone * testPhoneArray;
 
 	/* Видалення з кінця, створення очікуваного масиву. */
 
@@ -79,14 +77,14 @@ bool TestPhoneDatabase::testRemovePhone()
 	/* Створення тестуємого масиву, розмір більше очікуваного на 1. */
 
 	testSize = expectedSize + 1;
-	phoneDatabase.setSize(testSize);
 	testPhoneArray = new Phone[testSize];
-	phoneDatabase.setPhoneArray(testPhoneArray);
 
 	for (int i = 0; i < testSize; i++) {
 		_itoa_s(i, titleValue, TITLESTRLEN, 10);
 		testPhoneArray[i].setPhoneInfo(titleValue, i, i, i, i);
 	}
+
+	phoneDatabase.setPhoneDatabaseInfo(testSize, testPhoneArray);
 
 	phoneDatabase.removePhone(testSize - 1);
 
@@ -94,16 +92,12 @@ bool TestPhoneDatabase::testRemovePhone()
 	testSize = phoneDatabase.getSize();
 
 	bool endRemove;
-	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize)) {
+	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize))
 		endRemove = true;
-	}
-	else {
+	else
 		endRemove = false;
-	}
 
 	delete[] expectedPhoneArray;
-	delete[] testPhoneArray;
-
 
 	/* Видалення з початку, створення очікуваного масиву. */
 
@@ -118,14 +112,15 @@ bool TestPhoneDatabase::testRemovePhone()
 	/* Створення тестуємого масиву, розмір більше очікуваного на 1. */
 
 	testSize = expectedSize + 1;
-	phoneDatabase.setSize(testSize);
 	testPhoneArray = new Phone[testSize];
-	phoneDatabase.setPhoneArray(testPhoneArray);
+
 
 	for (int i = 0; i < testSize; i++) {
 		_itoa_s(i, titleValue, TITLESTRLEN, 10);
 		testPhoneArray[i].setPhoneInfo(titleValue, i, i, i, i);
 	}
+
+	phoneDatabase.setPhoneDatabaseInfo(testSize, testPhoneArray);
 
 	phoneDatabase.removePhone(0);
 
@@ -133,15 +128,12 @@ bool TestPhoneDatabase::testRemovePhone()
 	testSize = phoneDatabase.getSize();
 
 	bool beginRemove;
-	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize)) {
+	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize))
 		beginRemove = true;
-	}
-	else {
+	else
 		beginRemove = false;
-	}
 
 	delete[] expectedPhoneArray;
-	delete[] testPhoneArray;
 
 	/* Видалення масиву з 1 елементом, створення очікуваного масиву. */
 
@@ -151,12 +143,12 @@ bool TestPhoneDatabase::testRemovePhone()
 	/* Створення тестуємого масиву, розмір більше очікуваного на 1. */
 
 	testSize = expectedSize + 1;
-	phoneDatabase.setSize(testSize);
 	testPhoneArray = new Phone[testSize];
-	phoneDatabase.setPhoneArray(testPhoneArray);
 
 	_itoa_s(0, titleValue, TITLESTRLEN, 10);
 	testPhoneArray[0].setPhoneInfo(titleValue, 0, 0, 0, 0);
+
+	phoneDatabase.setPhoneDatabaseInfo(testSize, testPhoneArray);
 
 	phoneDatabase.removePhone(0);
 
@@ -164,15 +156,12 @@ bool TestPhoneDatabase::testRemovePhone()
 	testSize = phoneDatabase.getSize();
 
 	bool onlyRemove;
-	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize)) {
+	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, testPhoneArray, expectedSize, testSize))
 		onlyRemove = true;
-	}
-	else {
+	else
 		onlyRemove = false;
-	}
 
 	delete[] expectedPhoneArray;
-	delete[] testPhoneArray;
 	delete[] titleValue;
 
 
@@ -197,8 +186,7 @@ bool TestPhoneDatabase::testGetPhone()
 		phoneArray[i].setPhoneInfo(titleValue, i, i, i, i);
 	}
 
-	phoneDatabase.setPhoneArray(phoneArray);
-	phoneDatabase.setSize(size);
+	phoneDatabase.setPhoneDatabaseInfo(size, phoneArray);
 
 	Phone expectedPhone;
 	_itoa_s(1, titleValue, TITLESTRLEN, 10);
@@ -228,8 +216,7 @@ bool TestPhoneDatabase::testGetSmallestResolutPhone()
 		phoneArray[i].setPhoneInfo(titleValue, i, i, i, i);
 	}
 
-	phoneDatabase.setPhoneArray(phoneArray);
-	phoneDatabase.setSize(size);
+	phoneDatabase.setPhoneDatabaseInfo(size, phoneArray);
 
 	Phone expectedPhone;
 	_itoa_s(0, titleValue, TITLESTRLEN, 10);
@@ -241,17 +228,14 @@ bool TestPhoneDatabase::testGetSmallestResolutPhone()
 	bool result = receivedPhone == expectedPhone;
 
 	delete[] titleValue;
-	//delete[] phoneArray;
+	delete[] phoneArray;
 
 	return result;
 }
 
 bool TestPhoneDatabase::testAll()
 {
-	bool isAddPhone = testAddPhone() == true;
-	bool isRemovePhone = testRemovePhone() == true;
-	bool isGetPhone = testGetPhone() == true;
-	if (testAddPhone() && testAddPhone() && testGetPhone() && testGetSmallestResolutPhone())
+	if (testAddPhone() && testRemovePhone() && testGetPhone() && testGetSmallestResolutPhone())
 		return true;
 	else
 		return false;

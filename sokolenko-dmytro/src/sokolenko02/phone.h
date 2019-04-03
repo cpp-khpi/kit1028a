@@ -1,5 +1,5 @@
 /**
-* @file phone.h
+* @file Phone.h
 * Оголошення базового класу Phone.
 * @author Sokolenko Dmitro
 * @version 0.3
@@ -108,7 +108,8 @@ public:
 
 	/**
 	* Встановлення значння змінної Phone::title.
-	* @param newTitle присвоюється Phone::title.
+	* @param newTitle: рядок з пам'яті, на яку вказує newTitle, 
+	* копіюється у пам'ять, на яку вказує Phone::title.
 	*/
 	void setTitle(char *);
 

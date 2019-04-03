@@ -1,5 +1,5 @@
 /**
-* @file testPhoneDatabase.h
+* @file TestPhoneDatabase.h
 * Оголошення класу TestPhoneDatabase.
 * @author Sokolenko Dmitro
 * @version 0.3
@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "phone.h"
-#include "phoneDatabase.h"
+#include "Phone.h"
+#include "PhoneDatabase.h"
 
 /**
 * Опис тестового класу TestPhoneDatabase з його полями та методами. 

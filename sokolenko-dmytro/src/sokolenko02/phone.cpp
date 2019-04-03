@@ -1,4 +1,4 @@
-#include "phone.h"
+#include "Phone.h"
 
 Phone::Phone() : price(1000), simCardsNumber(1), resolution(4032), capacity(900)
 {
@@ -7,7 +7,7 @@ Phone::Phone() : price(1000), simCardsNumber(1), resolution(4032), capacity(900)
 	title = new char[TITLELEN];
 	strncpy_s(title, TITLELEN, stdTitle, strlen(stdTitle));
 
-	cout << "Default constructor! Phone" << endl;
+	//cout << "Default constructor! Phone" << endl;
 }
 
 Phone::Phone(char * newTitle, unsigned int newPrice, unsigned int newSimNum,
@@ -21,7 +21,7 @@ Phone::Phone(char * newTitle, unsigned int newPrice, unsigned int newSimNum,
 	title = new char[TITLELEN];
 	strncpy_s(title, TITLELEN, newTitle, strlen(newTitle));
 
-	cout << "Constructor with param. Phone" << endl;
+	//cout << "Constructor with param. Phone" << endl;
 }
 
 Phone::Phone(const Phone & copiedPhone) : 
@@ -35,15 +35,17 @@ Phone::Phone(const Phone & copiedPhone) :
 	title = new char[TITLELEN];
 	strncpy_s(title, TITLELEN, copiedPhone.title, strlen(copiedPhone.title));
 
-	cout << "Copy constructor. Phone" << endl;
+	//cout << "Copy constructor. Phone" << endl;
 }
 
 Phone::~Phone()
 {
-	delete[] title;
-	title = nullptr;
+	if (title != NULL) {
+		delete[] title;
+		title = NULL;
+	}
 
-	cout << "Destructor. Phone" << endl;
+	//cout << "Destructor. Phone" << endl;
 }
 
 Phone& Phone::operator= (const Phone & copiedPhone)
@@ -51,7 +53,7 @@ Phone& Phone::operator= (const Phone & copiedPhone)
 	if (this == &copiedPhone) {
 		return *this;
 
-		cout << "Self assignment!" << endl;
+		//cout << "Self assignment!" << endl;
 	}
 
 	const int TITLELEN = 50;
@@ -64,7 +66,7 @@ Phone& Phone::operator= (const Phone & copiedPhone)
 	resolution = copiedPhone.resolution;
 	capacity = copiedPhone.capacity;
 
-	cout << "Assignment" << endl;
+	//cout << "Assignment" << endl;
 
 	return *this;
 }
@@ -88,7 +90,6 @@ bool Phone::operator!=(const Phone& otherPhone) const
 	return !(*this == otherPhone);
 }
 
-
 void Phone::setPhoneInfo(char * newTitle, unsigned int newPrice, unsigned int newSimNum,
 	unsigned int newResolution, unsigned int newCapacity)
 {
@@ -102,7 +103,11 @@ void Phone::setPhoneInfo(char * newTitle, unsigned int newPrice, unsigned int ne
 }
 
 char * Phone::getTitle() const { return title; }
-void Phone::setTitle(char * newTitle) { title = newTitle; }
+void Phone::setTitle(char * newTitle) 
+{ 
+	const int TITLELEN = 50;
+	strncpy_s(title, TITLELEN, newTitle, strlen(newTitle));
+}
 
 unsigned int Phone::getPrice() const { return price; }
 void Phone::setPrice(unsigned int newPrice) { price = newPrice; }
