@@ -171,11 +171,10 @@ void InfoStorge::clearFile(string fname) {
 
 void InfoStorge::regexCheck(string str) {
 	
-	string tmp = str;
 	regex regular("^[A-Z]");
 	regex space("[\\s]{2,}");
 	
-	while (regex_search(str, space)||!regex_search(tmp, regular)) {
+	while (regex_search(str, space)||!regex_search(str, regular)) {
 		cout << "Name: " << str << endl;
 		cout << " Name does not match the format, first letter need to be big or u put 2 of more symbols\n Enter new name that match format: ";
 		getline(cin, str);

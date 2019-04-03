@@ -4,6 +4,24 @@ Number of School: 179
 Pupils: 200
 Employers: 20
 
+Cost per month: 400
+Type of School: kharkiv
+Number of School: 200
+Pupils: 10
+Employers: 10
+
+Cost per month: 500
+Type of School: Kiev high school
+Number of School: 200
+Pupils: 400
+Employers: 21
+
+Cost per month: 300
+Type of School: Kharkiv gymnasium
+Number of School: 179
+Pupils: 200
+Employers: 20
+
 Cost per month: 300
 Type of School: Kharkiv gymnasium
 Number of School: 179
