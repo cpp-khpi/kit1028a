@@ -8,22 +8,24 @@
 #include <iostream>
 #include "InfoWork.h"
 #include "StudentsWork.h"
+#define N 2;
 
-int random() {
-	srand(time(NULL));
-	int x = rand() % 2;
-	return x;
+bool comp(int a, int b) {
+	return a < b;
+}
+
+bool comp2(int a, int b) {
+	return a > b;
 }
 
 int main() {
 	system("color 0A");
 	StudentsWork qualWork;
 	ifstream fin;
-	int(*pointer)();
+	bool (*pointer)(int a,int b);
 	int j, x;
 	int choose = 0;
 	int ErrorTest;
-	pointer = random;
 
 	cout << "0 - Exit" << endl;
 	cout << "1 - Create vector" << endl;
@@ -158,13 +160,33 @@ int main() {
 				qualWork.sortName();
 				break;
 			case 7:
+				cout << "Choose way of sort: < or > " << endl;
+				cout << "0 - by <" << endl;
+				cout << "1 - by >" << endl;
+				cin >> j;
+				if (j == 1) {
+					pointer = comp;
+				}
+				else {
+					pointer = comp2;
+				}
 				cout << "Which type of sort do you want to perfom:" << endl;
 				cout << "0 - By mark" << endl;
 				cout << "1 - By size" << endl;
 				cout << "2 - By type" << endl;
 				cout << "Choose: ";
 				cin >> j;
-				qualWork.sortBy(qualWork, j, pointer);
+				switch (j) {
+				case 0:
+					qualWork.sortByMark(pointer);
+					break;
+				case 1:
+					qualWork.sortBySize(pointer);
+					break;
+				case 2:
+					qualWork.sortByType(pointer);
+					break;
+				}
 				break;
 			default:
 				break;

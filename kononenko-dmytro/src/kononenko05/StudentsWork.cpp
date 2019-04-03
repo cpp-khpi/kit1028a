@@ -1,105 +1,64 @@
 #include "StudentsWork.h"
 #include "InfoWork.h"
 
-void StudentsWork::sortByMark(int b) {
+void StudentsWork::sortByMark(bool(*comp)(int a,int b)) {
 	InfoWork temp;
-	if (b = 0) {
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (qual[i].getMark() > qual[j].getMark()) {
-					temp = qual[i];
-					qual[i] = qual[j];
-					qual[j] = temp;
-				}
-			}
-		}
-	}
-	else {
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (qual[i].getMark() < qual[j].getMark()) {
-					temp = qual[i];
-					qual[i] = qual[j];
-					qual[j] = temp;
-				}
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (comp(qual[i].getMark(),qual[j].getMark())) {
+				temp = qual[i];
+				qual[i] = qual[j];
+				qual[j] = temp;
 			}
 		}
 	}
 }
 
-void StudentsWork::sortBySize(int b) {
-	if (b = 0) {
-		InfoWork temp;
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (qual[i].getPages() > qual[j].getPages()) {
-					temp = qual[i];
-					qual[i] = qual[j];
-					qual[j] = temp;
-				}
-			}
-		}
-	}
-	else {
-		InfoWork temp;
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (qual[i].getPages() < qual[j].getPages()) {
-					temp = qual[i];
-					qual[i] = qual[j];
-					qual[j] = temp;
-				}
+void StudentsWork::sortBySize(bool(*comp)(int a,int b)) {
+	InfoWork temp;
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (comp(qual[i].getPages(), qual[j].getPages())) {
+				temp = qual[i];
+				qual[i] = qual[j];
+				qual[j] = temp;
 			}
 		}
 	}
 }
 
-void StudentsWork::sortByType(int b) {
-	if (b = 0) {
-		InfoWork temp;
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (qual[i].getType() > qual[j].getType()) {
-					temp = qual[i];
-					qual[i] = qual[j];
-					qual[j] = temp;
-				}
-			}
-		}
-	}
-	else {
-		InfoWork temp;
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (qual[i].getType() < qual[j].getType()) {
-					temp = qual[i];
-					qual[i] = qual[j];
-					qual[j] = temp;
-				}
+void StudentsWork::sortByType(bool(*comp)(int a,int b)) {
+	InfoWork temp;
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (comp(qual[i].getType() ,qual[j].getType())) {
+				temp = qual[i];
+				qual[i] = qual[j];
+				qual[j] = temp;
 			}
 		}
 	}
 }
 
-void StudentsWork::sortBy(StudentsWork qual, int x, int(*fun)()) {
-
-	int j = fun();
-
-	switch (x)
-	{
-	case 0:
-		qual.sortByMark(j);
-		break;
-	case 1:
-		qual.sortBySize(j);
-		break;
-	case 2:
-		qual.sortByType(j);
-		break;
-	default:
-		break;
-	}
-}
+//void StudentsWork::sortBy(StudentsWork qual, int x, int(*fun)()) {
+//
+//	int j = fun();
+//
+//	switch (x)
+//	{
+//	case 0:
+//		qual.sortByMark(j);
+//		break;
+//	case 1:
+//		qual.sortBySize(j);
+//		break;
+//	case 2:
+//		qual.sortByType(j);
+//		break;
+//	default:
+//		break;
+//	}
+//}
 
 int StudentsWork::search(int index) {
 

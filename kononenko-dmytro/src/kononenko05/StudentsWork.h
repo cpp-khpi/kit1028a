@@ -15,10 +15,9 @@ public:
 	void sortName();
 	void setSize(int size);
 	void createArr(string* name);
-	void sortBy(StudentsWork qual, int x, int(*)());
-	void sortByMark(int b);
-	void sortBySize(int b);
-	void sortByType(int b);
+	void sortByMark(bool(*comp)(int a,int b));
+	void sortBySize(bool(*comp)(int a, int b));
+	void sortByType(bool(*comp)(int a,int b));
 	int search(int index);
 	void printArr();
 	float rate();
