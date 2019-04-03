@@ -105,9 +105,8 @@ void Array::nameSearch(string n) {
 	}
 }
 
-int Array::getSize(int sizeMas) {
-	sizeMas = size;
-	return sizeMas;
+int Array::getSize() {
+	return size;
 }
 
 void Array::delMas() {
@@ -178,7 +177,7 @@ void Array::setInfoObj(workingProgram &obj) {
 	obj.setTimeWorkMin(twm);
 }
 
-void Array::readFromFile(int &sizeMas, workingProgram &newObj, Array &ops) {
+void Array::readFromFile(int &sizeMas, workingProgram &newObj) {
 	string n;
 	string p;
 	float om, mg, twm;
@@ -208,7 +207,7 @@ void Array::readFromFile(int &sizeMas, workingProgram &newObj, Array &ops) {
 		newObj.setMemoryGb(mg);
 		newObj.setTimeWorkMin(twm);
 		ind = sizeMas + 1;
-		ops.addProgram(newObj, ind);
+		addProgram(newObj, ind);
 
 		getline(objects, n);
 		newObj.setName("");
@@ -216,7 +215,7 @@ void Array::readFromFile(int &sizeMas, workingProgram &newObj, Array &ops) {
 		newObj.setOpMemoryMb(0);
 		newObj.setMemoryGb(0);
 		newObj.setTimeWorkMin(0);
-		sizeMas = ops.getSize(sizeMas);
+		sizeMas = getSize();
 	}
 	objects.close();
 

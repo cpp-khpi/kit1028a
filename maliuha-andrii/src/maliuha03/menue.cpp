@@ -55,10 +55,10 @@ void menu() {
 		case 3:
 			cout << "Enter number of object for delete it: ";
 			cin >> ind;
-			sizeMas = ops.getSize(sizeMas);
+			sizeMas = ops.getSize();
 			if (ind <= sizeMas + 1 && ind >= 1) {
 				ops.removeProgram(ind);
-				sizeMas = ops.getSize(sizeMas);
+				sizeMas = ops.getSize();
 				system("cls");
 				break;
 			}
@@ -72,7 +72,7 @@ void menu() {
 		case 4:
 			cout << "Enter number of object for add it to array: ";
 			cin >> ind;
-			sizeMas = ops.getSize(sizeMas);
+			sizeMas = ops.getSize();
 
 			cin.ignore();
 			if (ind <= sizeMas + 1 && ind >= 1) {
@@ -86,7 +86,7 @@ void menu() {
 				newObj.setMemoryGb(0);
 				newObj.setTimeWorkMin(0);
 
-				sizeMas = ops.getSize(sizeMas);
+				sizeMas = ops.getSize();
 				system("cls");
 				break;
 			}
@@ -101,7 +101,7 @@ void menu() {
 		case 5:
 			cout << "Enter number of object from array: ";
 			cin >> ind;
-			sizeMas = ops.getSize(sizeMas);
+			sizeMas = ops.getSize();
 			if (ind <= sizeMas && ind >= 1) {
 				ops.getProgram(ind);
 
@@ -126,10 +126,10 @@ void menu() {
 			break;
 		case 7:
 			ops.removeViruses();
-			sizeMas = ops.getSize(sizeMas);
+			sizeMas = ops.getSize();
 			break;
 		case 8:
-			ops.readFromFile(sizeMas, newObj, ops);
+			ops.readFromFile(sizeMas, newObj);
 			break;
 		case 9:
 			ops.writeToFile();

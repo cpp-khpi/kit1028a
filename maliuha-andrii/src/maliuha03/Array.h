@@ -1,26 +1,103 @@
+/**
+* @file workingProgram.h
+* объявление класса workingProgram
+* @author Maliuga Andrey
+* @version 0.6
+* @date 30.03.2019
+*/
+
 #pragma once
 #include "Header.h"
 
+/**
+* Описание класса Arry с его полями и методами.
+* Класс Array создан для хранения указателя на массив и использование методов для его обработки.
+*/
 class Array {
 private:
+	/** Размер массива. */
 	int size;
+
+	/** Указатель на массив. */
 	workingProgram *mas;
 public:
+
+	/**
+	* Конструктор по умолчанию.
+	* Используется список иницализации.
+	*/
 	Array();
 
+	/**
+	* Метод для записи значений полей в файл.
+	*/
 	void writeToFile();
-	void readFromFile(int&, workingProgram&, Array&);
-	void setInfoObj(workingProgram&);
-	void addProgram(workingProgram&, int);
+
+	/**
+	* Метод для чтения информации об объектах из файла.
+	* @param sizeMas увеличивается на 1.
+	* @param newObj используется для записи информации о новом объекте.
+	* Вызывается метод добавление нового объекта в массив.
+	*/
+	void readFromFile(int &sizeMas, workingProgram &newObj);
+	
+	/**
+	* Метод создан для чтения с клавиатуры информации об объекте.
+	* @param newObj используется для записи информации о новом объекте.
+	*/
+	void setInfoObj(workingProgram& obj);
+
+	/**
+	* Метод создан для добавления объекта в массив.
+	* @param ind хранит значение позиции нового объекта.
+	* @param newObj используется для чтения информации о новом объекте.
+	*/
+	void addProgram(workingProgram &newObj, int ind);
+
+	/**
+	* Метод создан для вывода всех элементов массива на экран.
+	*/
 	void showAll();
+
+	/**
+	* Метод создан для удаления элемента из массива.
+	* @param ind хранит значение позиции в массиве удаляемого элемента.
+	*/
 	void removeProgram(int ind);
+
+	/**
+	* Метод создан для вывода одного элемента по индексу из массива.
+	* @param ind хранит значение позиции элемента в массиве.
+	*/
 	void getProgram(int ind);
+
+	/**
+	* Метод создан для поиска объекта массива по имени.
+	* @param n хранит имя объекта, который надо найти.
+	*/
 	void nameSearch(string n);
+
+	/**
+	* Метод создан для вывода на экран объектов из массива в заданом диапозоне значения поля  memoryGB.
+	* @param  memoryGB хранит минимальное значение поля workingProgram::memoryGd для вывода.
+	*/
 	void findProgram(float memoryGB);
+	
+	/**
+	* Метод создан для удаления подозрительных программ из массива.
+	*/
 	void removeViruses();
 
+	/**
+	* Метод создан для очистки выделенной памяти для массива объектов.
+	*/
 	void delMas();
-	int getSize(int sizeMas);
+
+	/**
+	* Метод создан для чтения значения поля size.
+	* @return текущее значение поля size.
+	*/
+	int getSize();
 
 
 };

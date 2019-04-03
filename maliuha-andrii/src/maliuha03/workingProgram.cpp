@@ -9,8 +9,8 @@ void workingProgram::setPublisher(string publisher) {
 	this->publisher = publisher;
 }
 
-void workingProgram::setOpMemoryMb(float opMemory) {
-	this->opMemoryMb = opMemory;
+void workingProgram::setOpMemoryMb(float opMemoryMb) {
+	this->opMemoryMb = opMemoryMb;
 }
 
 void workingProgram::setMemoryGb(float memoryGb) {
