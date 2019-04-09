@@ -58,16 +58,16 @@ void AdvenceWork::search(int index) {
 void AdvenceWork::printArr() {
 	for (int i = 0; i < Size; i++) {
 		cout << "Name: " << works[i].getName();
-		cout << " Mark= " << works[i].getMark();
-		cout << " Size= " << works[i].getPages();
+		cout << " Mark: " << works[i].getMark();
+		cout << " Size: " << works[i].getPages();
 		if (works[i].getType() == 1) {
 			cout << " BACALAVR";
 		}
 		else {
 			cout << " MAGISTR";
 		}
-		cout << " Novelty= " << works[i].getNovelty();
-		cout << " Size of Labor" << works[i].getSizeLabor() << endl;
+		cout << " Novelty: " << works[i].getNovelty();
+		cout << " Size of Labor:" << works[i].getSizeLabor() << endl;
 	}
 }
 

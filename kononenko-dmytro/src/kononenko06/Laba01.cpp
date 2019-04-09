@@ -11,22 +11,25 @@
 #include "DetailInfo.h"
 #include "AdvenceWork.h"
 
-int random() {
-	srand(time(NULL));
-	int x = rand() % 2;
-	return x;
+bool sortWay(int a,int b) {
+	return a < b;
 }
 
-int main() {
+bool sortWay2(int a, int b) {
+	return a > b;
+}
+
+int main(){
+	
+	
+	{
 	system("color 0A");
 	StudentsWork qualWork;
 	ifstream fin;
-	int(*pointer)();
+	bool(*pointer)(int a,int b);
 	int j, x;
 	int choose = 0;
 	int ErrorTest;
-	pointer = random;
-
 	cout << "0 - Exit" << endl;
 	cout << "1 - Create vector" << endl;
 	cout << "Choose: ";
@@ -89,7 +92,7 @@ int main() {
 			cout << "2 - Find element by index" << endl;
 			cout << "3 - Add element" << endl;
 			cout << "4 - Delete element" << endl;
-			cout << "5 - Find persent" << endl;
+			cout << "5 - Find percent" << endl;
 			cout << "6 - Sorted by Name output" << endl;
 			cout << "7 - Sort" << endl;
 			cout << "Choose: ";
@@ -152,21 +155,50 @@ int main() {
 				}
 				system("cls");
 				break;
-			case 5:
+			case 5: {
 				cout << "There your persent: ";
 				cout << qualWork.rate();
 				break;
+			}
 			case 6:
 				qualWork.sortName();
 				break;
 			case 7:
+
+				cout << "Which way of sort do you prefer: < or >" << endl;
+				cout << "0 - <" << endl;
+				cout << "1 - >" << endl;
+				cout << "Choose: ";
+				cin >> j;
+				
+				if (j != 0) {
+					pointer = sortWay2;
+				}
+				else {
+					pointer = sortWay;
+				}
+
 				cout << "Which type of sort do you want to perfom:" << endl;
 				cout << "0 - By mark" << endl;
 				cout << "1 - By size" << endl;
 				cout << "2 - By type" << endl;
 				cout << "Choose: ";
 				cin >> j;
-				qualWork.sortBy(qualWork, j, pointer);
+				
+				switch (j) {
+				case 0:
+					qualWork.sortByMark(pointer);
+					break;
+				case 1:
+					qualWork.sortBySize(pointer);
+					break;
+				case 2:
+					qualWork.sortByType(pointer);
+					break;
+				default:
+					cout << "Wrong index" << endl;
+					break;
+				}
 				break;
 			default:
 				break;
@@ -281,9 +313,6 @@ int main() {
 				cin >> e;
 				cout << "input size of Labor: ";
 				cin >> f;
-				//cout << "input teacher's name: ";
-				//cin.ignore();
-				//getline(cin, names2);
 				cout << "input insert point: ";
 				cin >> j;
 				obj.set_n(a, b, c, names,e,f);
@@ -303,7 +332,7 @@ int main() {
 			}
 		} while (choose != 0);
 	}
-
+	}
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);

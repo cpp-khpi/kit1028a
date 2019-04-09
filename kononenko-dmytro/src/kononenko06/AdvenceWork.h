@@ -4,7 +4,7 @@
 
 class AdvenceWork {
 private:
-	DetailInfo * works;
+	DetailInfo* works;
 	int Size;
 public:
 	void search(int index);

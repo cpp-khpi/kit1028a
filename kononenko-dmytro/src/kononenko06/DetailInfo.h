@@ -1,8 +1,7 @@
 #pragma once
 #include "InfoWork.h"
 
-class DetailInfo :
-	protected InfoWork
+class DetailInfo : InfoWork
 {
 private:
 	int novelty;
