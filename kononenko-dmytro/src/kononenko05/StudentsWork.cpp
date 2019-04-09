@@ -40,26 +40,6 @@ void StudentsWork::sortByType(bool(*comp)(int a,int b)) {
 	}
 }
 
-//void StudentsWork::sortBy(StudentsWork qual, int x, int(*fun)()) {
-//
-//	int j = fun();
-//
-//	switch (x)
-//	{
-//	case 0:
-//		qual.sortByMark(j);
-//		break;
-//	case 1:
-//		qual.sortBySize(j);
-//		break;
-//	case 2:
-//		qual.sortByType(j);
-//		break;
-//	default:
-//		break;
-//	}
-//}
-
 int StudentsWork::search(int index) {
 
 	cout << "Name: " << qual[index].getName();
