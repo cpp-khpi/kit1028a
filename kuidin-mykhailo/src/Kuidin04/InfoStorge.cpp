@@ -169,28 +169,24 @@ void InfoStorge::clearFile(string fname) {
 }
 
 
-void InfoStorge::regexCheck(string str) {
+int InfoStorge::regexCheck(string str) {
 	
 	regex regular("^[A-Z]");
-	regex space("[\\s]{2,}");
+	regex space("\\s{2,}");
 	
 	while (regex_search(str, space)||!regex_search(str, regular)) {
 		cout << "Name: " << str << endl;
 		cout << " Name does not match the format, first letter need to be big or u put 2 of more symbols\n Enter new name that match format: ";
-		getline(cin, str);
-		system("cls");
+		return 0;
 	}
-
+	return 1;
 }
 
-void InfoStorge::countWords() {
-	regex regular("[A-Z][a-z]+[\\s][a-z]+");
-
-	for (int i = 0; i < count; i++) {
-		string tmp = s[i].getName();
+bool InfoStorge::countWords(int index) {
+	regex regular("[A-Z][a-z]+\\s[a-z]+");
+	string tmp = s[index].getName();
 		if (regex_search(tmp, regular)) {
-			print(i);
+			return true;
 		}
-	
-	}
-}
+	return false;
+}																	

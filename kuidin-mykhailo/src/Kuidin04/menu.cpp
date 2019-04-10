@@ -9,6 +9,7 @@ void InfoStorge::menu() {
 	int i = 0;
 	int a = 100;
 	int b = 100;
+	bool result;
 	while (b != 0) {
 		cout << "How many objects do u wnat to create?\n";
 		cin >> coun;
@@ -34,7 +35,12 @@ void InfoStorge::menu() {
 
 				cout << "Enter type (gymnasium, high, secondary, primary) if school: ";
 				getline(cin, p);
-				regexCheck(p);
+				num = regexCheck(p);
+				while (num!=1) {
+					getline(cin, p);
+					system("cls");
+					num=regexCheck(p);
+				}
 
 				cout << "Enter number of school: ";
 				cin >> num;
@@ -72,8 +78,13 @@ void InfoStorge::menu() {
 				fseek(stdin, 0, SEEK_END);
 
 				cout << "Enter name of school: ";
-				std::getline(cin, p);
-				regexCheck(p);
+				getline(cin, p);
+				num = regexCheck(p);
+				while (num != 1) {
+					getline(cin, p);
+					system("cls");
+					num = regexCheck(p);
+				}
 
 				cout << "Enter number of school: ";
 				cin >> num;
@@ -110,7 +121,14 @@ void InfoStorge::menu() {
 
 			case 6:
 				system("cls");
-				tmp.countWords();
+				for (int i = 0; i < tmp.count; i++) {
+					result=tmp.countWords(i);
+					if (result == true) {
+						tmp.print(i);
+					}
+				}
+				
+				
 				break;
 			case 0:
 

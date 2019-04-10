@@ -21,6 +21,6 @@ public:
 	void setAll(int index, int num, int cos, int pup, int emp, string p);
 	void printToFile(int index);
 	void clearFile(string fname);
-	void regexCheck(string str);
-	void countWords();
+	int regexCheck(string str);
+	bool countWords(int index);
 };
