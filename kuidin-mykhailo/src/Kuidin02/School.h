@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
@@ -18,30 +17,10 @@ private:
 	char *name;
 public:
 
-	School() {
-		number = 0;
-		pupils = 0;
-		cost = 0;
-		employers = 0;
-		strcpy(name, 0);
-	}
-	
-
-	School(int num, int cos, int pup, int emp, char *p) {
-		number = num;
-		cost = cos;
-		pupils = pup;
-		employers = emp;
-		strcpy(name, p);
-	}
-	School(const School &obj){
-		number = obj.number;
-		cost = obj.cost;
-		pupils = obj.pupils;
-		employers = obj.employers;
-		strcpy(name, obj.name);
-	}
-	
+	School();
+	School(int num, int cos, int pup, int emp, char *p);
+	School(const School &obj);
+	~School();
 	int getNumber();
 	int getCost();
 	int getPupils();
@@ -52,6 +31,5 @@ public:
 	void setNumber(int n);
 	void setEmployers(int d);
 	void setName(char *p);
-	void deleteName();
 };
 

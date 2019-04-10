@@ -13,10 +13,13 @@ int main() {
 	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
 	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
-	
+	_CrtDumpMemoryLeaks();
+
 	system("pause");
 
-	return _CrtDumpMemoryLeaks();
+	return 0;
+
+
 
 }
 

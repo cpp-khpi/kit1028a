@@ -10,7 +10,8 @@ void InfoStorge::delElem(int index) {
 	int edit = 0;
 	char ptr[20];
 
-	School *deltmp = (School*)operator new(sizeof(School)*(count-1));
+	School *deltmp = new School[count - 1];
+
 	int j = 0;
 	for (int i = 0; i < index; i++) {
 		edit = s[i].getCost();
@@ -23,7 +24,7 @@ void InfoStorge::delElem(int index) {
 		deltmp[j].setEmployers(edit);
 		s[i].getName(ptr);
 		deltmp[j].setName(ptr);
-		s[i].deleteName();
+		
 		j++;
 		
 	}
@@ -39,19 +40,19 @@ void InfoStorge::delElem(int index) {
 		deltmp[j].setEmployers(edit);
 		s[i].getName(ptr);
 		deltmp[j].setName(ptr);
-		s[i].deleteName();
+	
 		j++;
 
 	}
 	count--;
-	s[index].deleteName();
+	
 	delete[] s;
 	s = deltmp;
 }
 
 void InfoStorge::print(int i) {
 			
-	char *name_ = (char*) operator new (sizeof(char) * 20);
+	char *name_ = new char[20];
 	s[i].getName(name_);
 	cout << "Number of school: " << s[i].getNumber();
 	printf("\nType:%s", name_);
@@ -65,7 +66,7 @@ void InfoStorge::addObject(int index, int num, int cos, int pup, int emp, char *
 	
 
 	int j = 0;
-	School *tmp = (School*) operator new (sizeof(School)*(count+1));
+	School *tmp = new School[count+1];
 	
 	
 	for (int i = 0; i < index; i++) {
@@ -79,9 +80,7 @@ void InfoStorge::addObject(int index, int num, int cos, int pup, int emp, char *
 		tmp[j].setEmployers(edit);
 		s[i].getName(ptr);
 		tmp[j].setName(ptr);
-		//tmp[j] = s[index];
-		// доделать передачу полей между обњектами
-		s[i].deleteName();
+		
 		j++;
 	}
 	tmp[index].setCost(cos);
@@ -101,7 +100,7 @@ void InfoStorge::addObject(int index, int num, int cos, int pup, int emp, char *
 		tmp[j].setEmployers(edit);
 		s[i].getName(ptr);
 		tmp[j].setName(ptr);
-		s[i].deleteName();
+		
 		j++;
 	}
 	count++;
@@ -111,8 +110,7 @@ void InfoStorge::addObject(int index, int num, int cos, int pup, int emp, char *
 }
 
 void InfoStorge::createObjects() {
-
-	s = (School *)operator new(sizeof(School) * count);
+	s = new School[count];
 
 	for (int i = 0; i < count; i++) {
 		char p[25];
@@ -151,10 +149,7 @@ void InfoStorge::printall() {
 }
 
 void InfoStorge::deleteall() {
-	
-	for (int i = 0; i < count; i++) {
-		s[i].deleteName();
-	}
+
 	delete[] s;
 }
 

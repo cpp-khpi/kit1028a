@@ -43,7 +43,26 @@ void School::getName(char *ptr) {
 	strcpy(ptr,name);
 }
 
-void School::deleteName() {
-	delete[] name;
+School::School() : number(0), pupils(0), cost(0), employers(0), name(NULL) {
+	
 }
 
+School::School(int num, int cos, int pup, int emp, char *p) {
+	number = num;
+	cost = cos;
+	pupils = pup;
+	employers = emp;
+	strcpy(name, p);
+}
+
+School::School(const School &obj) {
+	number = obj.number;
+	cost = obj.cost;
+	pupils = obj.pupils;
+	employers = obj.employers;
+	strcpy(name, obj.name);
+}
+
+School::~School() {
+	delete[] name;
+}
