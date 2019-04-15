@@ -9,7 +9,6 @@
 #pragma once
 
 #include <iostream>
-//#include <cstring>
 #include <string>
 #include <sstream>
 #include <fstream>
@@ -22,6 +21,8 @@ using std::string;
 using std::stringstream;
 using std::getline;
 using std::ifstream;
+using std::ofstream;
+using std::ios_base;
 
 /** 
 * Опис класу Phone з його полями та методами.
@@ -110,9 +111,16 @@ public:
 
 	/**
 	* Конвертування інформації про поточний об'єкт у рядок.
-	* @return 
+	* @return рядок з інформацією про поточний об'єкт.
 	*/
-	string convertPhone() const;
+	string phoneToString() const;
+
+	/**
+	* Заповнення полів поточного об'єкту із
+	* інформації, яка міститься у рядку.
+	* @param phoneString - вихідний рядок з інформацією про об'єкт.
+	*/
+	void stringToPhone(string);
 
 	/**
 	* Зчитування поля Phone::title.

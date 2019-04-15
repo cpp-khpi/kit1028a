@@ -8,18 +8,20 @@ int main()
 		cout << "Hello! Welcome to Lab #2 programm!" << endl;
 
 		string fileName = "PhoneDatabaseFile.txt";
-		
 		PhoneDatabase comfyShop;
-		comfyShop.removePhone(0);
+		comfyShop.readFromFile(fileName);
 
 		Phone changeablePhone;
 
-		comfyShop.readFromFile(fileName);
-
 		char choice = 0;
-		cout << endl << endl << "Database with phone datas is created." << endl;
+		cout << endl << "Database with phone datas is read from " << fileName << endl;
+
+		cout << "Press ENTER to continue.";
+		cin.get();
+
 		while (choice != '0') {
-			cout << endl << endl << "Choose, what do you want do?" << endl << endl;
+			system("cls");
+			cout << "Choose, what do you want do?" << endl << endl;
 			cout << "1 - Add new data." << endl;
 			cout << "2 - Delete phone data by index." << endl;
 			cout << "3 - Get phone by index." << endl;
@@ -40,38 +42,64 @@ int main()
 			case '1': {
 				comfyShop.readFromConsole(changeablePhone);
 				comfyShop.addPhone(changeablePhone);
-				cout << "Done! New element was added!" << endl;
+				cout << endl << "Done! New element was added!" << endl;
+
+				cout << endl << "Press ENTER to continue.";
+				cin.get();
+				cin.get();
 				break;
 			}
 			case '2': {
 				index = comfyShop.inputIndex();
 				comfyShop.removePhone(index);
 				cout << "Done! Element with index " << index << " was removed!" << endl;
+
+				cout << endl << "Press ENTER to continue.";
+				cin.get();
+				cin.get();
 				break;
 			}
 			case '3': {
 				index = comfyShop.inputIndex();
 				changeablePhone = comfyShop.getPhone(index);
-				cout << endl << endl << "Phone with index: " << index << endl << endl;
-				//changeablePhone.printPhone();
+				cout << endl << "Phone with index: " << index << endl << endl;
+				cout << changeablePhone.phoneToString() << endl;
+
+				cout << endl << "Press ENTER to continue.";
+				cin.get();
+				cin.get();
 				break;
 			}
 			case '4': {
 				comfyShop.showAll();
+
+				cout << endl << "Press ENTER to continue.";
+				cin.get();
+				cin.get();
 				break;
 			}
 			case '5': {
 				cout << "Current size of Phone array: " << comfyShop.getSize() << endl;
+
+				cout << endl  << "Press ENTER to continue.";
+				cin.get();
+				cin.get();
 				break;
 			}
 			case '6': {
 				changeablePhone = comfyShop.getSmallestResolutPhone();
 				cout << endl << endl << "Phone with the smallest resulotion:" << endl << endl;
-				//changeablePhone.printPhone();
+				cout << changeablePhone.phoneToString() << endl;
+
+				cout << endl << "Press ENTER to continue.";
+				cin.get();
+				cin.get();
 				break;
 			}
 			}
 		}
+
+		comfyShop.writeToFile(fileName);
 	}
 
 	cout << "Press ENTER to exit.";

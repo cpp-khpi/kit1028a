@@ -1,9 +1,6 @@
 #include "Phone.h"
 
-Phone::Phone() : title("Nokia 3310"), price(1000), simCardsNumber(1), resolution(4032), capacity(900)
-{
-	cout << "Default constructor! Phone" << endl;
-}
+Phone::Phone() : title("Nokia 3310"), price(1000), simCardsNumber(1), resolution(4032), capacity(900) {}
 
 Phone::Phone(string newTitle, unsigned int newPrice, unsigned int newSimNum,
 	unsigned int newResolution, unsigned int newCapacity) :
@@ -12,9 +9,7 @@ Phone::Phone(string newTitle, unsigned int newPrice, unsigned int newSimNum,
 	simCardsNumber(newSimNum),
 	resolution(newResolution),
 	capacity(newCapacity)
-{
-	cout << "Constructor with param. Phone" << endl;
-}
+{}
 
 Phone::Phone(const Phone & copiedPhone) : 
 	title(copiedPhone.title),
@@ -22,9 +17,7 @@ Phone::Phone(const Phone & copiedPhone) :
 	simCardsNumber(copiedPhone.simCardsNumber),
 	resolution(copiedPhone.resolution),
 	capacity(copiedPhone.capacity)
-{
-	cout << "Copy constructor. Phone" << endl;
-}
+{}
 
 Phone::~Phone() { }
 
@@ -32,8 +25,6 @@ Phone& Phone::operator= (const Phone & copiedPhone)
 {
 	if (this == &copiedPhone) {
 		return *this;
-
-		cout << "Self assignment!" << endl;
 	}
 
 	title = copiedPhone.title;
@@ -41,8 +32,6 @@ Phone& Phone::operator= (const Phone & copiedPhone)
 	simCardsNumber = copiedPhone.simCardsNumber;
 	resolution = copiedPhone.resolution;
 	capacity = copiedPhone.capacity;
-
-	cout << "Assignment" << endl;
 
 	return *this;
 }
@@ -76,21 +65,41 @@ void Phone::setPhoneInfo(string newTitle, unsigned int newPrice, unsigned int ne
 	capacity = newCapacity;
 }
 
-string Phone::convertPhone() const
+string Phone::phoneToString() const
 {
 	stringstream phoneStream;
 	string phoneString;
 
-	phoneStream << "Phone title: " << title << " | ";
-	phoneStream << "Cost, UAN: " << price << " | ";
-	phoneStream << "Number of SIM-cards: " << simCardsNumber << " | ";
-	phoneStream << "Screen resolution, pixeles: " << resolution << " | ";
-	phoneStream << "Batery capacity, mAh: " << capacity << " |";
+	phoneStream << title << " | ";
+	phoneStream << price << " | ";
+	phoneStream << simCardsNumber << " | ";
+	phoneStream << resolution << " | ";
+	phoneStream << capacity;
 
 	getline(phoneStream, phoneString);
-	phoneStream.str("");
 
 	return phoneString;
+}
+
+void Phone::stringToPhone(string phoneString)
+{
+	stringstream phoneStream;
+	phoneStream << phoneString;
+
+	getline(phoneStream, title, '|');
+	title.erase(title.end()-1);
+	phoneStream.seekg(2, ios_base::cur);
+
+	phoneStream >> price;
+	phoneStream.seekg(2, ios_base::cur);
+
+	phoneStream >> simCardsNumber;
+	phoneStream.seekg(2, ios_base::cur);
+
+	phoneStream >> resolution;
+	phoneStream.seekg(2, ios_base::cur);
+
+	phoneStream >> capacity;
 }
 
 string Phone::getTitle() const { return title; }

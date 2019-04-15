@@ -4,7 +4,7 @@ int PhoneDatabase::getSize() const { return size; }
 
 Phone* PhoneDatabase::getPhoneArray() const { return phoneArray; }
 
-PhoneDatabase::PhoneDatabase() : size(1)
+PhoneDatabase::PhoneDatabase() : size(0)
 {
 	phoneArray = new Phone[size];
 }
@@ -104,13 +104,37 @@ void PhoneDatabase::readFromFile(string fileName)
 		return;
 	}
 
-	string phoneString;
-	getline(fin, phoneString);
+	delete[] phoneArray;
 
-	char * pch;
-	for (int i = 0; i < 5; i++) {
-		
+	phoneArray = new Phone[0];
+	size = 0;
+
+	Phone newPhone;
+	string phoneString;
+
+	while (!fin.eof()) {
+		getline(fin, phoneString);
+		newPhone.stringToPhone(phoneString);
+		addPhone(newPhone);
 	}
+
+	fin.close(); //Need I do this?
+}
+
+void PhoneDatabase::writeToFile(string fileName)
+{
+	ofstream fout(fileName);
+
+	if (!fout) {
+		cout << "Error! File didn't open!" << endl;
+		return;
+	}
+
+	for (int i = 0; i < size; i++) {
+		fout << phoneArray[i].phoneToString() << endl;
+	}
+
+	fout.close();
 }
 
 void PhoneDatabase::addPhone(Phone & addedPhone)
@@ -203,8 +227,8 @@ void PhoneDatabase::showAll() const
 	}
 
 	for (int i = 0; i < size; i++) {
-		cout << endl << endl << "Phone with index: " << i << endl << endl;
-		//phoneArray[i].printPhone();
+		cout << endl << "Phone with index: " << i << endl << endl;
+		cout << phoneArray[i].phoneToString() << endl;
 	}
 }
 

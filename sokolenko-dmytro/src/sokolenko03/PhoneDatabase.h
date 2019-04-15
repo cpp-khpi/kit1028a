@@ -99,9 +99,16 @@ public:
 	void readFromConsole(Phone &) const;
 
 	/**
-	* Зчитування з файлу інформації про об'єкт.
+	* Зчитування з файлу інформації про масив об'єктів.
+	* @param fileName - рядок з назвою файлу.
 	*/
 	void readFromFile(string);
+
+	/**
+	* Запис у файл інформації з масиву PhoneDatabase::phoneArray.
+	* @param fileName - рядок з назвою файлу.
+	*/
+	void writeToFile(string);
 
 	/**
 	* Додавання об'єкту класу Phone у
