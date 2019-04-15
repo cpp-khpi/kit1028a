@@ -68,14 +68,22 @@ void Array::removeProgram(int ind) {
 void Array::showAll() {
 	if (size == 0) {
 		cout << "Array is empty" << endl;
-		system("pause");
 		return;
 	}
-
-	stringstream showObj;
+	workingProgram obj;
+	string showObj;
 	for (int i = 0; i < size; i++) {
-		stringstream showObj = mas[i].print();
-		cout << showObj.str() << endl;
+		showObj = mas[i].print();
+		obj.setObj(showObj);
+		
+		cout << "Name of program: " << obj.getName() << endl;
+		cout << "Publisher: " << obj.getPublisher() << endl;
+		cout << "Amount of consumed RAM(Mb): " << obj.getOpMemoryMb() << endl;
+		cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
+		cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
+		cout << endl;
+		obj.setName("");
+		obj.setPublisher("");
 	}
 }
 
@@ -85,7 +93,17 @@ void Array::getProgram(int ind) {
 		system("pause");
 		return;
 	}
-	mas[ind - 1].print();
+	string showObj;
+	workingProgram obj;
+
+	showObj = mas[ind-1].print();
+	obj.setObj(showObj);
+
+	cout << "Name of program: " << obj.getName() << endl;
+	cout << "Publisher: " << obj.getPublisher() << endl;
+	cout << "Amount of consumed RAM(Mb): " << obj.getOpMemoryMb() << endl;
+	cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
+	cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
 }
 
 void Array::nameSearch(string n) {
@@ -96,11 +114,20 @@ void Array::nameSearch(string n) {
 	}
 
 	string na;
-
+	string showObj;
+	workingProgram obj;
 	for (int i = 0; i < size; i++) {
 		na = mas[i].getName();
 		if (na == n) {
-			mas[i].print();
+
+			showObj = mas[i].print();
+			obj.setObj(showObj);
+
+			cout << "Name of program: " << obj.getName() << endl;
+			cout << "Publisher: " << obj.getPublisher() << endl;
+			cout << "Amount of consumed RAM(Mb): " << obj.getOpMemoryMb() << endl;
+			cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
+			cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
 		}
 	}
 }
@@ -123,11 +150,19 @@ void Array::findProgram(float memoryGB) {
 	}
 
 	float timeMemory = 0;
-
+	string showObj;
+	workingProgram obj;
 	for (int i = 0; i < size; i++) {
 		timeMemory = mas[i].getMemoryGb();
 		if (memoryGB < timeMemory) {
-			mas[i].print();
+			showObj = mas[i].print();
+			obj.setObj(showObj);
+
+			cout << "Name of program: " << obj.getName() << endl;
+			cout << "Publisher: " << obj.getPublisher() << endl;
+			cout << "Amount of consumed RAM(Mb): " << obj.getOpMemoryMb() << endl;
+			cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
+			cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
 		}
 	}
 
@@ -166,15 +201,15 @@ void Array::setInfoObj(string &info) {
 	
 	cout << "Enter amount of consumed RAM(Mb):" << endl;
 	cin >> om;
-	infoObj << om << "|";
+	infoObj << om << " ";
 	
 	cout << "Enter ocupied amount of hard disk memory(Gg):" << endl;
 	cin >> mg;
-	infoObj << mg << "|";
+	infoObj << mg << " ";
 
 	cout << "Enter time of work (in minutes):" << endl;
 	cin >> twm;
-	infoObj << twm << "|";
+	infoObj << twm << " ";
 
 	getline(infoObj, info);
 }
@@ -194,13 +229,13 @@ void Array::readFromFile(ifstream &objects, string &info, string &n) {
 	infoObj << p << "|";
 
 	objects >> om;
-	infoObj << om << "|";
+	infoObj << om << " ";
 
 	objects >> mg;
-	infoObj << mg << "|";
+	infoObj << mg << " ";
 
 	objects >> twm;
-	infoObj << twm << "|";
+	infoObj << twm << " ";
 
 	getline(objects, n);
 	getline(infoObj, info);

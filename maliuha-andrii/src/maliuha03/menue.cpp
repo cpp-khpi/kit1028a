@@ -85,9 +85,6 @@ void menu() {
 
 				newObj.setName("");
 				newObj.setPublisher("");
-				newObj.setOpMemoryMb(0);
-				newObj.setMemoryGb(0);
-				newObj.setTimeWorkMin(0);
 
 				sizeMas = ops.getSize();
 				system("cls");
@@ -153,9 +150,6 @@ void menu() {
 
 				newObj.setName("");
 				newObj.setPublisher("");
-				newObj.setOpMemoryMb(0);
-				newObj.setMemoryGb(0);
-				newObj.setTimeWorkMin(0);
 				info = "";
 				sizeMas = ops.getSize();
 			}

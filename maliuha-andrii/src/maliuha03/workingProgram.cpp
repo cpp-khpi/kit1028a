@@ -46,58 +46,25 @@ float workingProgram::getTimeWorkMin() {
 workingProgram::workingProgram() : name(""), publisher(""), opMemoryMb(0), memoryGb(0), timeWorkMin(0) {
 }
 
-stringstream workingProgram::print() {
+string workingProgram::print() {
 	stringstream lineObj;
-	lineObj << "Name of program: " << name << "\n";
-	lineObj << "Publisher: " << publisher << "\n";
-	lineObj << "Amount of consumed RAM(Mb): " << opMemoryMb << "\n";
-	lineObj << "Ocupied amount of hard disk memory(Gb): " << memoryGb << "\n";
-	lineObj << "Time of work (in minutes): " << timeWorkMin << "\n";
-	return lineObj;
+	lineObj << name << "|";
+	lineObj << publisher << "|";
+	lineObj << opMemoryMb << " ";
+	lineObj << memoryGb << " ";
+	lineObj << timeWorkMin << " ";
+	string infoObj;
+	getline(lineObj, infoObj);
+	return infoObj;
 }
 
 void workingProgram::setObj(string &info) {
 	stringstream timeLine;
 
-
-	int i = 0;
-	while (info[i] != '|') {
-		name += info[i];
-		i++;
-	}
-	i++;
-
-	while (info[i] != '|') {
-		publisher += info[i];
-		i++;
-	}
-	i++;
-
-	while (info[i] != '|') {
-		timeLine << info[i];
-		i++;
-	}
-	i++;
-
+	timeLine << info;
+	getline(timeLine, name, '|');
+	getline(timeLine, publisher, '|');
 	timeLine >> opMemoryMb;
-	timeLine.str("");
-	timeLine.clear();
-
-
-	while (info[i] != '|') {
-		timeLine << info[i];
-		i++;
-	}
-	i++;
-
 	timeLine >> memoryGb;
-	timeLine.str("");
-	timeLine.clear();
-
-	while (info[i] != '|') {
-		timeLine << info[i];
-		i++;
-	}
 	timeLine >> timeWorkMin;
-	timeLine.str("");
 }
