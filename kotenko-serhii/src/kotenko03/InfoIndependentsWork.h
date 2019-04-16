@@ -14,6 +14,7 @@ private:
 public:
 	InfoIndependentsWork();
 	InfoIndependentsWork(const InfoIndependentsWork &obj);
+	InfoIndependentsWork(int amount, int written, int mark, std::string surname);
 	int getAmount();
 	int getWritten();
 	int getMark();

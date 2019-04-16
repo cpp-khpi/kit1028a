@@ -2,7 +2,7 @@
  * @ mainpage
  * @ author - Kotenko Sergey
  * @ date - 24.03.19
- * @ version - 2.0
+ * @ version - 3.0
  */
 
 #include "InfoIndependentsWork.h"
@@ -98,6 +98,6 @@ int main() {
 	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
 	_CrtDumpMemoryLeaks();
-
+	system("pause");
 	return _CrtDumpMemoryLeaks();
 }

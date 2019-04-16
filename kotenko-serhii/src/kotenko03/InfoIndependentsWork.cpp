@@ -4,6 +4,8 @@ InfoIndependentsWork::InfoIndependentsWork():amount(0), written(0), mark(0) {
 }
 InfoIndependentsWork::InfoIndependentsWork(const InfoIndependentsWork &obj) : amount(obj.amount), written(obj.written), mark(obj.mark) {
 }
+InfoIndependentsWork::InfoIndependentsWork(int amount, int written, int mark, std::string surname) : amount(amount), written(written), mark(mark), surname(surname) {
+}
 int InfoIndependentsWork::getAmount() {
 	return InfoIndependentsWork::amount;
 }
