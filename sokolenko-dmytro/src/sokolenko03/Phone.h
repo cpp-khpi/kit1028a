@@ -23,6 +23,7 @@ using std::getline;
 using std::ifstream;
 using std::ofstream;
 using std::ios_base;
+using std::to_string;
 
 /** 
 * Опис класу Phone з його полями та методами.

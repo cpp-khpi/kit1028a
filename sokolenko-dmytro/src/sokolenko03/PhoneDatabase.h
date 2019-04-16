@@ -70,13 +70,14 @@ public:
 	void setPhoneDatabaseInfo(int, Phone *);
 
 	/**
-	* Метод порівняння двох масивів об'єктів класу Phone.
-	* @param firstPhoneArr - вказівник на перший порівнюваний масив.
-	* @param secondPhoneArr - вказівник на другий порівнюваний масив.
+	* Метод порівняння окремого масиву об'єктів класу Phone і масиву,
+	* що є полем об'єкта класу PhoneDatabase.
+	* @param otherPhoneArr - вказівник на порівнюваний масив.
+	* @param otherSize - розмір масиву.
 	* @return статус вказівників на масива об'єктів
 	* класу Phone: рівні чи ні.
 	*/
-	bool comparisonPhoneArray(const Phone*, const Phone*, int, int) const;
+	bool comparisonPhoneArray(const Phone*, int) const;
 
 	/**
 	* Зчитування поля PhoneDatabase::size.
@@ -88,7 +89,7 @@ public:
 	* Зчитування поля PhoneDatabase::phoneArray.
 	* @return поточне значення поля PhoneDatabase::phoneArray.
 	*/
-	Phone * getPhoneArray() const;
+	const Phone * getPhoneArray() const;
 
 	/**
 	* Зчитування з консолі інформації та її запис

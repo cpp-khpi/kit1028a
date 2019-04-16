@@ -2,7 +2,7 @@
 
 int PhoneDatabase::getSize() const { return size; }
 
-Phone* PhoneDatabase::getPhoneArray() const { return phoneArray; }
+const Phone* PhoneDatabase::getPhoneArray() const { return phoneArray; }
 
 PhoneDatabase::PhoneDatabase() : size(0)
 {
@@ -46,15 +46,14 @@ void PhoneDatabase::setPhoneDatabaseInfo(int newSize, Phone * newPhoneArray)
 		phoneArray[i] = newPhoneArray[i];
 }
 
-bool PhoneDatabase::comparisonPhoneArray(const Phone* phoneArray1, const Phone* phoneArray2,
-	int size1, int size2) const
+bool PhoneDatabase::comparisonPhoneArray(const Phone* otherPhoneArr, int otherSize) const
 {
-	if (size1 != size2) {
+	if (size != otherSize) {
 		return false;
 	}
 
-	for (int i = 0; i < size1; i++) {
-		if (phoneArray1[i] != phoneArray2[i]) {
+	for (int i = 0; i < size; i++) {
+		if (phoneArray[i] != otherPhoneArr[i]) {
 			return false;
 		}
 	}
@@ -196,7 +195,7 @@ void PhoneDatabase::removePhone(const int index)
 		return;
 	}
 
-	Phone * newArr = new Phone[size + 1];
+	Phone * newArr = new Phone[size - 1];
 	for (int i = 0; i < index; i++) {
 		newArr[i] = phoneArray[i];
 	}

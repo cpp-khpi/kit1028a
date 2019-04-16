@@ -100,6 +100,7 @@ int main()
 		}
 
 		comfyShop.writeToFile(fileName);
+		cout << "All data was written to " << fileName << endl << endl;
 	}
 
 	cout << "Press ENTER to exit.";
