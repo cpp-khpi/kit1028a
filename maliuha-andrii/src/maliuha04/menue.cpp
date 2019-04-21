@@ -28,6 +28,7 @@ void menu() {
 		cout << "(7)to delete suspicious programs from array" << endl;
 		cout << "(8)to read inforamtion of objects from file" << endl;
 		cout << "(9)to write array to file" << endl;
+		cout << "(10)output objects from array with one word in name" << endl;
 		cin >> num;
 		system("cls");
 
@@ -163,6 +164,11 @@ void menu() {
 			break;
 		case 9:
 			ops.writeToFile();
+			break;
+		case 10:
+			ops.sortOutput();
+			system("pause");
+			system("cls");
 			break;
 		case 0:
 			ops.delMas();

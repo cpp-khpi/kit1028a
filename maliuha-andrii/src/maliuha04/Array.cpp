@@ -241,9 +241,9 @@ void Array::writeToFile() {
 }
 
 bool Array::inputCheck(string str) {
-	regex regular("^[A-Z][\\w ,.!?{ 2, }]");
-
-	if (!regex_search(str, regular)) {
+	regex regular("^[A-Z][a-z][A-Za-z ,.]*");
+	regex regular2(" {2,}");
+	if (!regex_match(str, regular) || regex_search(str, regular2)) {
 		cout << "This line does not meet the requirements: " << endl;
 		cout << str << endl;
 		return false;
@@ -253,3 +253,22 @@ bool Array::inputCheck(string str) {
 	}
 }
 
+void Array::sortOutput() {
+	regex regular("[A-Za-z]*");
+	WorkingProgram obj;
+	string object;
+	for (int i = 0; i < size; i++) {
+		if (regex_match(mas[i].getName(), regular)) {
+			object = mas[i].print();
+			obj.setObj(object);
+			cout << "Name of program: " << obj.getName() << endl;
+			cout << "Publisher: " << obj.getPublisher() << endl;
+			cout << "Amount of consumed RAM(Mb): " << obj.getOpMemoryMb() << endl;
+			cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
+			cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
+			cout << endl;
+			obj.setName("");
+			obj.setPublisher("");
+		}
+	}
+}
