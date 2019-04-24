@@ -8,7 +8,32 @@
 #include <iostream>
 #include "InfoWork.h"
 #include "StudentsWork.h"
-#define N 2;
+#define N 5
+
+int aggreg() {
+	string tmp;
+	InfoWork *arr = new InfoWork[N];
+
+	for (int i = 0; i < N; i++) {
+		cin >> tmp;
+		arr[i].set(tmp);
+	}
+
+	{
+		StudentsWork qual(arr, N);
+		qual.setSize(N);
+		qual.printArr();
+
+	}
+
+	for (int i = 0; i < N; i++) {
+		cout << arr[i].getName() << "\t";
+	}
+
+	delete[] arr;
+	return 0;
+}
+
 
 bool comp(int a, int b) {
 	return a < b;
@@ -201,6 +226,8 @@ int main() {
 	}
 
 	qualWork.delArr();
+
+	aggreg();
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);

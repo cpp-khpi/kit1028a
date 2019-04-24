@@ -9,9 +9,10 @@ using std::ifstream;
 class StudentsWork {
 private:
 	size_t size;
-	InfoW *qual;
+	InfoWork *qual;
 public:
 	StudentsWork() :size(0) {};
+	StudentsWork(InfoWork *arr,int x) :qual(arr),size(x) {};
 	void sortName();
 	void setSize(int size);
 	void createArr(string* name);
