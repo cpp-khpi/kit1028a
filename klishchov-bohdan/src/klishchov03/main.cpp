@@ -5,15 +5,14 @@
 */
 #include"Country.h"
 #include"CountryArr.h"
-
+#include <regex>
 
 int main() {
 
 	CountryArr *country = new CountryArr();
 	Country *Max = new Country();
 	
-	int id = 1;
-	country->getSize(id); //set size!!!
+	country->setSize(1);
 	
 	std::ifstream fin("data.txt");
 
@@ -29,10 +28,13 @@ int main() {
 	country->newArray(name);
 	fin >> population >> area >> revenue >> name;
 	country->addElem(population, area, revenue, name);
+	
 	fin >> population >> area >> revenue >> name;
 	country->addElem(population, area, revenue, name);
+	
 	fin >> population >> area >> revenue >> name;
 	country->addElem(population, area, revenue, name);
+	
 	country->deleteElem(0);
 	country->getByIndex(1);
 	country->print();
@@ -44,7 +46,7 @@ int main() {
 	
 	delete Max;
 	delete country;
-	
+
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
 	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
@@ -53,8 +55,5 @@ int main() {
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
 	
 	_CrtDumpMemoryLeaks();
-
-	//getchar();
-
 	return 0;
 }

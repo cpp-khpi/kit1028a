@@ -3,7 +3,9 @@
 #include <ctime>
 #include <string>
 #include <fstream>
+#include <cstddef>
 
+#define _CRTDBG_MAP_ALLOC
 
 class Country {
 private:

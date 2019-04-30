@@ -5,7 +5,7 @@ private:
 	int size;
 	Country *arr;
 public:
-	void getSize(int size);
+	void setSize(int size);
 	void newArray(std::string name);
 	void print();
 	void addElem(int population, int area, int revenue, std::string s);
