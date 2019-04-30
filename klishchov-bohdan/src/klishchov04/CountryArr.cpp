@@ -1,5 +1,5 @@
 #include"CountryArr.h"
-void CountryArr::getSize(int size) {
+void CountryArr::setSize(int size) {
 	CountryArr::size = size;
 }
 void CountryArr::newArray(std::string name) {
@@ -24,51 +24,36 @@ void CountryArr::print() {
 	fout.close();
 }
 void CountryArr::addElem(int population, int area, int revenue, std::string name) {
-
+	size++;
 	Country *temp = new Country[size];
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size - 1; i++) {
 		temp[i] = CountryArr::arr[i];
 	}
-
+	temp[size].setData(population, area, revenue, name);
 	delete[] arr;
-
-	CountryArr::arr = new Country[size + 1];
-
-	for (int i = 0; i < size; i++) {
-		CountryArr::arr[i] = temp[i];
-	}
-
-	delete[] temp;
-
-	CountryArr::arr[size].setData(population, area, revenue, name);
-
-	size++;
+	arr = temp;
+	delete[]temp;
 }
 void CountryArr::deleteElem(int index) {
-	Country* temp = new Country[size - 1];
-	
-	for (int i = 0, j = 0; j < size; i++, j++)
-	{
-		if (j == index)
-		{
-			j++;
-		}
-		temp[i] = CountryArr::arr[j];
-	}
-
-	delete[] CountryArr::arr;
-
-	CountryArr::arr = new Country[size - 1];
-
-	for (int i = 0; i < size - 1; i++)
-	{
-		CountryArr::arr[i] = temp[i];
-	}
-
-	delete[] temp;
-
 	size--;
+	Country* temp = new Country[size];
+	int j = 0;
+	for (int i = 0; j < size - 1; i++)
+	{
+		temp[i] = CountryArr::arr[j];
+		j++;
+	}
+	j++;
+
+	for (int i = index - 1; i < size; i++)
+	{
+	temp[i] = CountryArr::arr[i];
+	j++;
+	}
+	delete[] arr;
+	arr = temp;
+	delete[]temp;
 }
 void CountryArr::getByIndex(int index) {
 	std::ofstream fout("resultID.txt");
@@ -77,17 +62,13 @@ void CountryArr::getByIndex(int index) {
 		return;
 	}
 
-	int population = arr[index].getPopulation();
-	int area = arr[index].getArea();
-	int revenue = arr[index].getRevenue();
-	std::string name = arr[index].getName();
 
 	fout << std::endl;
 	fout << std::endl;
-	fout << "The name of country: " << name << std::endl;
-	fout << "Population: " << population << std::endl;
-	fout << "Area: " << area << std::endl;
-	fout << "Revenue: " << revenue << std::endl << std::endl;
+	fout << "The name of country: " << arr[index - 1].getName() << std::endl;
+	fout << "Population: " << arr[index - 1].getPopulation() << std::endl;
+	fout << "Area: " << arr[index - 1].getArea() << std::endl;
+	fout << "Revenue: " << arr[index - 1].getRevenue() << std::endl << std::endl;
 	fout.close();
 }
 

@@ -12,8 +12,7 @@ int main() {
 	CountryArr *country = new CountryArr();
 	Country *Max = new Country();
 	
-	int id = 1;
-	country->getSize(id); //set size!!!
+	country->setSize(1);
 	
 	std::ifstream fin("data.txt");
 
