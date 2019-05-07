@@ -21,27 +21,57 @@ private:
 	/** Об'єкт тестованого класу. */
 	PhoneDatabase phoneDatabase;
 
-	/** Метод тестування функції PhoneDatabase::addPhone.
+	/** 
+	* Метод тестування функції PhoneDatabase::addPhone.
 	* @return статус працездатності функції PhoneDatabase::addPhone.
 	*/
 	bool testAddPhone();
 
-	/** Метод тестування функції PhoneDatabase::removePhone.
+	/**
+	* Метод тестування функції PhoneDatabase::removePhone() при
+	* видаленні елементу з кінця.
+	* @return статус працездатності  функції PhoneDatabase::removePhone() при
+	* видаленні елементу з кінця.
+	*/
+	bool isRemoveFromEnd();
+
+	/**
+	* Метод тестування функції PhoneDatabase::removePhone() при
+	* видаленні елементу з початку.
+	* @return статус працездатності  функції PhoneDatabase::removePhone() при
+	* видаленні елементу з початку.
+	*/
+	bool isRemoveFromBegin();
+
+	/**
+	* Метод тестування функції PhoneDatabase::removePhone() при
+	* видаленні єдиного елементу.
+	* @return статус працездатності  функції PhoneDatabase::removePhone() при
+	* видаленні єдиного елементу.
+	*/
+	bool isSingleRemove();
+
+
+	/** 
+	* Метод тестування функції PhoneDatabase::removePhone.
 	* @return статус працездатності функції PhoneDatabase::removePhone.
 	*/
 	bool testRemovePhone();
 
-	/** Метод тестування функції PhoneDatabase::getPhone.
+	/** 
+	* Метод тестування функції PhoneDatabase::getPhone.
 	* @return статус працездатності функції PhoneDatabase::getPhone.
 	*/
 	bool testGetPhone();
 
-	/** Метод тестування функції PhoneDatabase::getSmallestResolutPhone.
+	/** 
+	* Метод тестування функції PhoneDatabase::getSmallestResolutPhone.
 	* @return статус працездатності функції PhoneDatabase::getSmallestResolutPhone.
 	*/
 	bool testGetSmallestResolutPhone();
 public:
-	/** Метод виклику усіх функцій класу TestPhoneDatabase.
+	/** 
+	* Метод виклику усіх функцій класу TestPhoneDatabase.
 	* @return статус працездатності усіх функцій класу PhoneDatabase.
 	*/
 	bool testAll();

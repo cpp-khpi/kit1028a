@@ -40,17 +40,10 @@ bool TestPhoneDatabase::testAddPhone()
 	return result;
 }
 
-bool TestPhoneDatabase::testRemovePhone()
+bool TestPhoneDatabase::isRemoveFromEnd()
 {
-	int expectedSize;
-	Phone * expectedPhoneArray;
-	int testSize;
-	Phone * testPhoneArray;
-
-	/* Last item removal test. */
-
-	expectedSize = 2;
-	expectedPhoneArray = new Phone[expectedSize];
+	int expectedSize = 2;
+	Phone * expectedPhoneArray = new Phone[expectedSize];
 
 	string titleStr;
 	for (int i = 0; i < expectedSize; i++) {
@@ -58,8 +51,8 @@ bool TestPhoneDatabase::testRemovePhone()
 		expectedPhoneArray[i].setPhoneInfo(titleStr, i, i, i, i);
 	}
 
-	testSize = expectedSize + 1;
-	testPhoneArray = new Phone[testSize];
+	int testSize = expectedSize + 1;
+	Phone * testPhoneArray = new Phone[testSize];
 
 	for (int i = 0; i < testSize; i++) {
 		titleStr = to_string(i);
@@ -71,26 +64,26 @@ bool TestPhoneDatabase::testRemovePhone()
 
 	phoneDatabase.removePhone(testSize - 1);
 
-	bool endRemove;
-	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, expectedSize))
-		endRemove = true;
-	else
-		endRemove = false;
+	bool endRemove = phoneDatabase.comparisonPhoneArray(expectedPhoneArray, expectedSize);
 
 	delete[] expectedPhoneArray;
 
-	/* First item removal test. */
+	return endRemove;
+}
 
-	expectedSize = 3;
-	expectedPhoneArray = new Phone[expectedSize];
+bool TestPhoneDatabase::isRemoveFromBegin()
+{
+	int expectedSize = 3;
+	Phone * expectedPhoneArray = new Phone[expectedSize];
 
+	string titleStr;
 	for (int i = 0; i < expectedSize; i++) {
 		titleStr = to_string(i + 1);
 		expectedPhoneArray[i].setPhoneInfo(titleStr, i + 1, i + 1, i + 1, i + 1);
 	}
 
-	testSize = expectedSize + 1;
-	testPhoneArray = new Phone[testSize];
+	int testSize = expectedSize + 1;
+	Phone * testPhoneArray = new Phone[testSize];
 
 	for (int i = 0; i < testSize; i++) {
 		titleStr = to_string(i);
@@ -102,26 +95,26 @@ bool TestPhoneDatabase::testRemovePhone()
 
 	phoneDatabase.removePhone(0);
 
-	bool beginRemove;
-	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, expectedSize))
-		beginRemove = true;
-	else
-		beginRemove = false;
+	bool beginRemove = phoneDatabase.comparisonPhoneArray(expectedPhoneArray, expectedSize);
 
 	delete[] expectedPhoneArray;
 
-	/* Single item removal test. */
+	return beginRemove;
+}
 
-	expectedSize = 0;
-	expectedPhoneArray = new Phone[expectedSize];
+bool TestPhoneDatabase::isSingleRemove()
+{
+	int expectedSize = 0;
+	Phone * expectedPhoneArray = new Phone[expectedSize];
 
+	string titleStr;
 	for (int i = 0; i < expectedSize; i++) {
 		titleStr = to_string(i);
 		expectedPhoneArray[i].setPhoneInfo(titleStr, i, i, i, i);
 	}
 
-	testSize = expectedSize + 1;
-	testPhoneArray = new Phone[testSize];
+	int testSize = expectedSize + 1;
+	Phone * testPhoneArray = new Phone[testSize];
 
 	for (int i = 0; i < testSize; i++) {
 		titleStr = to_string(i);
@@ -133,17 +126,16 @@ bool TestPhoneDatabase::testRemovePhone()
 
 	phoneDatabase.removePhone(0);
 
-	bool singleRemove;
-	if (phoneDatabase.comparisonPhoneArray(expectedPhoneArray, expectedSize))
-		singleRemove = true;
-	else
-		singleRemove = false;
+	bool singleRemove = phoneDatabase.comparisonPhoneArray(expectedPhoneArray, expectedSize);
 
 	delete[] expectedPhoneArray;
 
-	/* Final testing. */
+	return singleRemove;
+}
 
-	if (endRemove && beginRemove && singleRemove)
+bool TestPhoneDatabase::testRemovePhone()
+{
+	if (isRemoveFromEnd() && isRemoveFromBegin() && isSingleRemove())
 		return true;
 	else
 		return false;
@@ -198,8 +190,5 @@ bool TestPhoneDatabase::testGetSmallestResolutPhone()
 
 bool TestPhoneDatabase::testAll()
 {
-	if (testAddPhone() && testRemovePhone() && testGetPhone() && testGetSmallestResolutPhone())
-		return true;
-	else
-		return false;
+	return testAddPhone() && testRemovePhone() && testGetPhone() && testGetSmallestResolutPhone();
 }

@@ -1,4 +1,5 @@
 #include "TestPhoneDatabase.h"
+#include "TestPhone.h"
 
 int main()
 {
@@ -7,7 +8,13 @@ int main()
 		if (testPhoneDatabase.testAll())
 			cout << "Class PhoneDatabase has been tested successfully." << endl;
 		else
-			cout << "Class PhoneDatabase has NOT been tested successfully." << endl;
+			cout << "Class PhoneDatabase has been tested UNsuccessfully." << endl;
+
+		TestPhone testPhone;
+		if(testPhone.testAll())
+			cout << "Class Phone has been tested successfully." << endl;
+		else
+			cout << "Class Phone has been tested UNsuccessfully." << endl;
 	}
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);

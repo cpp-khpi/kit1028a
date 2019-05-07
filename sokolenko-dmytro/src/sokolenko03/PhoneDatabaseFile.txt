@@ -1,0 +1,3 @@
+Lenovo A2010 | 0 | 2 | 10000 | 2100
+Xiaomi RedmiS2 | 0 | 2 | 10000 | 2100
+TeslaPhone S | 0 | 2 | 10000 | 2100

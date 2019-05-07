@@ -81,23 +81,24 @@ string Phone::phoneToString() const
 	return phoneString;
 }
 
-void Phone::stringToPhone(string phoneString)
+void Phone::stringToPhone(const string phoneString)
 {
 	stringstream phoneStream;
 	phoneStream << phoneString;
+	const int moveCharCount = 2;
 
 	getline(phoneStream, title, '|');
-	title.erase(title.end()-1);
-	phoneStream.seekg(2, ios_base::cur);
+	title.erase(title.end() - 1);
+	phoneStream.ignore(moveCharCount);
 
 	phoneStream >> price;
-	phoneStream.seekg(2, ios_base::cur);
+	phoneStream.ignore(moveCharCount);
 
 	phoneStream >> simCardsNumber;
-	phoneStream.seekg(2, ios_base::cur);
+	phoneStream.ignore(moveCharCount);
 
 	phoneStream >> resolution;
-	phoneStream.seekg(2, ios_base::cur);
+	phoneStream.ignore(moveCharCount);
 
 	phoneStream >> capacity;
 }
