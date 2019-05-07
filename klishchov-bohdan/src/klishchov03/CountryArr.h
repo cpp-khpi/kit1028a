@@ -6,10 +6,10 @@ private:
 	Country *arr;
 public:
 	void setSize(int size);
-	void newArray(std::string name);
+	void newArray(std::string *name);
 	void print();
-	void addElem(int population, int area, int revenue, std::string s);
-	void deleteElem(int l);
+	void addEl(int population, int area, int revenue, std::string s);
+	void deleteEl(int l);
 	void getByIndex(int index);
 	void deleteArray();
 	Country maxPop();

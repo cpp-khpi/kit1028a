@@ -21,7 +21,7 @@ public:
 	int getArea();
 	int getRevenue();
 	std::string getName();
-	void setInfo(std::string s);
+	void getInfo(std::string s);
 	void setData(int population, int area, int revenue, std::string name);
 	~Country() {
 	}

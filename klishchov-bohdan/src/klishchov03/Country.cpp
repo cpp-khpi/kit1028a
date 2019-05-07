@@ -18,11 +18,11 @@ int Country::getRevenue() {
 std::string Country::getName() {
 	return Country::name;
 }
-void Country::setInfo(std::string s) {
+void Country::getInfo(std::string str) {
 	population = rand() % 10000 + 40000;
 	area = rand() % 10000 + 40000;
 	revenue = rand() % 10000 + 40000;
-	name = s;
+	name = str;
 }
 void Country::setData(int population, int area, int revenue, std::string name) {
 	Country::name = name;
