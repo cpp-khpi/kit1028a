@@ -63,7 +63,7 @@ bool PhoneDatabase::comparisonPhoneArray(const Phone* otherPhoneArr, int otherSi
 	return true;
 }
 
-void PhoneDatabase::correctCheckRegex(string& checkString) const
+void PhoneDatabase::validCheckRegex(string& checkString) const
 {
 	const string emptyString = "";
 	regex incorrectSymbols("[^\\w\\s.,;:\?!-\"()]*");
@@ -79,12 +79,9 @@ void PhoneDatabase::correctCheckRegex(string& checkString) const
 	regex lowerCase("^[a-z]");
 	if (regex_search(checkString, lowerCase))
 		checkString[0] -= 32;
-
-
-	return checkString;
 }
 
-bool PhoneDatabase::isCorrectCheckRegex(string checkString) const
+bool PhoneDatabase::isValidCheckRegex(string checkString) const
 {
 	regex incorrectSymbols("[^\\w\\s.,;:\?!-\"()]*");
 	regex repeatSymbols("[\\s.,;:\?!-\"()]{2,}");
@@ -94,6 +91,18 @@ bool PhoneDatabase::isCorrectCheckRegex(string checkString) const
 		return true;
 	else
 		return false;
+}
+
+void PhoneDatabase::printPhonesMoreTwoWords() const
+{
+	regex moreTwoWords("([\\w]+[\\s.,;-]+){1}[\\w]+");
+
+	cout << endl << "Phones with two or more words in the title:" << endl << endl;
+	for (int i = 0; i < size; i++) {
+		if (regex_search(phoneArray[i].getTitle(), moreTwoWords)) {
+			cout << phoneArray[i].phoneToString() << endl;
+		}
+	}
 }
 
 void PhoneDatabase::readFromConsole(Phone& newPhone) const
@@ -109,7 +118,7 @@ void PhoneDatabase::readFromConsole(Phone& newPhone) const
 	rewind(stdin);
 	cout << "Phone title: ";
 	getline(cin, title);
-	correctCheckRegex(title);
+	validCheckRegex(title);
 
 	rewind(stdin);
 	cout << "Cost, UAN: ";
@@ -154,7 +163,7 @@ void PhoneDatabase::readFromFile(string fileName)
 		getline(fin, phoneString);
 		newPhone.stringToPhone(phoneString);
 		tmpTitle = newPhone.getTitle();
-		correctCheckRegex(tmpTitle);
+		validCheckRegex(tmpTitle);
 		newPhone.setTitle(tmpTitle);
 		addPhone(newPhone);
 	}
@@ -270,7 +279,7 @@ void PhoneDatabase::showAll() const
 	}
 
 	for (int i = 0; i < size; i++) {
-		cout << endl << "Phone with index: " << i << endl << endl;
+		cout << endl << "Phone with index: " << i << endl;
 		cout << phoneArray[i].phoneToString() << endl;
 	}
 }

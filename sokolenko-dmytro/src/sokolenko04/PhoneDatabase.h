@@ -104,17 +104,24 @@ public:
 	const Phone * getPhoneArray() const;
 
 	/**
-	* Перевірка рядку на коректність за допомогою регулярних виразів.
+	* Метод, що перевіряє рядок на коректність за допомогою регулярних виразів.
 	* @param checkString - посилання на рядок, що перевіряється.
 	*/
-	void correctCheckRegex(string& checkString) const;
+	void validCheckRegex(string& checkString) const;
 
 	/**
-	* Перевірка рядку на коректність за допомогою регулярних виразів.
+	* Метод, що перевіряє рядок на коректність за допомогою регулярних виразів.
 	* @param checkString - рядок, що перевіряється.
 	* @return статус коректності рядку.
 	*/
-	bool isCorrectCheckRegex(string checkString) const;
+	bool isValidCheckRegex(string checkString) const;
+
+	/**
+	* Метод, що виводить на екран список усіх
+	* об’єктів, які мають одне або більше полів з  
+	* щонайменше двома словами.
+	*/
+	void printPhonesMoreTwoWords() const;
 
 	/**
 	* Зчитування з консолі інформації та її запис

@@ -1,6 +1,6 @@
 #include "Phone.h"
 
-Phone::Phone() : title("Nokia 3310"), price(1000), simCardsNumber(1), resolution(4032), capacity(900) {}
+Phone::Phone() : title(""), price(0), simCardsNumber(0), resolution(0), capacity(0) {}
 
 Phone::Phone(string newTitle, 
 	unsigned int newPrice, 
@@ -91,20 +91,19 @@ void Phone::stringToPhone(const string phoneString)
 {
 	stringstream phoneStream;
 	phoneStream << phoneString;
-	const int moveCharCount = 2;
 
 	getline(phoneStream, title, '|');
 	title.erase(title.end()-1);
-	phoneStream.ignore(moveCharCount);
+	phoneStream.ignore(1);
 
 	phoneStream >> price;
-	phoneStream.ignore(moveCharCount);
+	phoneStream.ignore(3);
 
 	phoneStream >> simCardsNumber;
-	phoneStream.ignore(moveCharCount);
+	phoneStream.ignore(3);
 
 	phoneStream >> resolution;
-	phoneStream.ignore(moveCharCount);
+	phoneStream.ignore(3);
 
 	phoneStream >> capacity;
 }

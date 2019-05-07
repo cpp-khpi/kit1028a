@@ -5,8 +5,6 @@ int main()
 {	
 	{
 		system("color B");
-		//SetConsoleCP(1251);
-		//SetConsoleOutputCP(1251);
 		cout << "Hello! Welcome to Lab #4 programm!" << endl;
 
 		string fileName = "PhoneDatabaseFile.txt";
@@ -30,17 +28,19 @@ int main()
 			cout << "4 - Display all items on screen." << endl;
 			cout << "5 - Display current size of Phone array." << endl;
 			cout << "6 - Get phone with the smallest resulotion" << endl;
+			cout << "7 - Display all phones with two or more words in the title" << endl;
 			cout << endl << "0 - Exit the program." << endl;
 
 			choice = 0;
 			int index;
-			for (; choice != '0' && 
+			while (choice != '0' && 
 				choice != '1' && 
 				choice != '2' && 
 				choice != '3' && 
 				choice != '4' && 
 				choice != '5' && 
-				choice != '6'; ) {
+				choice != '6' &&
+				choice != '7') {
 				cout << endl << "Option: ";
 				cin >> choice;
 			}
@@ -88,14 +88,14 @@ int main()
 			case '5': {
 				cout << "Current size of Phone array: " << comfyShop.getSize() << endl;
 
-				cout << endl  << "Press ENTER to continue.";
+				cout << endl << "Press ENTER to continue.";
 				cin.get();
 				cin.get();
 				break;
 			}
 			case '6': {
 				changeablePhone = comfyShop.getSmallestResolutPhone();
-				cout << endl << endl << "Phone with the smallest resulotion:" << endl << endl;
+				cout << endl << "Phone with the smallest resulotion:" << endl << endl;
 				cout << changeablePhone.phoneToString() << endl;
 
 				cout << endl << "Press ENTER to continue.";
@@ -103,6 +103,15 @@ int main()
 				cin.get();
 				break;
 			}
+			case '7': {
+				comfyShop.printPhonesMoreTwoWords();
+
+				cout << endl << "Press ENTER to continue.";
+				cin.get();
+				cin.get();
+				break;
+			}
+			
 			}
 		}
 

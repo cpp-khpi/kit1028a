@@ -121,7 +121,7 @@ public:
 	* @param phoneString - вихідний рядок з інформацією про об'єкт.
 	*/
 	void stringToPhone(const string phoneString);
-
+	
 	/**
 	* Зчитування поля Phone::title.
 	* @return поточне значення поля Phone::title.
