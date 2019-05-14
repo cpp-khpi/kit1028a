@@ -2,7 +2,7 @@
  * @ mainpage
  * @ author - Kotenko Sergey
  * @ date - 24.03.19
- * @ version - 1.0
+ * @ version - 2.0
  */
 
 #include "InfoIndependentsWork.h"
@@ -23,11 +23,11 @@ int main() {
 	Work.setSize(i);
 	system("cls");
 
-	std::string *surname = new std::string[i];
-	Work.readFromFile(surname);
+	std::string *person = new std::string[i];
+	Work.readFromFile(person);
 
-	Work.newArray(surname);
-	delete[] surname;
+	Work.newArray(person);
+	delete[] person;
 	system("cls");
 	Work.print();
 
@@ -40,14 +40,14 @@ int main() {
 		switch (option) {
 		case 1: {
 			int amount, written, mark;
-			std::string surname;
-			std::cout << "Enter student surname: ";
+			std::string person;
+			std::cout << "Enter student person: ";
 			std::cin.ignore();
-			getline(std::cin, surname);
-			if (!(regex_search(surname, regex_firstSymbol)) || regex_search(surname, regex_spaces)) {
+			getline(std::cin, person);
+			if (!(regex_search(person, regex_firstSymbol)) || regex_search(person, regex_spaces)) {
 				std::cout << "Incorrect entry, writing with large letters(A - Z) and without double spaces : " << std::endl;
 				std::cin.ignore();
-				getline(std::cin, surname);
+				getline(std::cin, person);
 			}
 			std::cout << "Enter amount of independent works:  ";
 			std::cin >> amount;
@@ -57,7 +57,7 @@ int main() {
 			std::cin >> mark;
 			std::cout << std::endl;
 
-			Work.addElem(amount, written, mark, surname);
+			Work.addElem(amount, written, mark, person);
 			system("cls");
 			Work.print();
 			break;
@@ -85,8 +85,9 @@ int main() {
 		case 4: {
 			system("cls");
 			std::string search_surname;
-			std::cout << "Enter searches surname : ";
-			std::cin >> search_surname;
+			std::cout << "Enter searches person : ";
+			std::cin.ignore();
+			getline(std::cin, search_surname);
 
 			Work.searchBySurname(search_surname);
 			break;

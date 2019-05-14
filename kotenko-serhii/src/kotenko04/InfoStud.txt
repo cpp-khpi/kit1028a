@@ -1,15 +1,15 @@
-Student surname: Kotenko
-Amount of independent works: 9
-Amount of written independent works: 6
-Student mark (average): 5
-
-Student surname: Kononenko
-Amount of independent works: 12
-Amount of written independent works: 11
-Student mark (average): 5
-
-Student surname: Mishenko
+Student info: Kotenko Serhii
 Amount of independent works: 14
-Amount of written independent works: 8
-Student mark (average): 3
+Amount of written independent works: 13
+Student mark (average): 5
+
+Student info: Kononenko Dmitro
+Amount of independent works: 14
+Amount of written independent works: 13
+Student mark (average): 5
+
+Student info: Mishenko Dmitro
+Amount of independent works: 14
+Amount of written independent works: 13
+Student mark (average): 5
 

@@ -11,17 +11,17 @@ private:
 	int amount;
 	int written;
 	int mark;
-	std::string surname;
+	std::string person;
 public:
 	InfoIndependentsWork();
 	InfoIndependentsWork(const InfoIndependentsWork &obj);
-	InfoIndependentsWork(int amount, int written, int mark, std::string surname);
+	InfoIndependentsWork(int amount, int written, int mark, std::string person);
 	int getAmount();
 	int getWritten();
 	int getMark();
-	std::string getSurname();
+	std::string getPerson();
 	void generation_values(std::string s);
-	void setData(int amount, int written, int mark, std::string surname);
+	void setData(int amount, int written, int mark, std::string person);
 	~InfoIndependentsWork() {
 	}
 };
