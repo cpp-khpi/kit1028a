@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
 #include <ctime>
-#include <string>
 #include <fstream>
-#include <cstddef>
+#include <string>
+#include <cstdio>
+#include <regex>
 
 #define _CRTDBG_MAP_ALLOC
 
@@ -21,7 +22,7 @@ public:
 	int getArea();
 	int getRevenue();
 	std::string getName();
-	void setInfo(std::string s);
+	void getInfo(std::string s);
 	void setData(int population, int area, int revenue, std::string name);
 	~Country() {
 	}

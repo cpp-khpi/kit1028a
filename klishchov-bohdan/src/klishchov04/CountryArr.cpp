@@ -1,41 +1,42 @@
 #include"CountryArr.h"
-void CountryArr::setSize(int size) {
-	CountryArr::size = size;
-}
+
 void CountryArr::newArray(std::string name) {
+	size++;
 	arr = new Country[size];
-	for (int i = 0; i < size; i++) {
-		arr[i].setInfo(name);
-	}
+	arr[0].getInfo(name);
 }
+
 void CountryArr::print() {
 	std::ofstream fout("result.txt");
 	for (int i = 0; i < size; i++) {
-		int population = arr[i].getPopulation();
-		int area = arr[i].getArea();
-		int revenue = arr[i].getRevenue();
-		std::string name = arr[i].getName();
-
-		fout << "The name of country: " << name << std::endl;
-		fout << "Population: " << population << std::endl;
-		fout << "Area: " << area << std::endl;
-		fout << "Revenue: " << revenue << std::endl << std::endl;
+		fout << "The name of country: " << arr[i].getName() << std::endl;
+		fout << "Population: " << arr[i].getPopulation() << std::endl;
+		fout << "Area: " << arr[i].getArea() << std::endl;
+		fout << "Revenue: " << arr[i].getRevenue() << std::endl << std::endl;
 	}
 	fout.close();
+	for (int i = 0; i < size; i++) {
+		std::cout << "The name of country: " << arr[i].getName() << std::endl;
+		std::cout << "Population: " << arr[i].getPopulation() << std::endl;
+		std::cout << "Area: " << arr[i].getArea() << std::endl;
+		std::cout << "Revenue: " << arr[i].getRevenue() << std::endl << std::endl;
+	}
 }
-void CountryArr::addElem(int population, int area, int revenue, std::string name) {
-	size++;
-	Country *temp = new Country[size];
+void CountryArr::addEl(int population, int area, int revenue, std::string name) {
+	Country *temp = new Country[size + 1];
 
-	for (int i = 0; i < size - 1; i++) {
+	for (int i = 0; i < size; i++) {
 		temp[i] = CountryArr::arr[i];
 	}
-	temp[size].setData(population, area, revenue, name);
+
+	size++;
+
+	temp[size - 1].setData(population, area, revenue, name);
+
 	delete[] arr;
 	arr = temp;
-	delete[]temp;
 }
-void CountryArr::deleteElem(int index) {
+void CountryArr::deleteEl(int index) {
 	size--;
 	Country* temp = new Country[size];
 	int j = 0;
@@ -48,32 +49,28 @@ void CountryArr::deleteElem(int index) {
 
 	for (int i = index - 1; i < size; i++)
 	{
-	temp[i] = CountryArr::arr[i];
-	j++;
+		temp[i] = CountryArr::arr[i];
+		j++;
 	}
 	delete[] arr;
 	arr = temp;
-	delete[]temp;
 }
+
 void CountryArr::getByIndex(int index) {
 	std::ofstream fout("resultID.txt");
-	if (index >= size) {
-		std::cout << std::endl << "Error" << std::endl << std::endl;
-		return;
-	}
-
-
-	fout << std::endl;
-	fout << std::endl;
 	fout << "The name of country: " << arr[index - 1].getName() << std::endl;
 	fout << "Population: " << arr[index - 1].getPopulation() << std::endl;
 	fout << "Area: " << arr[index - 1].getArea() << std::endl;
 	fout << "Revenue: " << arr[index - 1].getRevenue() << std::endl << std::endl;
 	fout.close();
+	std::cout << "The name of country: " << arr[index - 1].getName() << std::endl;
+	std::cout << "Population: " << arr[index - 1].getPopulation() << std::endl;
+	std::cout << "Area: " << arr[index - 1].getArea() << std::endl;
+	std::cout << "Revenue: " << arr[index - 1].getRevenue() << std::endl << std::endl;
 }
 
 void CountryArr::deleteArray() {
-	delete[] CountryArr::arr;
+	delete[] arr;
 }
 
 Country CountryArr::maxPop() {
@@ -90,14 +87,13 @@ Country CountryArr::maxPop() {
 
 void CountryArr::printMax(Country min) {
 	std::ofstream fout("resultMax.txt");
-	int population = min.getPopulation();
-	int area = min.getArea();
-	int revenue = min.getRevenue();
-	std::string name = min.getName();
-
-	fout << "The name of country: " << name << std::endl;
-	fout << "Population: " << population << std::endl;
-	fout << "Area: " << area << std::endl;
-	fout << "Revenue: " << revenue << std::endl << std::endl;
+	fout << "The name of country: " << min.getName() << std::endl;
+	fout << "Population: " << min.getPopulation() << std::endl;
+	fout << "Area: " << min.getArea() << std::endl;
+	fout << "Revenue: " << min.getRevenue() << std::endl << std::endl;
 	fout.close();
+	std::cout << "The name of country: " << min.getName() << std::endl;
+	std::cout << "Population: " << min.getPopulation() << std::endl;
+	std::cout << "Area: " << min.getArea() << std::endl;
+	std::cout << "Revenue: " << min.getRevenue() << std::endl << std::endl;
 }
