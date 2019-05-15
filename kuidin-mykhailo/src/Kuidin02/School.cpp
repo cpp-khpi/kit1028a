@@ -35,7 +35,7 @@ int School::getEmployers() {
 }
 
 void School::setName(char *p) {
-	name = (char*) operator new (sizeof(char) * 256);
+	name = new char[256];
 	strcpy_s(name,30, p);
 }
 
