@@ -3,38 +3,32 @@
 using std::cout;
 using std::cin;
 using std::endl;
-
-void fill(int * arr, int size) {
+template <typename T>
+void fill(T * arr, int size) {
 	for (int i = 0; i < size; i++) {
-		arr[i] = rand() % 1000;
+		arr[i] = rand() % 26 + 'A';
 	}
 }
 
 int main() {
-	int value;
+	char value;
 	int size;
 	int choose;
-	Shablon obj;
+	Shablon <char> obj;
 	cout << "input size of arr: ";
 	cin >> size;
 	
-	int* arr = new int[size];
+	char* arr = new char[size];
 	fill(arr, size);
 
-
-	cout << "\n";
-	cout << "0 - Exit" << endl;
-	cout << "1 - Start" << endl;
-	cout << "Choose: ";
-	cin >> choose;
-
 	do {
+		cin.ignore();
 		cout << "\n";
 		cout << "0 - Exit" << endl;
 		cout << "1 - Print vector" << endl;
 		cout << "2 - sort vector" << endl;
 		cout << "3 - find lowest" << endl;
-		cout << "4 - find by valuse" << endl;
+		cout << "4 - find by value" << endl;
 		cout << "Choose: ";
 		cin >> choose;
 
@@ -52,6 +46,7 @@ int main() {
 		case 3:
 			system("cls");
 			cout << obj.lowest(arr, size);
+			//printf("%c",obj.lowest(arr, size));
 			break;
 		case 4:
 			cout << "input value: ";
@@ -67,4 +62,4 @@ int main() {
 	delete[] arr;
 
 	return 0;
-}
+ }

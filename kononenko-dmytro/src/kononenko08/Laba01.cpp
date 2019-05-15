@@ -8,49 +8,26 @@
 #include <iostream>
 #include "InfoWork.h"
 #include "StudentsWork.h"
-#define N 5
+#include "DetailInfo.h"
+#include "AdvenceWork.h"
 
-int aggreg() {
-	string tmp;
-	InfoWork *arr = new InfoWork[N];
-
-	for (int i = 0; i < N; i++) {
-		cin >> tmp;
-		arr[i].set(tmp);
-	}
-
-	{
-		StudentsWork qual(arr, N);
-		qual.setSize(N);
-		qual.printArr();
-	}
-
-	for (int i = 0; i < N; i++) {
-		cout << arr[i].getName() << "\t";
-	}
-
-	delete[] arr;
-	return 0;
-}
-
-
-bool comp(int a, int b) {
+bool sortWay(int a,int b) {
 	return a < b;
 }
 
-bool comp2(int a, int b) {
+bool sortWay2(int a, int b) {
 	return a > b;
 }
 
-int main() {
+int main(){
+
 	system("color 0A");
 	StudentsWork qualWork;
 	ifstream fin;
-	bool (*pointer)(int a,int b);
+	bool(*pointer)(int a,int b);
 	int j, x;
 	int choose = 0;
 	int ErrorTest;
-
 	cout << "0 - Exit" << endl;
 	cout << "1 - Create vector" << endl;
 	cout << "Choose: ";
@@ -58,9 +35,7 @@ int main() {
 
 
 	if (choose == 1) {
-
-		regex regex_repeat("[\\s]{2,}");
-		regex regex_firstSymbol("^[A-Z]");
+		regex regex_repeat("^[a-z].*|.*\\s{2,}.*");
 		string file{ "cppstudio.txt" };
 
 		cout << "Input size: ";
@@ -82,7 +57,7 @@ int main() {
 			fin.open("cppNames.txt");
 			for (int i = 0; i < x; i++) {
 				getline(fin, name[i]);
-				if (!(regex_search(name[i], regex_firstSymbol)) || regex_search(name[i], regex_repeat)) {
+				if (regex_match(name[i], regex_repeat)) {
 					cout << "Use upper case for first symbol:" << endl;
 					getline(cin, name[i]);
 				}
@@ -95,7 +70,7 @@ int main() {
 			for (int i = 0; i < x; i++) {
 				cout << "input name:";
 				getline(cin, name[i]);
-				if (!(regex_search(name[i], regex_firstSymbol)) || regex_search(name[i], regex_repeat)) {
+				if (regex_match(name[i], regex_repeat)) {
 					cout << "Use upper case for first symbol:" << endl;
 					getline(cin, name[i]);
 				}
@@ -114,11 +89,12 @@ int main() {
 			cout << "2 - Find element by index" << endl;
 			cout << "3 - Add element" << endl;
 			cout << "4 - Delete element" << endl;
-			cout << "5 - Find persent" << endl;
+			cout << "5 - Find percent" << endl;
 			cout << "6 - Sorted by Name output" << endl;
 			cout << "7 - Sort" << endl;
 			cout << "Choose: ";
 			cin >> choose;
+
 			switch (choose)
 			{
 			case 1:
@@ -134,14 +110,14 @@ int main() {
 				}
 				break;
 			case 3: {
-				string names,names2;
+				string names;
 				InfoWork obj;
 				int a, b, c;
 				cin.ignore();
 
 				cout << "input name:";
 				getline(cin, names);
-				if (!(regex_search(names, regex_firstSymbol)) || regex_search(names, regex_repeat)) {
+				if (regex_match(names, regex_repeat)) {
 					cout << "Use upper case for first symbol:" << endl;
 					getline(cin, names);
 				}
@@ -151,12 +127,12 @@ int main() {
 				cin >> b;
 				cout << "input type: ";
 				cin >> c;
-				cout << "input teacher's name: ";
-				cin.ignore();
-				getline(cin, names2);
+				//cout << "input teacher's name: ";
+				//cin.ignore();
+				//getline(cin, names2);
 				cout << "input insert point: ";
 				cin >> j;
-				obj.set_n(a, b, c, names,names2);
+				obj.set_n(a, b, c, names);
 				if (qualWork.add(obj,j) != 0) {
 					cout << "Error: invalid index" << endl;
 				}
@@ -177,30 +153,36 @@ int main() {
 				}
 				system("cls");
 				break;
-			case 5:
+			case 5: {
 				cout << "There your persent: ";
 				cout << qualWork.rate();
 				break;
+			}
 			case 6:
 				qualWork.sortName();
 				break;
 			case 7:
-				cout << "Choose way of sort: < or > " << endl;
-				cout << "0 - by <" << endl;
-				cout << "1 - by >" << endl;
+
+				cout << "Which way of sort do you prefer: < or >" << endl;
+				cout << "0 - <" << endl;
+				cout << "1 - >" << endl;
+				cout << "Choose: ";
 				cin >> j;
-				if (j == 1) {
-					pointer = comp;
+				
+				if (j != 0) {
+					pointer = sortWay2;
 				}
 				else {
-					pointer = comp2;
+					pointer = sortWay;
 				}
+
 				cout << "Which type of sort do you want to perfom:" << endl;
 				cout << "0 - By mark" << endl;
 				cout << "1 - By size" << endl;
 				cout << "2 - By type" << endl;
 				cout << "Choose: ";
 				cin >> j;
+				
 				switch (j) {
 				case 0:
 					qualWork.sortByMark(pointer);
@@ -211,6 +193,9 @@ int main() {
 				case 2:
 					qualWork.sortByType(pointer);
 					break;
+				default:
+					cout << "Wrong index" << endl;
+					break;
 				}
 				break;
 			default:
@@ -218,16 +203,128 @@ int main() {
 			}
 		} while (choose != 0);
 
-
-
-	}
-	else {
-		return 0;
+		qualWork.delArr();
 	}
 
-	qualWork.delArr();
+	cout << "0 - Exit" << endl;
+	cout << "1 - Create vector" << endl;
+	cout << "Choose: ";
+	cin >> choose;
 
-	aggreg();
+
+	if (choose == 1) {
+		regex regex_repeat("^[a-z].*|.*\\s{2,}.*");
+		AdvenceWork work;
+		string file{ "cppstudio.txt" };
+
+		cout << "Input size: ";
+		cin >> x;
+		work.setSize(x);
+
+		string* name = new string[x];
+
+		cout << "Which type of input do you choose?" << endl;
+		cout << "0 - Manual" << endl;
+		cout << "1 - From file" << endl;
+		cout << "Choose: ";
+		cin >> choose;
+
+		switch (choose)
+		{
+		case 1: {
+			cin.ignore();
+			fin.open("cppNames.txt");
+			for (int i = 0; i < x; i++) {
+				getline(fin, name[i]);
+				if (regex_match(name[i], regex_repeat)) {
+					cout << "Use upper case for first symbol:" << endl;
+					getline(cin, name[i]);
+				}
+			}
+			fin.close();
+			break;
+		}
+		default:
+			cin.ignore();
+			for (int i = 0; i < x; i++) {
+				cout << "input name:";
+				getline(cin, name[i]);
+				if (regex_match(name[i], regex_repeat)) {
+					cout << "Use upper case for first symbol:" << endl;
+					getline(cin, name[i]);
+				}
+			}
+			break;
+		}
+
+		work.createArr(name);
+		delete[x] name;
+
+
+		do {
+			cout << "\n";
+			cout << "0 - Exit" << endl;
+			cout << "1 - Print vector" << endl;
+			cout << "2 - Find element by index" << endl;
+			cout << "3 - Add element" << endl;
+			cout << "4 - Delete element" << endl;
+			cout << "Choose: ";
+			cin >> choose;
+			switch (choose)
+			{
+			case 1:
+				work.printArr();
+				break;
+			case 2:
+				cout << "input index: ";
+				cin >> j;
+
+				work.search(j);
+
+				break;
+			case 3: {
+				string names;
+				DetailInfo obj;
+				int a, b, c,e,f;
+				cin.ignore();
+
+				cout << "input name:";
+				getline(cin, names);
+				if (regex_match(names, regex_repeat)) {
+					cout << "Use upper case for first symbol:" << endl;
+					getline(cin, names);
+				}
+				cout << "input mark: ";
+				cin >> a;
+				cout << "input size: ";
+				cin >> b;
+				cout << "input type: ";
+				cin >> c;
+				cout << "input novelty: ";
+				cin >> e;
+				cout << "input size of Labor: ";
+				cin >> f;
+				cout << "input insert point: ";
+				cin >> j;
+				obj.set_n(a, b, c, names,e,f);
+				work.add(obj, j);
+				break;
+			}
+			case 4:
+				cout << "input delete point: ";
+				cin >> j;
+
+				work.del(j);
+
+				system("cls");
+				break;
+			default:
+				break;
+			}
+		} while (choose != 0);
+		work.delArr();
+	}
+
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
