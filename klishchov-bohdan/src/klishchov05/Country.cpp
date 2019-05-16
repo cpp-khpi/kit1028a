@@ -35,6 +35,6 @@ void Country::Human() {
 	popul.Human();
 }
 
-void Country::Speaking() {
-	std::cout << "We serve in " << army.getSection() << ";)" << std::endl;
+void Country::RiverName() {
+	std::cout << "This is " << river.GetName() << " river" << std::endl;
 }

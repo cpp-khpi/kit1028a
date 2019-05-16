@@ -21,7 +21,7 @@ int main() {
 	Country Kompos;
 	Kompos.Human();
 	Country Aggreg;
-	Aggreg.Speaking();
+	Aggreg.RiverName();
 
 	std::regex regex_spaces("[\\s]{2,}");
 	std::regex regex_firstSymbol("^[A-Z]");

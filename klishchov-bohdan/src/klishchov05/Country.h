@@ -8,13 +8,13 @@
 
 #define _CRTDBG_MAP_ALLOC
 
-class Army {
+class River {
 public:
-	std::string getSection() {
-		return section;
+	std::string GetName() {
+		return Name;
 	}
 private:
-	std::string	section = "air force";
+	std::string	Name = "Dnipro";
 };
 
 class Country {
@@ -34,7 +34,7 @@ private:
 	Population popul;
 	//-------------------------------------------------------------------
 	//--------------------------Агрегация--------------------------------
-	Army army;
+	River river;
 	//-------------------------------------------------------------------
 public:
 	Country();
@@ -48,7 +48,7 @@ public:
 	void setData(int population, int area, int revenue, std::string name);
 
 	void Human();
-	void Speaking();
+	void RiverName();
 
 	~Country() {
 	}
