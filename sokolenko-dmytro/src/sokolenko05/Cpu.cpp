@@ -18,4 +18,34 @@ Cpu::Cpu(string newTitle,
 	coresNumber(newCoresNumber),
 	frequency(newFrequency) {}
 
+Cpu::Cpu(const Cpu& copiedCpu) : 
+	title(copiedCpu.title),
+	coresNumber(copiedCpu.coresNumber),
+	frequency(copiedCpu.frequency) {}
+
+Cpu& Cpu::operator= (const Cpu& copiedCpu)
+{
+	if (this == &copiedCpu) {
+		return *this;
+	}
+
+	title = copiedCpu.title;
+	coresNumber = copiedCpu.coresNumber;
+	frequency = copiedCpu.frequency;
+
+	return *this;
+}
+
+bool Cpu::operator==(const Cpu& otherCpu) const
+{
+	bool isEqualTitle = this->title == otherCpu.title;
+	bool isEqualCoresNumb = this->coresNumber == otherCpu.coresNumber;
+	bool isEqualFrequen = this->frequency == otherCpu.frequency;
+
+	if (isEqualTitle && isEqualCoresNumb && isEqualFrequen)
+		return true;
+	else
+		return false;
+}
+
 Cpu::~Cpu() {}

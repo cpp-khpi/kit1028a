@@ -105,39 +105,39 @@ void PhoneDatabase::printPhonesMoreTwoWords() const
 	}
 }
 
-void PhoneDatabase::readFromConsole(Phone& newPhone) const
-{
-	string title;
-	unsigned int price;
-	unsigned int simCardsNumber;
-	unsigned int resolution;
-	unsigned int capacity;
-
-	cout << endl << endl << "Enter information about phone." << endl;
-
-	rewind(stdin);
-	cout << "Phone title: ";
-	getline(cin, title);
-	validCheckRegex(title);
-
-	rewind(stdin);
-	cout << "Cost, UAN: ";
-	cin >> price;
-
-	rewind(stdin);
-	cout << "Number of SIM-cards: ";
-	cin >> simCardsNumber;
-
-	rewind(stdin);
-	cout << "Screen resolution, pixeles: ";
-	cin >> resolution;
-
-	rewind(stdin);
-	cout << "Batery capacity, mAh: ";
-	cin >> capacity;
-
-	newPhone.setPhoneInfo(title, price, simCardsNumber, resolution, capacity);
-}
+//void PhoneDatabase::readFromConsole(Phone& newPhone) const
+//{
+//	string title;
+//	unsigned int price;
+//	unsigned int simCardsNumber;
+//	unsigned int resolution;
+//	unsigned int capacity;
+//
+//	cout << endl << endl << "Enter information about phone." << endl;
+//
+//	rewind(stdin);
+//	cout << "Phone title: ";
+//	getline(cin, title);
+//	validCheckRegex(title);
+//
+//	rewind(stdin);
+//	cout << "Cost, UAN: ";
+//	cin >> price;
+//
+//	rewind(stdin);
+//	cout << "Number of SIM-cards: ";
+//	cin >> simCardsNumber;
+//
+//	rewind(stdin);
+//	cout << "Screen resolution, pixeles: ";
+//	cin >> resolution;
+//
+//	rewind(stdin);
+//	cout << "Batery capacity, mAh: ";
+//	cin >> capacity;
+//
+//	newPhone.setPhoneInfo(title, price, simCardsNumber, resolution, capacity);
+//}
 
 void PhoneDatabase::readFromFile(string fileName)
 {
@@ -342,14 +342,4 @@ void PhoneDatabase::sortByCapacity(function<bool(unsigned int, unsigned int)> co
 			}
 		}
 	}
-}
-
-bool ascending(unsigned int a, unsigned int b)
-{
-	return a > b;
-}
-
-bool descending(unsigned int a, unsigned int b)
-{
-	return a < b;
 }

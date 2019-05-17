@@ -3,9 +3,27 @@
 
 int main()
 {
+	MemoryCard *newMemCard = new MemoryCard;
+	newMemCard->setTitle("Name");
+	newMemCard->setCapacity(64);
+
+	{
+		Cpu newProcessor("Intel", 2, 2000);
+		Phone newPhone("Iphone", 3000, 1, 1080, 3000, newProcessor);
+		newPhone.setMemoryCard(newMemCard);
+	}
+
+	delete newMemCard;
+
+	cout << newMemCard->getTitle() << endl;
+	cout << newMemCard->getCapacity() << endl;
+}
+
+int main()
+{
 	{
 		system("color B");
-		cout << "Hello! Welcome to Lab #4 programm!" << endl;
+		cout << "Hello! Welcome to Lab #5 programm!" << endl;
 
 		string fileName = "PhoneDatabaseFile.txt";
 		PhoneDatabase comfyShop;

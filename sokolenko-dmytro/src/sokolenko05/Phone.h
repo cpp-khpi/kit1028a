@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Cpu.h"
+#include "MemoryCard.h"
 #include <string>
 #include <sstream>
 
@@ -35,6 +36,8 @@ private:
 	unsigned int capacity;
 	/** Процессор телефону */
 	Cpu processor;
+	/** Картка пам'яті, що міститься у телефоні. */
+	MemoryCard* memCard;
 public:
 	/** 
 	* Інізіалізація полів.
@@ -46,17 +49,19 @@ public:
 	* Інізіалізація полів.
 	* Використовується список ініціалізації числових змінних,
 	* в тілі конструктора виконується виділення пам'яті та копіювання рядка.
-	* @param newTitle з використанням бібліотечної функції копіюється у поле Phone::title.
+	* @param newTitle ініціалізує поле Phone::title.
 	* @param newPrice ініціалізує поле Phone::price.
 	* @param newSimNum ініціалізує поле Phone::simCardsNumber.
 	* @param newResolution ініціалізує поле Phone::resolution.
 	* @param newCapacity ініціалізує поле Phone::capacity.
+	* @param newProcessor ініціалізує поле Phone::processor.
 	*/
-	Phone(string newTitle, 
-		unsigned int newPrice, 
+	Phone(string newTitle,
+		unsigned int newPrice,
 		unsigned int newSimNum,
-		unsigned int newResolution, 
-		unsigned int newCapacity);
+		unsigned int newResolution,
+		unsigned int newCapacity,
+		Cpu newProcessor);
 
 	/**
 	* Інізіалізація полів.
@@ -101,12 +106,14 @@ public:
 	* @param newSimNum ініціалізує поле Phone::simCardsNumber.
 	* @param newResolution ініціалізує поле Phone::resolution.
 	* @param newCapacity ініціалізує поле Phone::capacity.
+	* @param newProcessor ініціалізує поле Phon::processor.
 	*/
 	void setPhoneInfo(string newTitle,
 		unsigned int newPrice,
 		unsigned int newSimNum,
 		unsigned int newResolution,
-		unsigned int newCapacity);
+		unsigned int newCapacity,
+		Cpu newProccessor);
 
 	/**
 	* Конвертування інформації про поточний об'єкт у рядок.
@@ -181,4 +188,16 @@ public:
 	* @param newCapacity присвоюється Phone::capacity.
 	*/
 	void setCapacity(unsigned int newCapacity);
+
+	/**
+	* Зчитування поля Phone::memCard.
+	* @return константний вказівник поля Phone::memCard.
+	*/
+	const MemoryCard* getMemoryCard() const;
+
+	/**
+	* Встановлення значння змінної Phone::memCard.
+	* @param newMemCard присвоюється Phone::memCard.
+	*/
+	void setMemoryCard(MemoryCard* newMemCard);
 };

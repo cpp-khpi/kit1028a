@@ -72,13 +72,35 @@ public:
 	* Конструктор з параметрами.
 	* Інізіалізація полів.
 	* Використовується список ініціалізації числових змінних.
-	* @param newTitle з використанням бібліотечної функції копіюється у поле Cpu::title.
+	* @param newTitle ініціалізує у поле Cpu::title.
 	* @param newCoresNumber ініціалізує поле Cpu::coresNumber.
 	* @param newFrequency ініціалізує поле Cpu::frequency.
 	*/
 	Cpu(string newTitle,
 		unsigned int newCoresNumber,
 		unsigned int newFrequency);
+
+	/**
+	* Інізіалізація полів.
+	* Використовується список ініціалізації числових змінних,
+	* в тілі конструктора виконується виділення пам'яті та копіювання рядка.
+	* @param copiedCpu: ініціалізація полів нового об'єкту значеннями полів передаваємого.
+	*/
+	Cpu(const Cpu& copiedCpu);
+
+	/**
+	* Перевантажений оператор присваювання.
+	* @param copiedCpu: значення його полів присвоюються полям поточного об'єкту.
+	* @return вказівник на поточний об'єкт.
+	*/
+	Cpu& operator= (const Cpu& copiedCpu);
+
+	/**
+	* Перевантажений оператор порівняння.
+	* @param otherCpu об'єкт, з яким відбуваються порівняння.
+	* @return статус рівності двох об'єктів класу Cpu.
+	*/
+	bool operator==(const Cpu& otherPhone) const;
 
 	/**
 	* Деструктор.
