@@ -302,40 +302,12 @@ Phone& PhoneDatabase::getSmallestResolutPhone() const
 	return phoneArray[smallestResInd];
 }
 
-void PhoneDatabase::sortByPrice(function<bool(unsigned int, unsigned int)> comparFunc)
+void PhoneDatabase::sort(function<bool(unsigned int, unsigned int)> comparFunc)
 {
 	Phone tmpPhome;
 	for (int i = 0; i < size - 1; i++) {
 		for (int j = 0; j < size - i - 1; j++) {
-			if (comparFunc(phoneArray[j].getPrice(), phoneArray[j + 1].getPrice())) {
-				tmpPhome = phoneArray[j];
-				phoneArray[j] = phoneArray[j + 1];
-				phoneArray[j + 1] = tmpPhome;
-			}
-		}
-	}
-}
-
-void PhoneDatabase::sortByResolution(function<bool(unsigned int, unsigned int)> comparFunc)
-{
-	Phone tmpPhome;
-	for (int i = 0; i < size - 1; i++) {
-		for (int j = 0; j < size - i - 1; j++) {
-			if (comparFunc(phoneArray[j].getResolution(), phoneArray[j + 1].getResolution())) {
-				tmpPhome = phoneArray[j];
-				phoneArray[j] = phoneArray[j + 1];
-				phoneArray[j + 1] = tmpPhome;
-			}
-		}
-	}
-}
-
-void PhoneDatabase::sortByCapacity(function<bool(unsigned int, unsigned int)> comparFunc)
-{
-	Phone tmpPhome;
-	for (int i = 0; i < size - 1; i++) {
-		for (int j = 0; j < size - i - 1; j++) {
-			if (comparFunc(phoneArray[j].getCapacity(), phoneArray[j + 1].getCapacity())) {
+			if (comparFunc(phoneArray[j], phoneArray[j + 1])) {
 				tmpPhome = phoneArray[j];
 				phoneArray[j] = phoneArray[j + 1];
 				phoneArray[j + 1] = tmpPhome;

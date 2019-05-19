@@ -191,29 +191,9 @@ public:
 
 	/**
 	* Метод, що сортирує масив елементів
-	* типу Phone за ціною.
+	* типу Phone за ознакою, яка передається вказівником на функцію.
 	* @param comparFunc: логічная функція, що визначає 
-	* напрям сортування.
+	* параметри сортування.
 	*/
-	void sortByPrice(function<bool(unsigned int, unsigned int)> comparFunc);
-
-	/**
-	* Метод, що сортирує масив елементів
-	* типу Phone за роздільною здатністю.
-	* @param comparFunc: логічная функція, що визначає
-	* напрям сортування.
-	*/
-	void sortByResolution(function<bool(unsigned int, unsigned int)> comparFunc);
-
-	/**
-	* Метод, що сортирує масив елементів
-	* типу Phone за ємкістю акумулятору.
-	* @param comparFunc: логічная функція, що визначає
-	* напрям сортування.
-	*/
-	void sortByCapacity(function<bool(unsigned int, unsigned int)> comparFunc);
+	void sort(function<bool(unsigned int, unsigned int)> comparFunc);
 };
-
-bool ascending(unsigned int a, unsigned int b);
-
-bool descending(unsigned int a, unsigned int b);
