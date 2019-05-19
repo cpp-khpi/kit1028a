@@ -165,17 +165,20 @@ void Array::setInfoObj(string &info) {
 
 	while (true) {
 		cout << "Enter name of program:" << endl;
-		getline(cin, n);
+		getline(cin, n); 
 		if (inputCheck(n) == true) {
-			cout << "Enter name of publisher(if you don't know, enter 'Unknown'):" << endl;
-			getline(cin, p);
-			if (inputCheck(p) == true) {
 			break;
-			}
 		}
-		n = "";
-		p = "";
 	}
+	while (true){ 
+		cout << "Enter name of publisher(if you don't know, enter 'Unknown'):" << endl;
+		getline(cin, p);
+		if (inputCheck(p) == true) {
+			break;
+		}
+	}
+	n = "";
+	p = "";
 
 	infoObj << n << "|";
 	infoObj << p << "|";
