@@ -5,6 +5,7 @@
 #include <string>
 #include <cstdio>
 #include <regex>
+#include "IndependentTesting.h"
 
 class InfoIndependentsWork {
 private:
@@ -12,6 +13,7 @@ private:
 	int written;
 	int mark;
 	std::string person;
+	IndependentTesting ZNO;
 public:
 	InfoIndependentsWork();
 	InfoIndependentsWork(const InfoIndependentsWork &obj);

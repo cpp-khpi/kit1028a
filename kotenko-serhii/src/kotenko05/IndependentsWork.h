@@ -6,6 +6,7 @@ private:
 	int size;
 	InfoIndependentsWork *arr;
 public:
+	IndependentsWork(InfoIndependentsWork* mas, int x) : arr(mas), size(x) {};
 	void setSize(int size);
 	void newArray(std::string *s);
 	void print();
