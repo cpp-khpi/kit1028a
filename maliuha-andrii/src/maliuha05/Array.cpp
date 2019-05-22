@@ -9,9 +9,9 @@ void Array::addProgram(WorkingProgram &newObj, int ind) {
 	string p;
 	float om, mg, twm;
 
-	n = newObj.getName();
+	n = newObj.getProgram();
 	p = newObj.getPublisher();
-	om = newObj.getOpMemoryMb();
+	om = newObj.getRAM();
 	mg = newObj.getMemoryGb();
 	twm = newObj.getTimeWorkMin();
 
@@ -76,9 +76,9 @@ void Array::showAll() {
 		showObj = mas[i].print();
 		obj.setObj(showObj);
 
-		cout << "Name of program: " << obj.getName() << endl;
+		cout << "Name of program: " << obj.getProgram() << endl;
 		cout << "Publisher: " << obj.getPublisher() << endl;
-		cout << "Amount of consumed RAM(Mb): " << obj.getOpMemoryMb() << endl;
+		cout << "Amount of consumed RAM(Mb): " << obj.getRAM() << endl;
 		cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
 		cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
 		cout << endl;
@@ -106,14 +106,14 @@ void Array::nameSearch(string n) {
 	string na;
 
 	for (int i = 0; i < size; i++) {
-		na = mas[i].getName();
+		na = mas[i].getProgram();
 		if (na == n) {
 			mas[i].print();
 		}
 	}
 }
 
-int Array::getSize() {
+size_t Array::getSize() {
 	return size;
 }
 
@@ -167,14 +167,15 @@ void Array::setInfoObj(string &info) {
 		cout << "Enter name of program:" << endl;
 		getline(cin, n);
 		if (inputCheck(n) == true) {
-			cout << "Enter name of publisher(if you don't know, enter 'Unknown'):" << endl;
-			getline(cin, p);
-			if (inputCheck(p) == true) {
 			break;
-			}
 		}
-		n = "";
-		p = "";
+	}
+	while (true) {
+		cout << "Enter name of publisher(if you don't know, enter 'Unknown'):" << endl;
+		getline(cin, p);
+		if (inputCheck(p) == true) {
+			break;
+		}
 	}
 
 	infoObj << n << "|";
@@ -224,16 +225,16 @@ void Array::readFromFile(ifstream &objects, string &info, string &n) {
 
 void Array::writeToFile() {
 	ofstream txt;
-	txt.open("E:/File for projects/maliuha03w.txt");
+	txt.open("maliuha03w.txt");
 	if (!txt.is_open()) {
 		cout << "File was not opened" << endl;
 		system("pause");
 		return;
 	}
 	for (int i = 0; i < size; i++) {
-		txt << "Name of program: " << mas[i].getName() << endl;
+		txt << "Name of program: " << mas[i].getProgram() << endl;
 		txt << "Publisher: " << mas[i].getPublisher() << endl;
-		txt << "Amount of consumed RAM(Mb): " << mas[i].getOpMemoryMb() << endl;
+		txt << "Amount of consumed RAM(Mb): " << mas[i].getRAM() << endl;
 		txt << "Ocupied amount of hard disk memory(Gb): " << mas[i].getMemoryGb() << endl;
 		txt << "Time of work (in minutes): " << mas[i].getTimeWorkMin() << endl;
 		txt << "------------------------------------------------------" << endl;
@@ -258,12 +259,12 @@ void Array::sortOutput() {
 	WorkingProgram obj;
 	string object;
 	for (int i = 0; i < size; i++) {
-		if (regex_match(mas[i].getName(), regular)) {
+		if (regex_match(mas[i].getProgram(), regular)) {
 			object = mas[i].print();
 			obj.setObj(object);
-			cout << "Name of program: " << obj.getName() << endl;
+			cout << "Name of program: " << obj.getProgram() << endl;
 			cout << "Publisher: " << obj.getPublisher() << endl;
-			cout << "Amount of consumed RAM(Mb): " << obj.getOpMemoryMb() << endl;
+			cout << "Amount of consumed RAM(Mb): " << obj.getRAM() << endl;
 			cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
 			cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
 			cout << endl;
@@ -281,8 +282,8 @@ void Array::merge(int b, int m, int e) {
 	float opMemory1, opMemory2;
 	while (pos1 <= m && pos2 <= e)
 	{
-		opMemory1 = mas[pos1].getOpMemoryMb();
-		opMemory2 = mas[pos2].getOpMemoryMb();
+		opMemory1 = mas[pos1].getRAM();
+		opMemory2 = mas[pos2].getRAM();
 		if (opMemory1 < opMemory2) {
 			temp[pos3++] = mas[pos1++]; 
 		}

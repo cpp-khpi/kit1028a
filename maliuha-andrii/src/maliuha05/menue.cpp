@@ -137,7 +137,7 @@ void menu() {
 			system("cls");
 			break;
 		case 8:
-			object.open("E:/File for projects/maliuha03.txt");
+			object.open("maliuha03.txt");
 
 			if (!object.is_open()) {
 				cout << "File was not opened" << endl;

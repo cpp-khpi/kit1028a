@@ -11,7 +11,7 @@
 
 class Array {
 private:
-	int size;
+	size_t size;
 	WorkingProgram *mas;
 public:
 	Array();
@@ -26,7 +26,7 @@ public:
 	void findProgram(float memoryGB);
 	void removeViruses();
 	void delMas();
-	int getSize();
+	size_t getSize();
 	void merge(int b, int m, int e);
 	void DirectMergeSort(int b, int e);
 	bool inputCheck(string str);

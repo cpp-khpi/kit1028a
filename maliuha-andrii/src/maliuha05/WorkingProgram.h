@@ -1,12 +1,16 @@
 #pragma once
 #include "Main.h"
 
+
+typedef float memory;
+typedef string name;
+
 class WorkingProgram {
 private:
-	string name;
+	name program;
 	string publisher;
-	float opMemoryMb;
-	float memoryGb;
+	memory RAM;
+	float HDisk;
 	float timeWorkMin;
 
 public:
@@ -20,9 +24,10 @@ public:
 	void setMemoryGb(float memoryGd);
 	void setTimeWorkMin(float timeWorkMin);
 
-	string getName();
+	string getProgram();
 	string getPublisher();
-	float getOpMemoryMb();
+	float getRAM();
 	float getMemoryGb();
 	float getTimeWorkMin();
 };
+

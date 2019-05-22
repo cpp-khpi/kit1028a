@@ -2,7 +2,7 @@
 
 //setter
 void WorkingProgram::setName(string name) {
-	this->name = name;
+	this->program = name;
 }
 
 void WorkingProgram::setPublisher(string publisher) {
@@ -10,11 +10,11 @@ void WorkingProgram::setPublisher(string publisher) {
 }
 
 void WorkingProgram::setOpMemoryMb(float opMemoryMb) {
-	this->opMemoryMb = opMemoryMb;
+	this->RAM = opMemoryMb;
 }
 
 void WorkingProgram::setMemoryGb(float memoryGb) {
-	this->memoryGb = memoryGb;
+	this->HDisk = memoryGb;
 }
 
 void WorkingProgram::setTimeWorkMin(float timeWorkMin) {
@@ -23,35 +23,35 @@ void WorkingProgram::setTimeWorkMin(float timeWorkMin) {
 
 
 //getter
-string WorkingProgram::getName() {
-	return name;
+string WorkingProgram::getProgram() {
+	return program;
 }
 
 string WorkingProgram::getPublisher() {
 	return publisher;
 }
 
-float WorkingProgram::getOpMemoryMb() {
-	return opMemoryMb;
+float WorkingProgram::getRAM() {
+	return RAM;
 }
 
 float WorkingProgram::getMemoryGb() {
-	return memoryGb;
+	return HDisk;
 }
 
 float WorkingProgram::getTimeWorkMin() {
 	return timeWorkMin;
 }
 
-WorkingProgram::WorkingProgram() : name(""), publisher(""), opMemoryMb(0), memoryGb(0), timeWorkMin(0) {
+WorkingProgram::WorkingProgram() : program(""), publisher(""), RAM(0), HDisk(0), timeWorkMin(0) {
 }
 
 string WorkingProgram::print() {
 	stringstream lineObj;
-	lineObj << name << "|";
+	lineObj << program << "|";
 	lineObj << publisher << "|";
-	lineObj << opMemoryMb << " ";
-	lineObj << memoryGb << " ";
+	lineObj << RAM << " ";
+	lineObj << HDisk << " ";
 	lineObj << timeWorkMin << " ";
 	string infoObj;
 	getline(lineObj, infoObj);
@@ -62,9 +62,9 @@ void WorkingProgram::setObj(string &info) {
 	stringstream timeLine;
 	
 	timeLine << info;
-	getline(timeLine, name, '|');
+	getline(timeLine, program, '|');
 	getline(timeLine, publisher, '|');	
-	timeLine >> opMemoryMb;
-	timeLine >> memoryGb;
+	timeLine >> RAM;
+	timeLine >> HDisk;
 	timeLine >> timeWorkMin;
 }
