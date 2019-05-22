@@ -19,14 +19,6 @@ void list_func() {
 	int j, choose;
 	list<T> qual;
 	T tmp;
-	int size;
-	cout << "Input size of vector: ";
-	cin >> size;
-
-	for (int i = 0; i < size; i++) {
-		cin >> tmp;
-		qual.push_back(tmp);
-	}
 
 	do {
 		cout << "\n";
@@ -63,7 +55,7 @@ void list_func() {
 			auto it = qual.begin();
 			cout << "Input index: ";
 			cin >> j;
-			cout << "Input new element: ";
+			cout << "Input new element: " << endl;
 			cin >> tmp;
 			advance(it, j);
 			
@@ -156,22 +148,15 @@ break;
 template<class T>
 void set_func() {
 	int j, choose;
-	vector<T> qual;
+	set<T> qual;
 	T tmp;
 	int size;
-	cout << "Input size of vector: ";
-	cin >> size;
-
-	for (int i = 0; i < size; i++) {
-		cin >> tmp;
-		qual.push_back(tmp);
-	}
 
 	do {
 		cout << "\n";
 		cout << "0 - Exit" << endl;
 		cout << "1 - Print vector" << endl;
-		cout << "2 - Find element by index" << endl;
+		cout << "2 - Find element" << endl;
 		cout << "3 - Add element" << endl;
 		cout << "4 - Delete element" << endl;
 		cout << "Choose: ";
@@ -180,33 +165,40 @@ void set_func() {
 		switch (choose)
 		{
 		case 1:
-			for (int i = 0; i < qual.size(); i++) {
-				cout << qual[i];
+			for (auto &it :qual) {
+				cout << it;
 			}
 			break;
 		case 2:
-			cout << "input index: ";
-			cin >> j;
+			cout << "Input search element: " << endl;
+			cin >> tmp;
 
-			if (j<0 || j>qual.size()) {
-				cout << "Error" << endl;
-				break;
+			if (qual.find(tmp) != qual.end()) {
+				cout << "Exist: " << tmp << endl;
+			}
+			else {
+				cout << "Doesn`t exist: " << tmp << endl;
 			}
 
-			cout << qual[j];
 			break;
 		case 3: {
 			cout << "Input index: ";
 			cin >> j;
-			cout << "Input new element: ";
+			cout << "Input new element: " << endl;
 			cin >> tmp;
-			qual.insert(qual.end() + j, tmp);
+			qual.insert(tmp);
 			break;
 		}
 		case 4:
-			cout << "input delete point: ";
-			cin >> j;
-			qual.erase(qual.begin() + j);
+			cout << "Input erase element: " << endl;
+			cin >> tmp;
+
+			if (qual.find(tmp) != qual.end()) {
+				qual.erase(tmp);
+			}
+			else {
+				cout << "Doesn`t exist: " << tmp << endl;
+			}
 			break;
 		default:
 			break;
@@ -280,6 +272,10 @@ void map_func() {
 
 int main() {
 	list_func<InfoWork>();
+	system("cls");
 	vector_func<InfoWork>();
+	system("cls");
 	map_func<InfoWork>();
+	system("cls");
+	set_func<InfoWork>();
 }

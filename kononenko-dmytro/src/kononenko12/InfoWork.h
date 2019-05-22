@@ -31,11 +31,17 @@ public:
 		name = obj.name;
 		return *this;
 	}
-	bool operator== (const InfoWork obj) {
-		return (pages == obj.pages && type == obj.type && mark == obj.mark && name == obj.name);
+	friend bool operator< (const InfoWork &obj,const InfoWork &obj2) {
+		return (obj.pages < obj2.pages);
 	}
-	bool operator!= (const InfoWork obj) {
-		return (pages != obj.pages && type != obj.type && mark != obj.mark && name != obj.name);
+	friend bool operator> (const InfoWork &obj,const InfoWork &obj2) {
+		return (obj.pages > obj2.pages);
+	}
+	friend bool operator== (const InfoWork &obj1,const InfoWork &obj2) {
+		return (obj1.pages == obj2.pages);
+	}
+	friend bool operator!= (const InfoWork &obj,const InfoWork &obj2) {
+		return (obj.pages != obj2.pages);
 	}
 	friend std::ostream& operator<< (std::ostream &out, const InfoWork &obj) {
 		out << "Name: " << obj.name << " Mark: " << obj.mark << endl;
