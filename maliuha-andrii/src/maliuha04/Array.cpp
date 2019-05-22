@@ -177,8 +177,6 @@ void Array::setInfoObj(string &info) {
 			break;
 		}
 	}
-	n = "";
-	p = "";
 
 	infoObj << n << "|";
 	infoObj << p << "|";
