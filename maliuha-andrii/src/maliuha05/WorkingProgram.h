@@ -2,14 +2,12 @@
 #include "Main.h"
 
 
-typedef float memory;
-typedef string name;
 
 class WorkingProgram {
 private:
-	name program;
+	string program;
 	string publisher;
-	memory RAM;
+	float RAM;
 	float HDisk;
 	float timeWorkMin;
 
