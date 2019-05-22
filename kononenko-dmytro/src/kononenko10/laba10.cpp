@@ -4,6 +4,8 @@
 using std::cout;
 using std::cin;
 using std::endl;
+
+
 template <typename T>
 void fill(T * arr, int size) {
 	for (int i = 0; i < size; i++) {
@@ -16,7 +18,6 @@ int main() {
 	InfoWork value;
 	int size;
 	int choose;
-	Shablon <InfoWork> obj;
 	cout << "input size of arr: ";
 	cin >> size;
 	
@@ -39,22 +40,22 @@ int main() {
 		case 0:
 			break;
 		case 1:
-			obj.printOut(arr, size);
+			shablon::printOut(arr, size);
 			break;
 		case 2:
 			system("cls");
-			obj.sort(arr, size);
+			shablon::sort(arr, size);
 			break;
 		case 3:
 			system("cls");
-			value = obj.lowest(arr, size);
+			value = shablon::lowest(arr, size);
 			cout << value;
 			break;
 		case 4:
 			cout << "input value: ";
 			cin >> value;
 			system("cls");
-			cout << obj.find(arr, size,value);
+			cout << shablon::find(arr, size,value);
 			break;
 		default:
 			break;

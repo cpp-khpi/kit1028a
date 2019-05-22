@@ -4,14 +4,14 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-template <class T>
-class Shablon {
-public:
+namespace shablon {
+	template <class T>
 	void printOut(T* arr, int size) { // метод вывода получаемого массива
 		for (int i = 0; i < size; i++) {
 			cout << arr[i] << " ";
 		}
 	};
+	template <class T>
 	void sort(T * arr, int size) { // метод который сортирует получаемый массив
 		T temp;
 
@@ -25,6 +25,7 @@ public:
 			}
 		}
 	};
+	template <class T>
 	T lowest(T * arr, int size) { // метод поиска найменшого елемента массива
 		T low = arr[0];
 
@@ -36,6 +37,7 @@ public:
 
 		return low;
 	};
+	template <class T>
 	int find(T *arr, int size, T value) { // метод поиска елемента в получаемом массиве по значению 
 
 		for (int i = 0; i < size; i++) {
