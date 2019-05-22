@@ -1,24 +1,26 @@
 #include <iostream>
 #include "Shablon.h"
+#include "InfoWork.h"
 using std::cout;
 using std::cin;
 using std::endl;
 template <typename T>
 void fill(T * arr, int size) {
 	for (int i = 0; i < size; i++) {
-		arr[i] = rand() % 26 + 'A';
+		cout << "Input size and points: ";
+		cin >> arr[i];
 	}
 }
 
 int main() {
-	char value;
+	InfoWork value;
 	int size;
 	int choose;
-	Shablon <char> obj;
+	Shablon <InfoWork> obj;
 	cout << "input size of arr: ";
 	cin >> size;
 	
-	char* arr = new char[size];
+	InfoWork* arr = new InfoWork[size];
 	fill(arr, size);
 
 	do {
@@ -45,8 +47,8 @@ int main() {
 			break;
 		case 3:
 			system("cls");
-			cout << obj.lowest(arr, size);
-			//printf("%c",obj.lowest(arr, size));
+			value = obj.lowest(arr, size);
+			cout << value;
 			break;
 		case 4:
 			cout << "input value: ";

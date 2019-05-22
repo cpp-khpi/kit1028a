@@ -4,13 +4,12 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-template <typename T>
+template <class T>
 class Shablon {
 public:
 	void printOut(T* arr, int size) { // метод вывода получаемого массива
 		for (int i = 0; i < size; i++) {
 			cout << arr[i] << " ";
-			//printf("%c ", arr[i]);
 		}
 	};
 	void sort(T * arr, int size) { // метод который сортирует получаемый массив
