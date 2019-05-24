@@ -18,6 +18,18 @@ using std::ofstream;
 using std::ifstream;
 using std::regex;
 
+
+struct Time {
+	int hours;
+	int minutes;
+	int seconds;
+};
+
+struct Version {
+	string name;
+	int arr[3];
+};
+
 #include "WorkingProgram.h"
 #include "Array.h"
 

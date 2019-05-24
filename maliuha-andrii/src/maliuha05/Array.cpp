@@ -7,19 +7,23 @@ void Array::addProgram(WorkingProgram &newObj, int ind) {
 
 	string n;
 	string p;
-	float om, mg, twm;
+	float om, mg;
+	Time *twm;
+	Version version;
 
 	n = newObj.getProgram();
 	p = newObj.getPublisher();
 	om = newObj.getRAM();
-	mg = newObj.getMemoryGb();
-	twm = newObj.getTimeWorkMin();
+	mg = newObj.getHDisk();
+	twm = newObj.getTimer();
+	version = newObj.getVersion();
 
 	timeMas[ind].setName(n);
 	timeMas[ind].setPublisher(p);
-	timeMas[ind].setOpMemoryMb(om);
-	timeMas[ind].setMemoryGb(mg);
-	timeMas[ind].setTimeWorkMin(twm);
+	timeMas[ind].setRAM(om);
+	timeMas[ind].setHDisk(mg);
+	timeMas[ind].setTimer(twm);
+	timeMas[ind].setVersion(version);
 
 	int i = 0;
 	while (i < ind) {
@@ -72,15 +76,19 @@ void Array::showAll() {
 	}
 	WorkingProgram obj;
 	string showObj;
+	Time *timer;
+	Version version;
 	for (int i = 0; i < size; i++) {
 		showObj = mas[i].print();
 		obj.setObj(showObj);
-
+		timer = obj.getTimer();
+		version = obj.getVersion();
 		cout << "Name of program: " << obj.getProgram() << endl;
 		cout << "Publisher: " << obj.getPublisher() << endl;
 		cout << "Amount of consumed RAM(Mb): " << obj.getRAM() << endl;
-		cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
-		cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
+		cout << "Ocupied amount of hard disk memory(Gb): " << obj.getHDisk() << endl;
+		cout << "Time of work: " << timer->hours << "(h) " << timer->minutes << "(m) " << timer->seconds << "(s)" << endl;
+		cout << "Version: " << version.name << ' ' << version.arr[0] << '.' << version.arr[1] << '.' << version.arr[2] << endl;
 		cout << endl;
 		obj.setName("");
 		obj.setPublisher("");
@@ -133,7 +141,7 @@ void Array::findProgram(float memoryGB) {
 	float timeMemory = 0;
 
 	for (int i = 0; i < size; i++) {
-		timeMemory = mas[i].getMemoryGb();
+		timeMemory = mas[i].getHDisk();
 		if (memoryGB < timeMemory) {
 			mas[i].print();
 		}
@@ -158,47 +166,93 @@ void Array::removeViruses() {
 }
 
 void Array::setInfoObj(string &info) {
-	string n;
-	string p;
-	float om, mg, twm;
+	string name;
+	string publisher;
+	float RAM, hDisk;
+	Time *timer = new Time;
 	stringstream infoObj;
-
+	Version version;
+	
 	while (true) {
 		cout << "Enter name of program:" << endl;
-		getline(cin, n);
-		if (inputCheck(n) == true) {
+		getline(cin, name);
+		if (inputCheck(name) == true) {
 			break;
 		}
 	}
 	while (true) {
 		cout << "Enter name of publisher(if you don't know, enter 'Unknown'):" << endl;
-		getline(cin, p);
-		if (inputCheck(p) == true) {
+		getline(cin, publisher);
+		if (inputCheck(publisher) == true) {
 			break;
 		}
 	}
 
-	infoObj << n << "|";
-	infoObj << p << "|";
+	infoObj << name << "|";
+	infoObj << publisher << "|";
 	cout << "Enter amount of consumed RAM(Mb):" << endl;
-	cin >> om;
-	infoObj << om << " ";
+	cin >> RAM;
+	infoObj << RAM << " ";
 	
 	cout << "Enter ocupied amount of hard disk memory(Gg):" << endl;
-	cin >> mg;
-	infoObj << mg << " ";
+	cin >> hDisk;
+	infoObj << hDisk << " ";
 
-	cout << "Enter time of work (in minutes):" << endl;
-	cin >> twm;
-	infoObj << twm << " ";
+	cout << "Enter time of work:" << endl;
+	
+	cout << "Hours - ";
+	cin >> timer->hours;
+	infoObj << timer->hours << " ";
+	
+	while (true) {
+		cout << "(0-59)Minutes - ";
+		cin >> timer->minutes;
+		infoObj << timer->minutes << " ";
+		if (timer->minutes < 0 || timer->minutes >= 60) {
+			cout << "You must enter from 0 to 59 minutes, try again" << endl;
+		}
+		else {
+			break;
+		}
+	}
+	while (true) {
+		cout << "(0-59)Seconds - ";
+		cin >> timer->seconds;
+		infoObj << timer->seconds;
+		if (timer->seconds < 0 || timer->seconds >= 60) {
+			cout << "You must enter from 0 to 59 minutes, try again" << endl;
+		}
+		else {
+			break;
+		}
+	}
+
+	cin.ignore();
+	cout << "Enter version:" << endl;
+	cout << "Name of version - ";
+	getline(cin, version.name);
+	infoObj << version.name << '|';
+	
+	cout << "First number - ";
+	cin >> version.arr[0];
+	infoObj << version.arr[0] << " ";
+	
+	cout << "Second number - ";
+	cin >> version.arr[1];
+	infoObj << version.arr[1] << " ";
+
+	cout << "Third number - ";
+	cin >> version.arr[2];
+	infoObj << version.arr[2];
 
 	getline(infoObj, info);
-
 }
 
 void Array::readFromFile(ifstream &objects, string &info, string &n) {
 	string p;
-	float om, mg, twm;
+	float om, mg;
+	Time *timer = new Time;
+	Version version;
 	stringstream infoObj;
 
 	getline(objects, n);
@@ -216,15 +270,30 @@ void Array::readFromFile(ifstream &objects, string &info, string &n) {
 	objects >> mg;
 	infoObj << mg << " ";
 
-	objects >> twm;
-	infoObj << twm << " ";
+	objects >> timer->hours;
+	infoObj << timer->hours << " ";
 
-	getline(objects, n);
+	objects >> timer->minutes;
+	infoObj << timer->minutes << " ";
+
+	objects >> timer->seconds;
+	infoObj << timer->seconds << " ";
+
+	getline(objects, version.name);
+	infoObj << version.name << "|";
+	
+	for (int i = 0; i < 3; i++) {
+		objects >> version.arr[i];
+		infoObj << version.arr[i] << " ";
+	}
+
 	getline(infoObj, info);
 }
 
 void Array::writeToFile() {
 	ofstream txt;
+	Time *timer;
+	Version version;
 	txt.open("maliuha03w.txt");
 	if (!txt.is_open()) {
 		cout << "File was not opened" << endl;
@@ -235,8 +304,12 @@ void Array::writeToFile() {
 		txt << "Name of program: " << mas[i].getProgram() << endl;
 		txt << "Publisher: " << mas[i].getPublisher() << endl;
 		txt << "Amount of consumed RAM(Mb): " << mas[i].getRAM() << endl;
-		txt << "Ocupied amount of hard disk memory(Gb): " << mas[i].getMemoryGb() << endl;
-		txt << "Time of work (in minutes): " << mas[i].getTimeWorkMin() << endl;
+		txt << "Ocupied amount of hard disk memory(Gb): " << mas[i].getHDisk() << endl;
+
+		version = mas->getVersion();
+		timer = mas->getTimer();
+		txt << "Time of work: " << timer->hours << "(h) " << timer->minutes << "(m) " << timer->seconds << "(s)" << endl;
+		txt << "Version: " << version.name << ' ' << version.arr[0] << '.' << version.arr[1] << '.' << version.arr[2];
 		txt << "------------------------------------------------------" << endl;
 	}
 }
@@ -258,6 +331,8 @@ void Array::sortOutput() {
 	regex regular("[A-Za-z]*");
 	WorkingProgram obj;
 	string object;
+	Time *timer;
+	Version version;
 	for (int i = 0; i < size; i++) {
 		if (regex_match(mas[i].getProgram(), regular)) {
 			object = mas[i].print();
@@ -265,8 +340,11 @@ void Array::sortOutput() {
 			cout << "Name of program: " << obj.getProgram() << endl;
 			cout << "Publisher: " << obj.getPublisher() << endl;
 			cout << "Amount of consumed RAM(Mb): " << obj.getRAM() << endl;
-			cout << "Ocupied amount of hard disk memory(Gb): " << obj.getMemoryGb() << endl;
-			cout << "Time of work (in minutes): " << obj.getTimeWorkMin() << endl;
+			cout << "Ocupied amount of hard disk memory(Gb): " << obj.getHDisk() << endl;
+			timer = obj.getTimer();
+			version = obj.getVersion();
+			cout << "Time of work: " << timer->hours << "(h) " << timer->minutes << "(m) " << timer->seconds << "(s)" << endl;
+			cout << "Version: " << version.name << ' ' << version.arr[0] << '.' << version.arr[1] << '.' << version.arr[2];
 			cout << endl;
 			obj.setName("");
 			obj.setPublisher("");

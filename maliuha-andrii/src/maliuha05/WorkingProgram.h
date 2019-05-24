@@ -5,12 +5,12 @@
 
 class WorkingProgram {
 private:
-	string program;
+	string name;
 	string publisher;
 	float RAM;
-	float HDisk;
-	float timeWorkMin;
-
+	float hDisk;
+	Time *timer;
+	Version version;
 public:
 	WorkingProgram();
 	string print();
@@ -18,14 +18,16 @@ public:
 	void setObj(string &info);
 	void setName(string name);
 	void setPublisher(string publisher);
-	void setOpMemoryMb(float opMemoryMb);
-	void setMemoryGb(float memoryGd);
-	void setTimeWorkMin(float timeWorkMin);
+	void setRAM(float RAM);
+	void setHDisk(float hDisk);
+	void setTimer(Time *timer);
+	void setVersion(Version version);
 
 	string getProgram();
 	string getPublisher();
 	float getRAM();
-	float getMemoryGb();
-	float getTimeWorkMin();
+	float getHDisk();
+	Time *getTimer();
+	Version getVersion();
 };
 

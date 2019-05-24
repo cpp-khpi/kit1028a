@@ -6,7 +6,11 @@ void menu() {
 	int sizeMas = 0;
 	string n;
 	string p;
-	float om, mg, twm;
+	float om, mg;
+	Time *timer = new Time;
+	timer->hours = 0;
+	timer->minutes = 0;
+	timer->seconds = 0;
 	string infoObj;
 	WorkingProgram newObj;
 
@@ -87,9 +91,9 @@ void menu() {
 
 				newObj.setName("");
 				newObj.setPublisher("");
-				newObj.setOpMemoryMb(0);
-				newObj.setMemoryGb(0);
-				newObj.setTimeWorkMin(0);
+				newObj.setRAM(0);
+				newObj.setHDisk(0);
+				newObj.setTimer(timer);
 
 				sizeMas = ops.getSize();
 				system("cls");
@@ -156,9 +160,9 @@ void menu() {
 
 				newObj.setName("");
 				newObj.setPublisher("");
-				newObj.setOpMemoryMb(0);
-				newObj.setMemoryGb(0);
-				newObj.setTimeWorkMin(0);
+				newObj.setRAM(0);
+				newObj.setHDisk(0);
+				newObj.setTimer(timer);
 				infoObj = "";
 				sizeMas = ops.getSize();
 			}

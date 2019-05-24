@@ -1,12 +1,4 @@
-﻿/**
-* @file workingProgram.h
-* Описание класса WorkingProgram
-* @author Maliuga Andrey
-* @version 0.6
-* @date 30.03.2019
-*/
-
-#pragma once
+﻿#pragma once
 #include "Main.h"
 
 class Array {
