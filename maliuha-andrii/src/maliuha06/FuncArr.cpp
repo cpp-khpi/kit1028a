@@ -1,6 +1,6 @@
 #include "Main.h"
 
-void AmountOfViruses::countViruses() {
+void FuncArr::countElem() {
 	if (size == 0) {
 		cout << "Array is empty" << endl;
 		system("pause");
@@ -19,5 +19,5 @@ void AmountOfViruses::countViruses() {
 	system("cls");
 }
 
-AmountOfViruses::AmountOfViruses() :amount(0) {
+FuncArr::FuncArr() :amount(0) {
 }

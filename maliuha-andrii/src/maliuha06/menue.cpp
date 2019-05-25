@@ -15,7 +15,7 @@ void menu() {
 	WorkingProgram newObj;
 
 	string endFile;
-	AmountOfViruses ops;
+	FuncArr ops;
 	ifstream object;
 	string endOfFile;
 	while (true) {
@@ -183,7 +183,7 @@ void menu() {
 			system("cls");
 			break;
 		case 12:
-			ops.countViruses();
+			ops.countElem();
 			break;
 		case 0:
 			ops.delMas();
