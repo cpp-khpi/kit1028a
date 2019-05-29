@@ -16,6 +16,14 @@ struct ForClass {           // Функция объектного типа:
 	}
 };
 
+template<class T>
+class Cmp {
+public:
+	bool operator() (const T &a, const T &b) {
+		return a < b;
+	}
+};
+
 template <class T1, class T2>
 vector<T1> ContainerInsert(vector<T1> t1, vector<T2> t2)
 {
@@ -43,14 +51,6 @@ set<T> mergeSet(set<T> myset, set<T> myset2) {
 	}
 	return myset3;
 }
-
-template<class T>
-struct CompClass {           // Функция объектного типа:
-	void operator() (T obj)
-	{
-		std::cout << "  " << obj;
-	}
-};
 
 template<class T>
 void show(T obj) //Функция, которая будет передаваться в алгоритм
@@ -136,6 +136,7 @@ void list_func() {
 ///*Readlization of STL::vaecto*/
 template<class T>
 void vector_func() {
+	Cmp<InfoWork> obj_sort;
 	ForClass<InfoWork> obj;
 	int j, choose;
 	vector<T> qual;
@@ -157,6 +158,8 @@ void vector_func() {
 		cout << "2 - Find element by index" << endl;
 		cout << "3 - Add element" << endl;
 		cout << "4 - Delete element" << endl;
+		cout << "5 - insert" << endl;
+		cout << "6 - sort" << endl;
 		cout << "Choose: ";
 		cin >> choose;
 
@@ -192,6 +195,9 @@ void vector_func() {
 		case 5:
 			qual = ContainerInsert(qual, qual2);
 			break;
+		case 6:
+			sort(qual.begin(), qual.end(), obj_sort);
+			break;
 		default:
 			break;
 		}
@@ -217,6 +223,7 @@ void set_func() {
 		cout << "2 - Find element" << endl;
 		cout << "3 - Add element" << endl;
 		cout << "4 - Delete element" << endl;
+		cout << "5 - Compare obj" << endl;
 		cout << "Choose: ";
 		cin >> choose;
 
@@ -367,6 +374,35 @@ void special_map() {
 }
 
 int main() {
+	Cmp<int>compare;
+	vector<int>vec1;
+	vector<int>vec2;
+	vector<int>vec3;
+	int size;
+	int tmp;
+	cout << "Input size of vector: ";
+	cin >> size;
+
+	for (int i = 0; i < size; i++) {
+		tmp=rand()%100;
+		vec1.push_back(tmp);
+		tmp= rand()%100;
+		vec2.push_back(tmp);
+	}
+
+	vec3 = ContainerInsert(vec1, vec2);
+
+	for (int i = 0; i < vec3.size(); i++) {
+		cout << vec3[i] << " ";
+	}
+	sort(vec3.begin(), vec3.end(), compare);
+
+	for (int i = 0; i < vec3.size(); i++) {
+		cout << vec3[i] << " ";
+	}
+
+	special_map();
+	system("cls");
 	list_func<InfoWork>();
 	system("cls");
 	vector_func<InfoWork>();
@@ -374,4 +410,13 @@ int main() {
 	map_func<InfoWork>();
 	system("cls");
 	set_func<InfoWork>();
+
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+
+	return _CrtDumpMemoryLeaks();
 }
