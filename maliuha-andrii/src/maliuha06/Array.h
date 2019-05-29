@@ -5,6 +5,7 @@ class Array {
 protected:
 	size_t size;
 	WorkingProgram *mas;
+	Viruses viruses;
 public:
 	Array();
 	void writeToFile();
@@ -23,4 +24,5 @@ public:
 	void DirectMergeSort(int b, int e);
 	bool inputCheck(string str);
 	void sortOutput();
+	void countElem();
 };

@@ -4,7 +4,7 @@
 
 
 class WorkingProgram {
-private:
+protected:
 	string name;
 	string publisher;
 	float RAM;

@@ -396,3 +396,23 @@ void Array::DirectMergeSort(int b, int e)
 }
 
 
+
+void Array::countElem() {
+	if (size == 0) {
+		cout << "Array is empty" << endl;
+		system("pause");
+		system("cls");
+		return;
+	}
+	int amount = 0;
+	string p = "Unknown";
+	for (int i = 0; i < size; i++) {
+		if (p == mas[i].getPublisher()) {
+			amount++;
+		}
+	}
+	viruses.setAmountV(amount);
+	cout << "Amount of viruses: " << amount << endl;
+	system("pause");
+	system("cls");
+}

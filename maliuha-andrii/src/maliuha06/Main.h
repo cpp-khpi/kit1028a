@@ -31,7 +31,7 @@ struct Version {
 };
 
 #include "WorkingProgram.h"
+#include "Viruses.h"
 #include "Array.h"
-#include "AmountOfViruses.h"
 
 void menu();

@@ -15,7 +15,7 @@ void menu() {
 	WorkingProgram newObj;
 
 	string endFile;
-	FuncArr ops;
+	Array ops;
 	ifstream object;
 	string endOfFile;
 	while (true) {
