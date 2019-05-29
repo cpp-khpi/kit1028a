@@ -45,14 +45,6 @@ set<T> mergeSet(set<T> myset, set<T> myset2) {
 }
 
 template<class T>
-struct CompClass {           // Функция объектного типа:
-	void operator() (T obj)
-	{
-		std::cout << "  " << obj;
-	}
-};
-
-template<class T>
 void show(T obj) //Функция, которая будет передаваться в алгоритм
 {
 	std::cout << obj << "  "; //просто выводит параметр на экран
