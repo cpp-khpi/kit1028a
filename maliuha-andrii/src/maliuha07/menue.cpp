@@ -93,13 +93,6 @@ void menu() {
 					newObj1.setObj(infoObj);
 					pObj = &newObj1;
 					ops.addProgram(pObj, ind);
-
-					newObj1.setName("");
-					newObj1.setPublisher("");
-					newObj1.setRAM(0);
-					newObj1.setHDisk(0);
-					newObj1.setTimer(timer);
-
 					sizeMas = ops.getSize();
 					system("cls");
 					break;
