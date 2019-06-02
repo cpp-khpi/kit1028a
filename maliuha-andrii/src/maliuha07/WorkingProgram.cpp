@@ -95,3 +95,96 @@ void WorkingProgram::setObj(string &info) {
 	timeLine >> version.arr[1];
 	timeLine >> version.arr[2];
 }
+
+void WorkingProgram::setInfoObj(string &info) {
+	string name;
+	string publisher;
+	float RAM, hDisk;
+	Time *timer = new Time;
+	stringstream infoObj;
+	Version version;
+	Array ops;
+	while (true) {
+		cout << "Enter name of program:" << endl;
+		getline(cin, name);
+		if (ops.inputCheck(name) == true) {
+			break;
+		}
+	}
+	while (true) {
+		cout << "Enter name of publisher(if you don't know, enter 'Unknown'):" << endl;
+		getline(cin, publisher);
+		if (ops.inputCheck(publisher) == true) {
+			break;
+		}
+	}
+
+	infoObj << name << "|";
+	infoObj << publisher << "|";
+	cout << "Enter amount of consumed RAM(Mb):" << endl;
+	cin >> RAM;
+	infoObj << RAM << " ";
+
+	cout << "Enter ocupied amount of hard disk memory(Gg):" << endl;
+	cin >> hDisk;
+	infoObj << hDisk << " ";
+
+	cout << "Enter time of work:" << endl;
+
+	cout << "Hours - ";
+	cin >> timer->hours;
+	infoObj << timer->hours << " ";
+
+	while (true) {
+		cout << "(0-59)Minutes - ";
+		cin >> timer->minutes;
+		infoObj << timer->minutes << " ";
+		if (timer->minutes < 0 || timer->minutes >= 60) {
+			cout << "You must enter from 0 to 59 minutes, try again" << endl;
+		}
+		else {
+			break;
+		}
+	}
+	while (true) {
+		cout << "(0-59)Seconds - ";
+		cin >> timer->seconds;
+		infoObj << timer->seconds;
+		if (timer->seconds < 0 || timer->seconds >= 60) {
+			cout << "You must enter from 0 to 59 minutes, try again" << endl;
+		}
+		else {
+			break;
+		}
+	}
+
+	cin.ignore();
+	cout << "Enter version:" << endl;
+	cout << "Name of version - ";
+	getline(cin, version.name);
+	infoObj << version.name << '|';
+
+	cout << "First number - ";
+	cin >> version.arr[0];
+	infoObj << version.arr[0] << " ";
+
+	cout << "Second number - ";
+	cin >> version.arr[1];
+	infoObj << version.arr[1] << " ";
+
+	cout << "Third number - ";
+	cin >> version.arr[2];
+	infoObj << version.arr[2];
+
+	getline(infoObj, info);
+}
+
+void WorkingProgram::show() {
+	cout << "Name of program: " << name << endl;
+	cout << "Publisher: " << publisher << endl;
+	cout << "Amount of consumed RAM(Mb): " << RAM << endl;
+	cout << "Ocupied amount of hard disk memory(Gb): " << hDisk << endl;
+	cout << "Time of work: " << timer->hours << "(h) " << timer->minutes << "(m) " << timer->seconds << "(s)" << endl;
+	cout << "Version: " << version.name << ' ' << version.arr[0] << '.' << version.arr[1] << '.' << version.arr[2] << endl;
+	cout << "------------------------------------------------------" << endl;
+}

@@ -13,8 +13,6 @@ void menu() {
 	timer->seconds = 0;
 	string infoObj;
 	Program *pObj;
-	WorkingProgram newObj1;
-	InstalledProgram newObj2;
 	string endFile;
 	Array ops;
 	ifstream object;
@@ -29,12 +27,11 @@ void menu() {
 		cout << "(3)to delete objest from array" << endl;
 		cout << "(4)to add new object to array" << endl;
 		cout << "(5)index output on display" << endl;
-		cout << "(6)show programs, that take up more memory of a given size" << endl;
-		cout << "(7)to delete suspicious programs from array" << endl;
-		cout << "(8)to read inforamtion of objects from file" << endl;
-		cout << "(9)to write array to file" << endl;
-		cout << "(10)output objects from array with more than one word in name" << endl;
-		cout << "(11)to sort array" << endl;
+		cout << "(6)to delete suspicious programs from array" << endl;
+		cout << "(7)to read inforamtion of objects from file" << endl;
+		cout << "(8)to write array to file" << endl;
+		cout << "(9)output objects from array with more than one word in name" << endl;
+		cout << "(10)to sort array" << endl;
 		cin >> num;
 		system("cls");
 
@@ -61,6 +58,7 @@ void menu() {
 				system("cls");
 				break;
 			}
+			break;
 		case 3:
 			cout << "Enter number of object for delete it: ";
 			cin >> ind;
@@ -88,10 +86,10 @@ void menu() {
 
 				cin.ignore();
 				if (ind <= sizeMas + 1 && ind >= 1) {
-
-					ops.setInfoObj(infoObj);
-					newObj1.setObj(infoObj);
-					pObj = &newObj1;
+					WorkingProgram *newObj1 = new WorkingProgram;
+					newObj1->setInfoObj(infoObj);
+					newObj1->setObj(infoObj);
+					pObj = newObj1;
 					ops.addProgram(pObj, ind);
 					sizeMas = ops.getSize();
 					system("cls");
@@ -112,17 +110,11 @@ void menu() {
 
 				cin.ignore();
 				if (ind <= sizeMas + 1 && ind >= 1) {
-
-					ops.setInfoObj(infoObj);
-					newObj2.setObj(infoObj);
-					pObj = &newObj1;
+					InstalledProgram *newObj2 = new InstalledProgram;
+					newObj2->setInfoObj(infoObj);
+					newObj2->setObj(infoObj);
+					pObj = newObj2;
 					ops.addProgram(pObj, ind);
-
-					newObj2.setName("");
-					newObj2.setPublisher("");
-					newObj2.setRAM(0);
-					newObj2.setHDisk(0);
-					newObj2.setTimer(timer);
 
 					sizeMas = ops.getSize();
 					system("cls");
@@ -157,62 +149,54 @@ void menu() {
 				break;
 			}
 		case 6:
-			cout << "Enter size of memory: ";
-			cin >> mg;
-			ops.findProgram(mg);
-
-			system("pause");
-			system("cls");
-			break;
-		case 7:
 			ops.removeViruses();
 			sizeMas = ops.getSize();
 			system("cls");
 			break;
-		case 8:
-			object.open("maliuha03.txt");
+		case 7:
+			//object.open("maliuha03.txt");
 
-			if (!object.is_open()) {
-				cout << "File was not opened" << endl;
-				system("pause");
-				break;
-			}
+			//if (!object.is_open()) {
+			//	cout << "File was not opened" << endl;
+			//	system("pause");
+			//	break;
+			//}
 
-			while (true) {
-				ind = sizeMas + 1;
-				ops.readFromFile(object, infoObj, endFile);
-				if (endFile == "end") {
-					break;
-				}
-				ops.setInfoObj(infoObj);
-				newObj1.setObj(infoObj);
-				pObj = &newObj1;
-				ops.addProgram(pObj, ind);
+			//while (true) {
+			//	ind = sizeMas + 1;
+			//	ops.readFromFile(object, infoObj, endFile);
+			//	if (endFile == "end") {
+			//		break;
+			//	}
+			//	ops.setInfoObj(infoObj);
+			//	newObj1.setObj(infoObj);
+			//	pObj = &newObj1;
+			//	ops.addProgram(pObj, ind);
 
-				newObj1.setName("");
-				newObj1.setPublisher("");
-				newObj1.setRAM(0);
-				newObj1.setHDisk(0);
-				newObj1.setTimer(timer);
+			//	newObj1.setName("");
+			//	newObj1.setPublisher("");
+			//	newObj1.setRAM(0);
+			//	newObj1.setHDisk(0);
+			//	newObj1.setTimer(timer);
 
-				sizeMas = ops.getSize();
-				system("cls");
-				infoObj = "";
-				sizeMas = ops.getSize();
-			}
-			object.close();
+			//	sizeMas = ops.getSize();
+			//	system("cls");
+			//	infoObj = "";
+			//	sizeMas = ops.getSize();
+			//}
+			//object.close();
 			system("cls");
 			break;
-		case 9:
+		case 8:
 			ops.writeToFile();
 			system("cls");
 			break;
-		case 10:
+		case 9:
 			ops.sortOutput();
 			system("pause");
 			system("cls");
 			break;
-		case 11:
+		case 10:
 			ops.DirectMergeSort(0, sizeMas - 1);
 			system("cls");
 			break;

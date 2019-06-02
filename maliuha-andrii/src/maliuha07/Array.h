@@ -8,14 +8,12 @@ private:
 public:
 	Array();
 	void writeToFile();
-	void readFromFile(ifstream &objects, string &info, string &n);
-	void setInfoObj(string &info);
+	//void readFromFile(ifstream &objects, string &info, string &n);
 	void addProgram(Program *newObj, int ind);
 	void showAll();
 	void removeProgram(int ind);
 	void getProgram(int ind);
 	void nameSearch(string n);
-	void findProgram(float memoryGB);
 	void removeViruses();
 	void delMas();
 	size_t getSize();

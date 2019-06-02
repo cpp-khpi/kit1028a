@@ -10,16 +10,9 @@ void InstalledProgram::setPublisher(string publisher) {
 	this->publisher = publisher;
 }
 
-void InstalledProgram::setRAM(float opMemoryMb) {
-	this->RAM = opMemoryMb;
-}
 
 void InstalledProgram::setHDisk(float memoryGb) {
 	this->hDisk = memoryGb;
-}
-
-void InstalledProgram::setTimer(Time *timeWorkMin) {
-	this->timer = timeWorkMin;
 }
 
 void InstalledProgram::setVersion(Version version) {
@@ -35,16 +28,8 @@ string InstalledProgram::getPublisher() {
 	return publisher;
 }
 
-float InstalledProgram::getRAM() {
-	return RAM;
-}
-
 float InstalledProgram::getHDisk() {
 	return hDisk;
-}
-
-Time *InstalledProgram::getTimer() {
-	return timer;
 }
 
 Version InstalledProgram::getVersion() {
@@ -53,11 +38,7 @@ Version InstalledProgram::getVersion() {
 
 
 
-InstalledProgram::InstalledProgram() : name(""), publisher(""), RAM(0), hDisk(0) {
-	timer = new Time;
-	timer->hours = 0;
-	timer->minutes = 0;
-	timer->seconds = 0;
+InstalledProgram::InstalledProgram() : name(""), publisher(""), hDisk(0) {
 	version.name = "";
 	version.arr[0] = 0;
 	version.arr[1] = 0;
@@ -68,11 +49,7 @@ string InstalledProgram::print() {
 	stringstream lineObj;
 	lineObj << name << "|";
 	lineObj << publisher << "|";
-	lineObj << RAM << " ";
 	lineObj << hDisk << " ";
-	lineObj << timer->hours << " ";
-	lineObj << timer->minutes << " ";
-	lineObj << timer->seconds;
 	lineObj << version.name << "|";
 	lineObj << version.arr[0] << " " << version.arr[1] << " " << version.arr[2];
 	string infoObj;
@@ -86,13 +63,68 @@ void InstalledProgram::setObj(string &info) {
 	timeLine << info;
 	getline(timeLine, name, '|');
 	getline(timeLine, publisher, '|');
-	timeLine >> RAM;
 	timeLine >> hDisk;
-	timeLine >> timer->hours;
-	timeLine >> timer->minutes;
-	timeLine >> timer->seconds;
 	getline(timeLine, version.name, '|');
 	timeLine >> version.arr[0];
 	timeLine >> version.arr[1];
 	timeLine >> version.arr[2];
+}
+
+void InstalledProgram::setInfoObj(string &info) {
+	string name;
+	string publisher;
+	float RAM, hDisk;
+	Time *timer = new Time;
+	stringstream infoObj;
+	Version version;
+	Array ops;
+	while (true) {
+		cout << "Enter name of program:" << endl;
+		getline(cin, name);
+		if (ops.inputCheck(name) == true) {
+			break;
+		}
+	}
+	while (true) {
+		cout << "Enter name of publisher(if you don't know, enter 'Unknown'):" << endl;
+		getline(cin, publisher);
+		if (ops.inputCheck(publisher) == true) {
+			break;
+		}
+	}
+
+	infoObj << name << "|";
+	infoObj << publisher << "|";
+
+	cout << "Enter ocupied amount of hard disk memory(Gg):" << endl;
+	cin >> hDisk;
+	infoObj << hDisk << " ";
+
+	cin.ignore();
+	cout << "Enter version:" << endl;
+	cout << "Name of version - ";
+	getline(cin, version.name);
+	infoObj << version.name << '|';
+
+	cout << "First number - ";
+	cin >> version.arr[0];
+	infoObj << version.arr[0] << " ";
+
+	cout << "Second number - ";
+	cin >> version.arr[1];
+	infoObj << version.arr[1] << " ";
+
+	cout << "Third number - ";
+	cin >> version.arr[2];
+	infoObj << version.arr[2];
+
+	getline(infoObj, info);
+}
+
+void InstalledProgram::show() {
+	cout << "Name of program: " << name << endl;
+	cout << "Publisher: " << publisher << endl;
+	cout << "Ocupied amount of hard disk memory(Gb): " << hDisk << endl;
+	cout << "Version: " << version.name << ' ' << version.arr[0] << '.' << version.arr[1] << '.' << version.arr[2] << endl;
+	cout << "------------------------------------------------------" << endl;
 }

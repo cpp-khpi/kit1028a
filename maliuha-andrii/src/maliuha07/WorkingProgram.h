@@ -13,9 +13,12 @@ private:
 	Version version;
 public:
 	WorkingProgram();
-	string print();
 
+	string print();
+	void setInfoObj(string &info);
 	void setObj(string &info);
+	void show();
+
 	void setName(string name);
 	void setPublisher(string publisher);
 	void setRAM(float RAM);
