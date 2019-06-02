@@ -1,0 +1,12 @@
+Student info: Kotenko Serhii
+Amount of independent works: 14
+Amount of written independent works: 14
+Student mark (average): 1
+Student homework : 0
+
+Student info: Kot
+Amount of independent works: 1
+Amount of written independent works: 1
+Student mark (average): 1
+Student homework : 1
+
