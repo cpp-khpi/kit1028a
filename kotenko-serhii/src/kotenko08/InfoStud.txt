@@ -1,6 +1,6 @@
 Student info: Kotenko Serhii
-Amount of independent works: 12
-Amount of written independent works: 11
-Student mark (average): 1
-Student homework : 13
+Amount of independent works: 14
+Amount of written independent works: 13
+Student mark (average): 3
+Student homework : 9
 

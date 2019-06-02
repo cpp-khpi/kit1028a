@@ -6,21 +6,9 @@ private:
 	int size;
 	InfoIndependentsWork *arr;
 public:
-	friend std::ostream& operator<< (std::ostream &out, const IndependentsWork &obj) {
-		out << obj.size << std::endl;
-		for (int i = 0; i < obj.size; i++) {
-			out << obj.arr[i];
-		}
-		return out;
-	}
-	friend std::istream& operator>> (std::istream &in, IndependentsWork &obj) {
-		in >> obj.size;
-		for (int i = 0; i < obj.size; i++) in >> obj.arr[i];
-		return in;
-	}
-	InfoIndependentsWork &operator[] (const int index) {
-		return arr[index];
-	}
+	friend std::ostream& operator<< (std::ostream &out, const IndependentsWork &obj);
+	friend std::istream& operator>> (std::istream &in, IndependentsWork &obj);
+	InfoIndependentsWork &operator[] (const int index);
 	void set_size(int size);
 	void new_array(std::string *s);
 	void print();

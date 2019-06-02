@@ -2,15 +2,30 @@
 
 Homework::Homework(int amount, int written, int mark, std::string person, int homework_count) : homework_count(homework_count), InfoIndependentsWork() {
 }
-
 Homework::Homework() : homework_count(0) {
 }
-
 Homework::Homework(const Homework &obj) : homework_count(obj.homework_count), InfoIndependentsWork(obj.amount, obj.written, obj.mark, obj.person) {
 }
 Homework::~Homework() {
 }
-
+std::ostream& operator<< (std::ostream &out, const Homework &obj) {
+	out << obj.person << ": " << obj.homework_count << std::endl;
+	return out;
+}
+std::istream& operator>> (std::istream &in, Homework &obj) {
+	in >> obj.amount;
+	in >> obj.written;
+	in >> obj.mark;
+	in >> obj.homework_count;
+	in >> obj.person;
+	return in;
+}
+bool Homework::operator< (const Homework obj) {
+	return (amount < obj.amount && written < obj.written && mark < obj.mark && homework_count < obj.homework_count);
+}
+bool Homework::operator> (const Homework obj) {
+	return (amount > obj.amount && written > obj.written && mark > obj.mark && homework_count > obj.homework_count);
+}
 int Homework::get_homework() {
 	return Homework::homework_count;
 }

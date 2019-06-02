@@ -1,5 +1,22 @@
 #include "IndependentsWork.h"
 
+std::ostream& operator<< (std::ostream &out, const IndependentsWork &obj) {
+	out << obj.size << std::endl;
+	for (int i = 0; i < obj.size; i++) {
+		out << obj.arr[i];
+	}
+	return out;
+}
+std::istream& operator>> (std::istream &in, IndependentsWork &obj) {
+	in >> obj.size;
+	for (int i = 0; i < obj.size; i++) {
+		in >> obj.arr[i];
+	}
+	return in;
+}
+InfoIndependentsWork& IndependentsWork::operator[] (const int index) {
+	return arr[index];
+}
 void IndependentsWork::set_size(int size) {
 	IndependentsWork::size = size;
 }
@@ -99,6 +116,7 @@ void IndependentsWork::write_to_file() {
 		fout << "Amount of independent works: " << arr[i].get_amount() << std::endl;
 		fout << "Amount of written independent works: " << arr[i].get_written() << std::endl;
 		fout << "Student mark (average): " << arr[i].get_mark() << std::endl << std::endl;
+		fout << arr[i];
 	}
 	fout.close();
 }

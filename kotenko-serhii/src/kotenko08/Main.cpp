@@ -101,7 +101,7 @@ int main() {
 				std::cout << "Enter searches person : ";
 				std::cin.ignore();
 				getline(std::cin, search_surname);
-
+				system("cls");
 				Work.search_by_surname(search_surname);
 				break;
 			}
@@ -129,18 +129,22 @@ int main() {
 				switch (s) {
 				case 1:
 					Work.sort_by_mark(pointer);
+					system("cls");
 					Work.print();
 					break;
 				case 2:
 					Work.sort_by_amount(pointer);
+					system("cls");
 					Work.print();
 					break;
 				case 3:
 					Work.sort_by_written(pointer);
+					system("cls");
 					Work.print();
 					break;
 				case 4:
 					Work.sort_by_written(pointer);
+					system("cls");
 					Work.print();
 					break;
 				}
