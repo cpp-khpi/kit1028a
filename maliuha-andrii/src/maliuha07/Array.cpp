@@ -24,6 +24,9 @@ void Array::addProgram(Program *newObj, int ind) {
 	}
 
 	if (size != 0) {
+		for (int i = 0; i < size; i++) {
+			delete mas[i];
+		}
 		delete[] mas;
 	}
 	mas = timeMas;
@@ -52,7 +55,13 @@ void Array::removeProgram(int ind) {
 			i++;
 		}
 	}
-	delete[] mas;
+
+	if (size != 0) {
+		for (int i = 0; i < size; i++) {
+			delete mas[i];
+		}
+		delete[] mas;
+	}
 
 	mas = timeMas;
 
@@ -100,6 +109,9 @@ size_t Array::getSize() {
 }
 
 void Array::delMas() {
+	for (int i = 0; i < size; i++) {
+		delete mas[i];
+	}
 	delete[] mas;
 }
 

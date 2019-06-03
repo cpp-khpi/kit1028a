@@ -201,6 +201,7 @@ void menu() {
 			system("cls");
 			break;
 		case 0:
+			delete timer;
 			ops.delMas();
 			return;
 		}

@@ -149,7 +149,7 @@ void WorkingProgram::setInfoObj(string &info) {
 	while (true) {
 		cout << "(0-59)Seconds - ";
 		cin >> timer->seconds;
-		infoObj << timer->seconds;
+		infoObj << timer->seconds << " ";
 		if (timer->seconds < 0 || timer->seconds >= 60) {
 			cout << "You must enter from 0 to 59 minutes, try again" << endl;
 		}
