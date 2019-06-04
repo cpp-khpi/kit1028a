@@ -5,18 +5,11 @@ void menu() {
 	int ind;
 	int sizeMas = 0;
 	string n;
-	string p;
-	float om, mg;
-	Time *timer = new Time;
-	timer->hours = 0;
-	timer->minutes = 0;
-	timer->seconds = 0;
 	string infoObj;
 	Program *pObj;
 	string endFile;
 	Array ops;
 	ifstream object;
-
 	string endOfFile;
 	while (true) {
 		cout << "Quantity of objects in array: " << sizeMas << endl;
@@ -86,7 +79,7 @@ void menu() {
 
 				cin.ignore();
 				if (ind <= sizeMas + 1 && ind >= 1) {
-					WorkingProgram *newObj1 = new WorkingProgram;
+					Program *newObj1 = new WorkingProgram;
 					newObj1->setInfoObj(infoObj);
 					newObj1->setObj(infoObj);
 					pObj = newObj1;
@@ -110,7 +103,7 @@ void menu() {
 
 				cin.ignore();
 				if (ind <= sizeMas + 1 && ind >= 1) {
-					InstalledProgram *newObj2 = new InstalledProgram;
+					Program *newObj2 = new InstalledProgram;
 					newObj2->setInfoObj(infoObj);
 					newObj2->setObj(infoObj);
 					pObj = newObj2;
@@ -154,37 +147,8 @@ void menu() {
 			system("cls");
 			break;
 		case 7:
-			//object.open("maliuha03.txt");
-
-			//if (!object.is_open()) {
-			//	cout << "File was not opened" << endl;
-			//	system("pause");
-			//	break;
-			//}
-
-			//while (true) {
-			//	ind = sizeMas + 1;
-			//	ops.readFromFile(object, infoObj, endFile);
-			//	if (endFile == "end") {
-			//		break;
-			//	}
-			//	ops.setInfoObj(infoObj);
-			//	newObj1.setObj(infoObj);
-			//	pObj = &newObj1;
-			//	ops.addProgram(pObj, ind);
-
-			//	newObj1.setName("");
-			//	newObj1.setPublisher("");
-			//	newObj1.setRAM(0);
-			//	newObj1.setHDisk(0);
-			//	newObj1.setTimer(timer);
-
-			//	sizeMas = ops.getSize();
-			//	system("cls");
-			//	infoObj = "";
-			//	sizeMas = ops.getSize();
-			//}
-			//object.close();
+			ops.readFromFile(sizeMas, ops);
+			sizeMas = ops.getSize();
 			system("cls");
 			break;
 		case 8:
@@ -201,7 +165,6 @@ void menu() {
 			system("cls");
 			break;
 		case 0:
-			delete timer;
 			ops.delMas();
 			return;
 		}

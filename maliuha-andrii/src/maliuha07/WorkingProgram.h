@@ -9,7 +9,7 @@ private:
 	string publisher;
 	float RAM;
 	float hDisk;
-	Time *timer;
+	Time timer;
 	Version version;
 public:
 	WorkingProgram();
@@ -23,14 +23,14 @@ public:
 	void setPublisher(string publisher);
 	void setRAM(float RAM);
 	void setHDisk(float hDisk);
-	void setTimer(Time *timer);
+	void setTimer(Time timer);
 	void setVersion(Version version);
 
 	string getName();
 	string getPublisher();
 	float getRAM();
 	float getHDisk();
-	Time *getTimer();
+	Time getTimer();
 	Version getVersion();
 };
 

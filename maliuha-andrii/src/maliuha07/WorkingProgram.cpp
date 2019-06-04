@@ -17,7 +17,7 @@ void WorkingProgram::setHDisk(float memoryGb) {
 	this->hDisk = memoryGb;
 }
 
-void WorkingProgram::setTimer(Time *timeWorkMin) {
+void WorkingProgram::setTimer(Time timeWorkMin) {
 	this->timer = timeWorkMin;
 }
 
@@ -42,7 +42,7 @@ float WorkingProgram::getHDisk() {
 	return hDisk;
 }
 
-Time *WorkingProgram::getTimer() {
+Time WorkingProgram::getTimer() {
 	return timer;
 }
 
@@ -53,10 +53,9 @@ Version WorkingProgram::getVersion() {
 
 
 WorkingProgram::WorkingProgram() : name(""), publisher(""), RAM(0), hDisk(0) {
-	timer = new Time;
-	timer->hours = 0;
-	timer->minutes = 0;
-	timer->seconds = 0;
+	timer.hours = 0;
+	timer.minutes = 0;
+	timer.seconds = 0;
 	version.name = "";
 	version.arr[0] = 0;
 	version.arr[1] = 0;
@@ -69,9 +68,9 @@ string WorkingProgram::print() {
 	lineObj << publisher << "|";
 	lineObj << RAM << " ";
 	lineObj << hDisk << " ";
-	lineObj << timer->hours << " ";
-	lineObj << timer->minutes << " ";
-	lineObj << timer->seconds;
+	lineObj << timer.hours << " ";
+	lineObj << timer.minutes << " ";
+	lineObj << timer.seconds;
 	lineObj << version.name << "|";
 	lineObj << version.arr[0] << " " << version.arr[1] << " " << version.arr[2];
 	string infoObj;
@@ -87,9 +86,9 @@ void WorkingProgram::setObj(string &info) {
 	getline(timeLine, publisher, '|');	
 	timeLine >> RAM;
 	timeLine >> hDisk;
-	timeLine >> timer->hours;
-	timeLine >> timer->minutes;
-	timeLine >> timer->seconds;
+	timeLine >> timer.hours;
+	timeLine >> timer.minutes;
+	timeLine >> timer.seconds;
 	getline(timeLine, version.name, '|');
 	timeLine >> version.arr[0];
 	timeLine >> version.arr[1];
@@ -100,7 +99,7 @@ void WorkingProgram::setInfoObj(string &info) {
 	string name;
 	string publisher;
 	float RAM, hDisk;
-	Time *timer = new Time;
+	Time timer;
 	stringstream infoObj;
 	Version version;
 	Array ops;
@@ -132,14 +131,14 @@ void WorkingProgram::setInfoObj(string &info) {
 	cout << "Enter time of work:" << endl;
 
 	cout << "Hours - ";
-	cin >> timer->hours;
-	infoObj << timer->hours << " ";
+	cin >> timer.hours;
+	infoObj << timer.hours << " ";
 
 	while (true) {
 		cout << "(0-59)Minutes - ";
-		cin >> timer->minutes;
-		infoObj << timer->minutes << " ";
-		if (timer->minutes < 0 || timer->minutes >= 60) {
+		cin >> timer.minutes;
+		infoObj << timer.minutes << " ";
+		if (timer.minutes < 0 || timer.minutes >= 60) {
 			cout << "You must enter from 0 to 59 minutes, try again" << endl;
 		}
 		else {
@@ -148,9 +147,9 @@ void WorkingProgram::setInfoObj(string &info) {
 	}
 	while (true) {
 		cout << "(0-59)Seconds - ";
-		cin >> timer->seconds;
-		infoObj << timer->seconds << " ";
-		if (timer->seconds < 0 || timer->seconds >= 60) {
+		cin >> timer.seconds;
+		infoObj << timer.seconds << " ";
+		if (timer.seconds < 0 || timer.seconds >= 60) {
 			cout << "You must enter from 0 to 59 minutes, try again" << endl;
 		}
 		else {
@@ -184,7 +183,8 @@ void WorkingProgram::show() {
 	cout << "Publisher: " << publisher << endl;
 	cout << "Amount of consumed RAM(Mb): " << RAM << endl;
 	cout << "Ocupied amount of hard disk memory(Gb): " << hDisk << endl;
-	cout << "Time of work: " << timer->hours << "(h) " << timer->minutes << "(m) " << timer->seconds << "(s)" << endl;
+	cout << "Time of work: " << timer.hours << "(h) " << timer.minutes << "(m) " << timer.seconds << "(s)" << endl;
 	cout << "Version: " << version.name << ' ' << version.arr[0] << '.' << version.arr[1] << '.' << version.arr[2] << endl;
 	cout << "------------------------------------------------------" << endl;
 }
+

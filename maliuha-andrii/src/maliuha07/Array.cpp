@@ -5,12 +5,6 @@ void Array::addProgram(Program *newObj, int ind) {
 
 	Program **timeMas = new Program*[size + 1];
 
-	string n;
-	string p;
-	float om, mg;
-	Time *twm;
-	Version version;
-
 	timeMas[ind] = newObj;
 
 	int i = 0;
@@ -24,13 +18,10 @@ void Array::addProgram(Program *newObj, int ind) {
 	}
 
 	if (size != 0) {
-		for (int i = 0; i < size; i++) {
-			delete mas[i];
-		}
 		delete[] mas;
 	}
-	mas = timeMas;
 
+	mas = timeMas;
 	size++;
 }
 
@@ -56,15 +47,13 @@ void Array::removeProgram(int ind) {
 		}
 	}
 
+
 	if (size != 0) {
-		for (int i = 0; i < size; i++) {
-			delete mas[i];
-		}
+		delete mas[ind];
 		delete[] mas;
 	}
 
 	mas = timeMas;
-
 	size--;
 }
 
@@ -104,7 +93,7 @@ void Array::nameSearch(string n) {
 	}
 }
 
-size_t Array::getSize() {
+int Array::getSize() {
 	return size;
 }
 
@@ -135,47 +124,114 @@ void Array::removeViruses() {
 	}
 }
 
-//void Array::readFromFile(ifstream &objects, string &info, string &n) {
-//	string p;
-//	float om, mg;
-//	Time *timer = new Time;
-//	Version version;
-//	stringstream infoObj;
-//
-//	getline(objects, n);
-//	if (n == "end") {
-//		return;
-//	}
-//	infoObj << n << "|";
-//
-//	getline(objects, p);
-//	infoObj << p << "|";
-//
-//	objects >> om;
-//	infoObj << om << " ";
-//
-//	objects >> mg;
-//	infoObj << mg << " ";
-//
-//	objects >> timer->hours;
-//	infoObj << timer->hours << " ";
-//
-//	objects >> timer->minutes;
-//	infoObj << timer->minutes << " ";
-//
-//	objects >> timer->seconds;
-//	infoObj << timer->seconds << " ";
-//
-//	getline(objects, version.name);
-//	infoObj << version.name << "|";
-//	
-//	for (int i = 0; i < 3; i++) {
-//		objects >> version.arr[i];
-//		infoObj << version.arr[i] << " ";
-//	}
-//
-//	getline(infoObj, info);
-//}
+void Array::readFromFile(int &sizeMas, Array &ops) {
+	string publisher, name;
+	float RAM, hDisk;
+	Time timer;
+	string type;
+	Version version;
+	stringstream infoObj;
+	string info;
+	ifstream objects("maliuha07.txt");
+	
+	if (!objects.is_open()) {
+		cout << "File was not opened" << endl;
+		system("pause");
+		return;
+	}
+	
+	for (int i = 0; i < sizeMas + 1; i++) {
+		getline(objects, type);
+		if (type == "") {
+			getline(objects, type);
+		}
+		if (type == "WorkingProgram") {
+			getline(objects, name);
+			if (name == "") {
+				getline(objects, name);
+			}
+			infoObj << name << "|";
+
+			getline(objects, publisher);
+			infoObj << publisher << "|";
+
+			objects >> RAM;
+			infoObj << RAM << " ";
+
+			objects >> hDisk;
+			infoObj << hDisk << " ";
+
+			objects >> timer.hours;
+			infoObj << timer.hours << " ";
+
+			objects >> timer.minutes;
+			infoObj << timer.minutes << " ";
+
+			objects >> timer.seconds;
+			infoObj << timer.seconds << " ";
+		
+			getline(objects, version.name);
+			if (version.name == "") {
+				getline(objects, version.name);
+			}
+			infoObj << version.name << "|";
+
+			for (int i = 0; i < 3; i++) {
+				objects >> version.arr[i];
+				infoObj << version.arr[i] << " ";
+			}
+
+			getline(infoObj, info);
+
+			Program *obj = new WorkingProgram;
+			obj->setObj(info);
+			ops.addProgram(obj, sizeMas + 1);
+
+			sizeMas++;
+			type = "";
+			infoObj.str("");
+			infoObj.clear();
+		}
+		if (type == "InstalledProgram") {
+			getline(objects, name);
+			if (name == "") {
+				getline(objects, name);
+			}
+			infoObj << name << "|";
+
+
+			getline(objects, publisher);
+			infoObj << publisher << "|";
+
+			objects >> hDisk;
+			infoObj << hDisk << " ";
+
+			getline(objects, version.name);
+			if (version.name == "") {
+				getline(objects, version.name);
+			}
+			infoObj << version.name << "|";
+
+			for (int i = 0; i < 3; i++) {
+				objects >> version.arr[i];
+				infoObj << version.arr[i] << " ";
+			}
+
+			getline(infoObj, info);
+
+			Program *obj2 = new InstalledProgram;
+			obj2->setObj(info);
+			ops.addProgram(obj2, sizeMas + 1);
+
+			sizeMas++;
+			type = "";
+			info = "";
+			infoObj.str("");
+			infoObj.clear();
+		}
+	}
+	objects.close();
+}
 
 void Array::writeToFile() {
 	std::streambuf *coutbuf = std::cout.rdbuf();
@@ -189,7 +245,7 @@ void Array::writeToFile() {
 }
 
 bool Array::inputCheck(string str) {
-	regex regular("^[A-Z][a-z][A-Za-z ,.1234567890]*");
+	regex regular("^[A-Z][A-Za-z ,.1234567890]*");
 	regex regular2(" {2,}");
 	if (!regex_match(str, regular) || regex_search(str, regular2)) {
 		cout << "This line does not meet the requirements: " << endl;
@@ -204,7 +260,7 @@ bool Array::inputCheck(string str) {
 void Array::sortOutput() {
 	regex regular("[A-Za-z]*");
 	for (int i = 0; i < size; i++) {
-		if (regex_match(mas[i]->getName(), regular)) {
+		if (!regex_match(mas[i]->getName(), regular)) {
 			mas[i]->show();
 		}
 	}

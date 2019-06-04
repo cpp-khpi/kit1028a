@@ -3,12 +3,12 @@
 
 class Array {
 private:
-	size_t size;
+	int size;
 	Program **mas;
 public:
 	Array();
 	void writeToFile();
-	//void readFromFile(ifstream &objects, string &info, string &n);
+	void readFromFile(int &sizeMas, Array &ops);
 	void addProgram(Program *newObj, int ind);
 	void showAll();
 	void removeProgram(int ind);
@@ -16,7 +16,7 @@ public:
 	void nameSearch(string n);
 	void removeViruses();
 	void delMas();
-	size_t getSize();
+	int getSize();
 	void merge(int b, int m, int e);
 	void DirectMergeSort(int b, int e);
 	bool inputCheck(string str);

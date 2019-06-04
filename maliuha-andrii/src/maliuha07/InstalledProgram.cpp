@@ -119,6 +119,7 @@ void InstalledProgram::setInfoObj(string &info) {
 	infoObj << version.arr[2];
 
 	getline(infoObj, info);
+	delete timer;
 }
 
 void InstalledProgram::show() {
