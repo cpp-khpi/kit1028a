@@ -7,10 +7,10 @@
 
 #include "InfoIndependentsWork.h"
 
-template <class T>
-class Shablon {
-public:
-	
+
+namespace Shablon {
+
+	template <typename T>
 	void fill_array(T* arr, int size) {
 		std::cout << "Enter marks: " << std::endl;
 		for (int i = 0; i < size; i++) {
@@ -18,12 +18,14 @@ public:
 		}
 	}
 
+	template <typename T>
 	void print_array(T* arr, int size) {
 		for (int i = 0; i < size; i++) {
 		std::cout << arr[i] << std::endl;
 		}
 	}
 
+	template <typename T>
 	T min_values(T* arr, int size) {
 	T min = arr[0];
 	for (int i = 0; i < size; i++) {
@@ -34,6 +36,7 @@ public:
 		return min;
 	}
 
+	template <typename T>
 	void sort_array(T* arr, int size) {
 		T temp;
 		for (int i = 0; i < size; i++) {
@@ -47,6 +50,7 @@ public:
 		}
 	}
 
+	template <typename T>
 	int search_by_index(T* arr, int size, T values) {
 		for (int i = 0; i < size; i++) {
 			if (arr[i] == values) {
@@ -67,8 +71,7 @@ int main() {
 	
 	{
 		int values;
-		Shablon<int> work;
-		work.fill_array(arr, size);
+		Shablon::fill_array(arr, size);
 		int option;
 		do {
 			std::cout << "Choose option:" << std::endl << "0 - Exit " << std::endl << "1 - Print array" << std::endl << "2 - Sort array" << std::endl << "3 - Search by index" << std::endl << "4 - Search by min values" << std::endl;
@@ -78,25 +81,25 @@ int main() {
 			switch (option) {
 			case 1: {
 				system("cls");
-				work.print_array(arr, size);
+				Shablon::print_array(arr, size);
 				break;
 			}
 			case 2: {
 				system("cls");
-				work.sort_array(arr, size);
-				work.print_array(arr, size);
+				Shablon::sort_array(arr, size);
+				Shablon::print_array(arr, size);
 				break;
 			}
 			case 3: {
 				std::cout << "Enter values: ";
 				std::cin >> values;
 				system("cls");
-				work.search_by_index(arr, size, values);
+				Shablon::search_by_index(arr, size, values);
 				std::cout << values << std::endl << std::endl;
 				break;
 			}
 			case 4: {
-				int min = work.min_values(arr, size);
+				int min = Shablon::min_values(arr, size);
 				system("cls");
 				std::cout << min << std::endl << std::endl;
 				break;
