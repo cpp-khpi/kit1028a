@@ -24,31 +24,11 @@ public:
 	InfoWork();
 	InfoWork(int a, int b, int c, string creator);
 	InfoWork(const InfoWork &obj);
-	InfoWork& operator= (const InfoWork obj) {
-		pages = obj.pages;
-		mark = obj.mark;
-		type = obj.type;
-		name = obj.name;
-		return *this;
-	}
-	bool operator== (const InfoWork obj) {
-		return (pages == obj.pages && type == obj.type && mark == obj.mark && name == obj.name);
-	}
-	bool operator!= (const InfoWork obj) {
-		return (pages != obj.pages && type != obj.type && mark != obj.mark && name != obj.name);
-	}
-	friend std::ostream& operator<< (std::ostream &out, const InfoWork &obj){
-		out << obj.name << ": " << obj.mark << endl;
-		return out;
-	}
-	friend std::istream& operator>> (std::istream &in, InfoWork &obj) {
-		in >> obj.pages;
-		in >> obj.mark;
-		in >> obj.type;
-		in >> obj.name;
-
-		return in;
-	}
+	InfoWork& operator= (const InfoWork obj) {}
+	bool operator== (const InfoWork obj) {}
+	bool operator!= (const InfoWork obj) {}
+	friend std::ostream& operator<< (std::ostream &out, const InfoWork &obj) {}
+	friend std::istream& operator>> (std::istream &in, InfoWork &obj) {}
 	InfoWork get_element();
 	~InfoWork() {};
 	void set(string creator);

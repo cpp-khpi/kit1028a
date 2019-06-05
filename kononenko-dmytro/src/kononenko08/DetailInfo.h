@@ -7,26 +7,10 @@ private:
 	int novelty;
 	int sizeOfLabor;
 public:
-	bool operator== (const DetailInfo obj) {
-		return (pages == obj.pages && type == obj.type && mark == obj.mark && name == obj.name);
-	}
-	bool operator!= (const DetailInfo obj) {
-		return (pages != obj.pages && type != obj.type && mark != obj.mark && name != obj.name);
-	}
-	friend std::ostream& operator<< (std::ostream &out, const DetailInfo &obj) {
-		out << obj.name << ";" << obj.mark << endl;
-		return out;
-	}
-	friend std::istream& operator>> (std::istream &in, DetailInfo &obj) {
-		in >> obj.pages;
-		in >> obj.mark;
-		in >> obj.type;
-		in >> obj.name;
-		in >> obj.novelty;
-		in >> obj.sizeOfLabor;
-
-		return in;
-	}
+	bool operator== (const DetailInfo obj) {}
+	bool operator!= (const DetailInfo obj) {}
+	friend std::ostream& operator<< (std::ostream &out, const DetailInfo &obj) {}
+	friend std::istream& operator>> (std::istream &in, DetailInfo &obj) {}
 	int getPages() ;
 	int getMark();
 	int getType();

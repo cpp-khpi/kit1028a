@@ -2,6 +2,31 @@
 #include "InfoWork.h"
 typedef bool(*fun)(int a, int b);
 
+std::ostream& operator<< (std::ostream &out, const StudentsWork &obj) {
+	out << "Size: " << obj.size << endl;
+	for (int i = 0; i < obj.size; i++) {
+		out << obj.qual[i];
+	}
+	return out;
+}
+
+InfoWork& StudentsWork::operator[] (const int index)
+{
+	cout << "Operator []" << endl;
+	return qual[index];
+}
+
+std::istream& operator>> (std::istream &in, StudentsWork &obj) {
+	in >> obj.size;
+	for (int i = 0; i < obj.size; i++) in >> obj.qual[i];
+	return in;
+}
+
+
+int StudentsWork::getSize() {
+	return size;
+}
+
 void StudentsWork::sortByMark(bool(*fun)(int a, int b)) {
 	InfoWork temp;
 	for (int i = 0; i < size; i++) {
@@ -242,7 +267,15 @@ void StudentsWork::sortName() {
 			}
 		}
 	}
+}
 
+bool StudentsWork::check_exist(InfoWork tmp) {
+	for (int i = 0; i < size; i++) {
+		if (qual[i] == tmp) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void StudentsWork::delArr() {

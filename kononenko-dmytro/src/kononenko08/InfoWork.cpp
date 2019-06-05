@@ -36,3 +36,33 @@ int InfoWork::getType() {
 string InfoWork::getName() {
 	return this->name;
 }
+
+bool InfoWork::operator== (const InfoWork obj) {
+	return (pages == obj.pages && type == obj.type && mark == obj.mark && name == obj.name);
+}
+
+bool InfoWork::operator!= (const InfoWork obj) {
+	return (pages != obj.pages && type != obj.type && mark != obj.mark && name != obj.name);
+}
+
+std::istream& operator>> (std::istream &in, InfoWork &obj) {
+	in >> obj.pages;
+	in >> obj.mark;
+	in >> obj.type;
+	in >> obj.name;
+
+	return in;
+}
+
+std::ostream& operator<< (std::ostream &out, const InfoWork &obj) {
+	out << obj.name << ": " << obj.mark << endl;
+	return out;
+}
+
+InfoWork& InfoWork::operator= (const InfoWork obj) {
+	pages = obj.pages;
+	mark = obj.mark;
+	type = obj.type;
+	name = obj.name;
+	return *this;
+}

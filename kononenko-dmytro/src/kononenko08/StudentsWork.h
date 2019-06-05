@@ -9,21 +9,13 @@ using std::ifstream;
 class StudentsWork {
 private:
 	int size;
-	InfoW *qual;
+	InfoWork *qual;
 public:
 	StudentsWork() :size(0) {};
-	InfoWork &operator[] (const int index)
-	{
-		return qual[index];
-	}
-	friend std::ostream& operator<< (std::ostream &out, const StudentsWork &obj) {
-		out << obj.size <<endl;
-		return out;
-	}
-	friend std::istream& operator>> (std::istream &in, StudentsWork &obj) {
-		in >> obj.size;
-		return in;
-	}
+	InfoWork &operator[] (const int index) {}
+	friend std::ostream& operator<< (std::ostream &out, const StudentsWork &obj) {}
+	friend std::istream& operator>> (std::istream &in, StudentsWork &obj) {}
+	bool check_exist(InfoWork tmp);
 	void sortName();
 	void setSize(int size);
 	void createArr(string* name);
@@ -39,4 +31,5 @@ public:
 	void testDel();
 	void testAdd();
 	void delArr();
+	int getSize();
 };
