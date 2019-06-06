@@ -8,4 +8,9 @@ public:
 	Viruses();
 	void setAmountV(int amountV);
 	int getAmountV();
+	
+
+	void operator = (Viruses &obj);
+	bool operator== (Viruses &obj);
+	friend ostream& operator<< (ostream &out, Viruses &obj);
 };

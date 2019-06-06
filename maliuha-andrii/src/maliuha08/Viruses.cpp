@@ -11,3 +11,19 @@ void Viruses::setAmountV(int amountV) {
 int Viruses::getAmountV() {
 	return amountV;
 }
+
+bool Viruses::operator== (Viruses &obj) {
+	if (this->amountV != obj.amountV) {
+		return false;
+	}
+	return true;
+}
+
+ostream& operator<< (ostream &out, Viruses &obj) {
+	out << obj.amountV;
+	return out;
+}
+
+void Viruses::operator = (Viruses &obj) {
+	this->amountV = obj.amountV;
+}
