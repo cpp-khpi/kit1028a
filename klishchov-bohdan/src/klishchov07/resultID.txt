@@ -1,0 +1,5 @@
+The name of country: USA
+Population: 3267522
+Area: 2452792
+Revenue: 42852
+
