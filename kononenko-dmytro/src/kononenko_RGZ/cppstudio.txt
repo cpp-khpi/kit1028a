@@ -1,0 +1,25 @@
+Student`s name: Kabak Alex
+Size of works 180
+Student`s mark: 1
+Work`s type: MAGISTR
+Novelty: 2019
+Student`s name: Hulevych Andrey
+Size of works 192
+Student`s mark: 1
+Work`s type: MAGISTR
+Novelty: 2016
+Student`s name: Chelak Egor
+Size of works 249
+Student`s mark: 2
+Work`s type: MAGISTR
+Size of labor: 345
+Student`s name: Kononenko Dmytro
+Size of works 299
+Student`s mark: 3
+Work`s type: MAGISTR
+Novelty: 2011
+Student`s name: Zozuly Vladislav
+Size of works 372
+Student`s mark: 2
+Work`s type: MAGISTR
+Size of labor: 263
