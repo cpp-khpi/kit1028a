@@ -1,0 +1,5 @@
+The name of country: Japan
+Population: 735126
+Area: 6832478
+Revenue: 367299
+

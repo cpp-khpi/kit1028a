@@ -1,0 +1,5 @@
+The name of country: Poland
+Population: 5679762
+Area: 4567899
+Revenue: 65789
+
