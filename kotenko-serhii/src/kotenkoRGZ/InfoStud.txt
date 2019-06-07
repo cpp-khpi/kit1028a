@@ -1,0 +1,18 @@
+Student info: Kononenko Dmitro
+Amount of independent works: 12
+Amount of written independent works: 9
+Student mark (average): 5
+Student homework : 0
+
+Student info: Sokolenko Dmitro
+Amount of independent works: 16
+Amount of written independent works: 14
+Student mark (average): 5
+Student homework : 12
+
+Student info: Kotenko Serhii
+Amount of independent works: 9
+Amount of written independent works: 8
+Student mark (average): 2
+Student homework : 13
+
