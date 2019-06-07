@@ -1,0 +1,7 @@
+Textbook number: 0
+Textbook's number of pages: 204
+Textbook's grade: 6
+Textbook's cost: 278
+Textbook's year of release: 2007
+The author of the textbook: Greed
+The link to the electronic textbook: https://metanit.com/cpp/tutorial/5.12
