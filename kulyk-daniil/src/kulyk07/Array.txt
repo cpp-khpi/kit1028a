@@ -1,0 +1,35 @@
+Textbook number: 0
+Textbook's number of pages: 247
+Textbook's grade: 10
+Textbook's cost: 220
+Textbook's year of release: 2014
+The author of the textbook: Greed
+The link to the electronic textbook: 
+Textbook number: -858993460
+Textbook's number of pages: -858993460
+Textbook's grade: -858993460
+Textbook's cost: -858993460
+Textbook's year of release: -858993460
+The author of the textbook: 
+The link to the electronic textbook: 
+Textbook number: -858993460
+Textbook's number of pages: -858993460
+Textbook's grade: -858993460
+Textbook's cost: -858993460
+Textbook's year of release: -858993460
+The author of the textbook: 
+The link to the electronic textbook: 
+Textbook number: -858993460
+Textbook's number of pages: -858993460
+Textbook's grade: -858993460
+Textbook's cost: -858993460
+Textbook's year of release: -858993460
+The author of the textbook: 
+The link to the electronic textbook: 
+Textbook number: -858993460
+Textbook's number of pages: -858993460
+Textbook's grade: -858993460
+Textbook's cost: -858993460
+Textbook's year of release: -858993460
+The author of the textbook: 
+The link to the electronic textbook: 
