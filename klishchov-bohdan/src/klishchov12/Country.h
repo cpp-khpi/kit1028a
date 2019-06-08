@@ -8,8 +8,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
-using std::vector;
-using std::ostream;
+
 
 class Country {
 private:
@@ -36,7 +35,7 @@ public:
 		return (obj.popul != obj2.popul);
 	}
 	friend std::ostream& operator<< (std::ostream &out, const Country &obj) {
-		out << "Name: " << obj.name << endl << " ARea: " << obj.area << endl;
+		out << "Name: " << obj.name << endl << "Area: " << obj.area << endl;
 		out << "Population: " << obj.popul << endl;
 		return out;
 	}
