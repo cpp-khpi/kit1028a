@@ -2,107 +2,110 @@
 
 
 void CountryArr::sortArea(bool(*comp)(int x, int y)) {
-	Island temp;
+	Republic temp;
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
-			if (comp(island[i].getArea(), island[j].getArea())) {
-				temp = island[i];
-				island[i] = island[j];
-				island[j] = temp;
+			if (comp(republic[i].getArea(), republic[j].getArea())) {
+				temp = republic[i];
+				republic[i] = republic[j];
+				republic[j] = temp;
 			}
 		}
 	}
 }
 
-void CountryArr::newArray(std::string name) {
+void CountryArr::newArray(string name, string pres) {
 	size++;
-	island = new Island[size];
-	island[0].getInfo(name);
+	republic = new Republic[size];
+	republic[0].getInfo(name);
+	republic[0].setPresident(pres);
 }
 
 void CountryArr::print() {
 	std::ofstream fout("result.txt");
 	for (int i = 0; i < size; i++) {
-		fout << "The name of country: " << island[i].getName() << std::endl;
-		fout << "Population: " << island[i].getPopulation() << std::endl;
-		fout << "Area: " << island[i].getArea() << std::endl;
-		fout << "Revenue: " << island[i].getRevenue() << std::endl << std::endl;
+		fout << "The name of country: " << republic[i].getName() << std::endl;
+		fout << "Population: " << republic[i].getPopulation() << std::endl;
+		fout << "Area: " << republic[i].getArea() << std::endl;
+		fout << "Revenue: " << republic[i].getRevenue() << std::endl << std::endl;
 	}
 	fout.close();
 	for (int i = 0; i < size; i++) {
-		std::cout << "The name of country: " << island[i].getName() << std::endl;
-		std::cout << "Population: " << island[i].getPopulation() << std::endl;
-		std::cout << "Area: " << island[i].getArea() << std::endl;
-		std::cout << "Revenue: " << island[i].getRevenue() << std::endl << std::endl;
-		info.Info(&island[i]);
+		std::cout << "The name of country: " << republic[i].getName() << std::endl;
+		std::cout << "Population: " << republic[i].getPopulation() << std::endl;
+		std::cout << "Area: " << republic[i].getArea() << std::endl;
+		std::cout << "Revenue: " << republic[i].getRevenue() << std::endl;
+		info.Info(&republic[i]);
+		cout << std::endl << std::endl;
 	}
 }
-void CountryArr::addEl(int population, int area, int revenue, std::string name) {
-	Island *temp = new Island[size + 1];
+void CountryArr::addEl(int population, int area, int revenue, string name, string pres) {
+	Republic *temp = new Republic[size + 1];
 
 	for (int i = 0; i < size; i++) {
-		temp[i] = CountryArr::island[i];
+		temp[i] = CountryArr::republic[i];
 	}
 
 	size++;
 
 	temp[size - 1].setData(population, area, revenue, name);
+	temp[size - 1].setPresident(pres);
 
-	delete[] island;
-	island = temp;
+	delete[] republic;
+	republic = temp;
 }
 void CountryArr::deleteEl(int index) {
 	size--;
-	Island* temp = new Island[size];
+	Republic* temp = new Republic[size];
 	int j = 0;
 	for (int i = 0; j < size - 1; i++)
 	{
-		temp[i] = CountryArr::island[j];
+		temp[i] = CountryArr::republic[j];
 		j++;
 	}
 	j++;
 
 	for (int i = index - 1; i < size; i++)
 	{
-		temp[i] = CountryArr::island[i];
+		temp[i] = CountryArr::republic[i];
 		j++;
 	}
-	delete[] island;
-	island = temp;
+	delete[] republic;
+	republic = temp;
 }
 
 void CountryArr::getByIndex(int index) {
 	std::ofstream fout("resultID.txt");
-	fout << "The name of country: " << island[index - 1].getName() << std::endl;
-	fout << "Population: " << island[index - 1].getPopulation() << std::endl;
-	fout << "Area: " << island[index - 1].getArea() << std::endl;
-	fout << "Revenue: " << island[index - 1].getRevenue() << std::endl << std::endl;
+	fout << "The name of country: " << republic[index - 1].getName() << std::endl;
+	fout << "Population: " << republic[index - 1].getPopulation() << std::endl;
+	fout << "Area: " << republic[index - 1].getArea() << std::endl;
+	fout << "Revenue: " << republic[index - 1].getRevenue() << std::endl << std::endl;
 	fout.close();
-	std::cout << "The name of country: " << island[index - 1].getName() << std::endl;
-	std::cout << "Population: " << island[index - 1].getPopulation() << std::endl;
-	std::cout << "Area: " << island[index - 1].getArea() << std::endl;
-	std::cout << "Revenue: " << island[index - 1].getRevenue() << std::endl;
-	info.Info(&island[index]);
+	std::cout << "The name of country: " << republic[index - 1].getName() << std::endl;
+	std::cout << "Population: " << republic[index - 1].getPopulation() << std::endl;
+	std::cout << "Area: " << republic[index - 1].getArea() << std::endl;
+	std::cout << "Revenue: " << republic[index - 1].getRevenue() << std::endl;
+	info.Info(&republic[index]);
 	cout << std::endl << std::endl;
 }
 
 void CountryArr::deleteArray() {
-	delete[] island;
+	delete[] republic;
 }
 
-Island CountryArr::maxPop() {
-	int max = island[0].getPopulation();
+Republic CountryArr::maxPop() {
+	int max = republic[0].getPopulation();
 	int index = 0;
 	for (int i = 0; i < size; i++) {
-		if (max < island[i].getPopulation()) {
-			max = island[i].getPopulation();
+		if (max < republic[i].getPopulation()) {
+			max = republic[i].getPopulation();
 			index = i;
 		}
 	}
-	return island[index];
+	return republic[index];
 }
 
-void CountryArr::printMax(Island min) {
+void CountryArr::printMax(Republic min) {
 	std::ofstream fout("resultMax.txt");
 	fout << "The name of country: " << min.getName() << std::endl;
 	fout << "Population: " << min.getPopulation() << std::endl;

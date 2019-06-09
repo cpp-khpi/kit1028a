@@ -1,21 +1,21 @@
 #pragma once
 #include"Country.h"
-#include"classes.h"
+#include"Information.h"
+#include "Republic.h"
 
 class CountryArr {
 private:
 	int size = 0;
-	Island *island;
-	Mainland *mainland;
+	Republic *republic;
 	Information info;
 public:
-	void newArray(std::string name);
+	void newArray(string name, string pres);
 	void print();
-	void addEl(int population, int area, int revenue, std::string s);
+	void addEl(int population, int area, int revenue, string s, string pres);
 	void deleteEl(int l);
 	void getByIndex(int index);
 	void deleteArray();
-	Island maxPop();
-	void printMax(Island max);
+	Republic maxPop();
+	void printMax(Republic max);
 	void sortArea(bool(*comp)(int x, int y));
 };

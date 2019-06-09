@@ -30,7 +30,11 @@ int main() {
 		getline(std::cin, name);
 	}
 
-	Countr.newArray(name);
+	std::string pres;
+	std::cout << "Please, the president of country: ";
+	getline(std::cin, pres);
+
+	Countr.newArray(name, pres);
 	Countr.print();
 
 	bool(*p)(int a, int b);
@@ -47,11 +51,19 @@ int main() {
 			std::string name;
 			std::ifstream fin("data.txt");
 			fin >> population >> area >> revenue >> name;
-			Countr.addEl(population, area, revenue, name);
+			std::cout << "Please, the president of country: ";
+			getline(std::cin, pres);
+			Countr.addEl(population, area, revenue, name, pres);
 			fin >> population >> area >> revenue >> name;
-			Countr.addEl(population, area, revenue, name);
+			std::cout << "Please, the president of country: ";
+			getline(std::cin, pres);
+			Countr.addEl(population, area, revenue, name, pres);
+
 			fin >> population >> area >> revenue >> name;
-			Countr.addEl(population, area, revenue, name);
+			std::cout << "Please, the president of country: ";
+			getline(std::cin, pres);
+			Countr.addEl(population, area, revenue, name, pres);
+
 			system("cls");
 			Countr.print();
 			break;
@@ -76,7 +88,7 @@ int main() {
 			break;
 		}
 		case 4: {
-			Island Max = Countr.maxPop();
+			Republic Max = Countr.maxPop();
 			Countr.printMax(Max);
 			break;
 		}

@@ -11,8 +11,6 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-
-
 class Country {
 private:
 	int population;
