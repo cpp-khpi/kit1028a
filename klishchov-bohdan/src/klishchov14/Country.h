@@ -3,12 +3,13 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <algorithm>
 
 using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
-using std::vector;
+
 
 class Country {
 private:
@@ -16,12 +17,26 @@ private:
 	int popul;
 	string name;
 public:
-
-	bool operator <(const Country& rhs) {
-		return area < rhs.area;
+	Country& operator= (const Country obj) {
+		area = obj.area;
+		popul = obj.popul;
+		name = obj.name;
+		return *this;
+	}
+	friend bool operator< (const Country &obj, const Country &obj2) {
+		return (obj.popul < obj2.popul);
+	}
+	friend bool operator> (const Country &obj, const Country &obj2) {
+		return (obj.popul > obj2.popul);
+	}
+	friend bool operator== (const Country &obj1, const Country &obj2) {
+		return (obj1.popul == obj2.popul);
+	}
+	friend bool operator!= (const Country &obj, const Country &obj2) {
+		return (obj.popul != obj2.popul);
 	}
 	friend std::ostream& operator<< (std::ostream &out, const Country &obj) {
-		out << "Name: " << obj.name << endl << " ARea: " << obj.area << endl;
+		out << "Name: " << obj.name << endl << "Area: " << obj.area << endl;
 		out << "Population: " << obj.popul << endl;
 		return out;
 	}
