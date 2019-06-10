@@ -1,0 +1,1 @@
+Array of positive elements: 3 0 2 
